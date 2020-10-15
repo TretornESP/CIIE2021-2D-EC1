@@ -49,7 +49,7 @@ fi
 echo "source ./bin/activate"
 source ./bin/activate
 
-if [ "postinstall" -eq "1" ]; then
+if [ "$postinstall" -eq "1" ]; then
     echo "Installing python requirements!"
 
     if [ -f /etc/os-release ]; then
