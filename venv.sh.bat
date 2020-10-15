@@ -82,7 +82,7 @@ if [ "$postinstall" -eq "1" ]; then
 
         while true; do
             stty echo
-            printf "Update repos? [y/n]"
+            printf "Update repos? [y/n] "
             read yn
             stty echo
             case $yn in
@@ -94,7 +94,7 @@ if [ "$postinstall" -eq "1" ]; then
 
         while true; do
             stty echo
-            printf "Install dependencies? [y/n]"
+            printf "Install dependencies? [y/n] "
             read yn
             stty echo
             case $yn in
@@ -108,7 +108,7 @@ if [ "$postinstall" -eq "1" ]; then
 
         while true; do
             stty echo
-            printf "Update repos? [y/n]"
+            printf "Update repos? [y/n] "
             read yn
             stty echo
             case $yn in
@@ -120,7 +120,7 @@ if [ "$postinstall" -eq "1" ]; then
 
         while true; do
             stty echo
-            printf "Install dependencies? [y/n]"
+            printf "Install dependencies? [y/n] "
             read yn
             stty echo
             case $yn in
