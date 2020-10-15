@@ -37,7 +37,7 @@ fi
 # Else, if everything succeeded
 echo "Initializing venv..."
 
-set -e # exit on error
+set -e
 
 postinstall=0
 if [ ! -f "./bin/activate" ]; then
@@ -53,33 +53,24 @@ if [ "$postinstall" -eq "1" ]; then
     echo "Installing python requirements!"
 
     if [ -f /etc/os-release ]; then
-        # freedesktop.org and systemd
         . /etc/os-release
         OS=$NAME
         VER=$VERSION_ID
     elif type lsb_release >/dev/null 2>&1; then
-        # linuxbase.org
         OS=$(lsb_release -si)
         VER=$(lsb_release -sr)
     elif [ -f /etc/lsb-release ]; then
-        # For some versions of Debian/Ubuntu without lsb_release command
         . /etc/lsb-release
         OS=$DISTRIB_ID
         VER=$DISTRIB_RELEASE
     elif [ -f /etc/debian_version ]; then
-        # Older Debian/Ubuntu/etc.
         OS=Debian
         VER=$(cat /etc/debian_version)
     elif [ -f /etc/SuSe-release ]; then
-        # Older SuSE/etc.
-        #...
         OS="Suse"
     elif [ -f /etc/redhat-release ]; then
-        # Older Red Hat, CentOS, etc.
-        #...
         OS="Red Hat Old"
     else
-        # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
         OS=$(uname -s)
         VER=$(uname -r)
     fi
@@ -90,7 +81,10 @@ if [ "$postinstall" -eq "1" ]; then
         echo "Arch Linux detected"
 
         while true; do
-            read -p "Update repos? [y/n]" yn
+            stty echo
+            printf "Update repos? [y/n]"
+            read yn
+            stty echo
             case $yn in
                 [Yy]* ) sudo pacman -Syy; break;;
                 [Nn]* ) break;;
@@ -99,7 +93,10 @@ if [ "$postinstall" -eq "1" ]; then
         done
 
         while true; do
-            read -p "Install dependencies? [y/n]" yn
+            stty echo
+            printf "Install dependencies? [y/n]"
+            read yn
+            stty echo
             case $yn in
                 [Yy]* ) sudo pacman -S python-pygame --needed; break;;
                 [Nn]* ) break;;
@@ -110,7 +107,10 @@ if [ "$postinstall" -eq "1" ]; then
         echo "Ubuntu detected"
 
         while true; do
-            read -p "Update repos? [y/n]" yn
+            stty echo
+            printf "Update repos? [y/n]"
+            read yn
+            stty echo
             case $yn in
                 [Yy]* ) sudo apt-get update; break;;
                 [Nn]* ) break;;
@@ -119,7 +119,10 @@ if [ "$postinstall" -eq "1" ]; then
         done
 
         while true; do
-            read -p "Install dependencies? [y/n]" yn
+            stty echo
+            printf "Install dependencies? [y/n]"
+            read yn
+            stty echo
             case $yn in
                 [Yy]* ) sudo apt-get install python3-pygame; break;;
                 [Nn]* ) break;;
