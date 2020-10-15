@@ -39,15 +39,17 @@ echo "Initializing venv..."
 
 set -e # exit on error
 
+postinstall=0
 if [ ! -f "./bin/activate" ]; then
     echo "Setting up venv for the first time!"
     python3 -m venv .
+    postinstall=1
 fi
 
 echo "source ./bin/activate"
 source ./bin/activate
 
-if [ ! -f "./bin/activate" ]; then
+if [ "postinstall" -eq "1" ]; then
     echo "Installing python requirements!"
 
     if [ -f /etc/os-release ]; then
