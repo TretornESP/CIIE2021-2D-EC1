@@ -84,7 +84,9 @@ if [ "$postinstall" -eq "1" ]; then
         VER=$(uname -r)
     fi
 
-    if [ "$OS" == "Arch Linux" ]; then
+    echo "LOL $OS"
+
+    if [ "$OS" = "Arch Linux" ]; then
         echo "Arch Linux detected"
 
         while true; do
@@ -104,7 +106,7 @@ if [ "$postinstall" -eq "1" ]; then
                 * ) echo "Please answer yes or no.";;
             esac
         done
-    elif [ "$OS" == "Ubuntu" ]; then
+    elif [ "$OS" = "Ubuntu" ]; then
         echo "Ubuntu detected"
 
         while true; do
