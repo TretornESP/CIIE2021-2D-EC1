@@ -9,3 +9,4 @@ pyvenv.cfg
 share
 .venv
 .DS_Store
+env
