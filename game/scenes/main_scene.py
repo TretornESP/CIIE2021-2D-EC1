@@ -22,8 +22,10 @@ class MainScene(AbstractScene):
         self._background = MainBackground()
         
         # platforms
-        platform = Platform(pygame.Rect((0, resolution[1] - 21), (resolution[0], 20)))
+        platform = Platform(pygame.Rect((0, resolution[1] - 20), (resolution[0], 20)))
         self._platforms = pygame.sprite.Group(platform)
+
+        self._player.set_platform_group(self._platforms)
 
         # sprites
         self._dynamic_sprites = pygame.sprite.Group(self._player)
@@ -66,7 +68,7 @@ class MainScene(AbstractScene):
                     player.set_global_position((self._background.rect.right - player.rect.width, player._position[1]))
                 return False
 
-            self._scroll_x = self._scroll_x + displ
+            self._scroll_x = min(self._scroll_x + displ, self._background.rect.right - resolution[0])
             return True
 
         if player.rect.left < MainScene.MIN_X:

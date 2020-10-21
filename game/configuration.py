@@ -11,7 +11,7 @@ class Singleton(type):
         return cls._instances[cls]
 
 class Configuration(metaclass=Singleton):
-    METERS_PER_PIXEL = 10
+    METERS_PER_PIXEL = 0.03837
 
     def __init__(self):
         path = os.path.abspath(__package__)
