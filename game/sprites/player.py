@@ -2,7 +2,7 @@ from .character import Character
 
 class Player(Character):
     def __init__(self):
-        Character.__init__(self, "player.png", (0, 579), (10, 7.5))
+        Character.__init__(self, "player.png", (0, 580), (15, 7.5))
 
     def move(self, keys_pressed, up, down, left, right):
         if keys_pressed[up]:

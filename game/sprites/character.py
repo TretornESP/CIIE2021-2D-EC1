@@ -1,4 +1,5 @@
 import pygame
+import math
 from game import ResourceManager, Configuration
 from .abstract_sprite import AbstractSprite
 
@@ -25,7 +26,23 @@ class Character(AbstractSprite):
         self._movement = Character.STILL
         self._orientation = Character.RIGHT
 
+        self._platforms = None
+
     def update(self, elapsed_time):
+        self._update_orientation()
+        self._update_movement(elapsed_time)
+        self._update_collisions()
+
+    def move(self, direction):
+        self._movement = direction
+
+    def set_platform_group(self, platforms):
+        self._platforms = platforms
+
+    def _update_image(self):
+        self.image = pygame.transform.flip(self.image, 1, 0)
+
+    def _update_orientation(self):
         next_orientation = None
 
         if self._movement in [Character.LEFT, Character.UP_LEFT, Character.DOWN_LEFT]:
@@ -37,16 +54,32 @@ class Character(AbstractSprite):
             self._update_image()
             self._orientation = next_orientation
 
+    def _update_movement(self, elapsed_time):
         increase = Configuration().get_pixels(self._velocity)
+
+        if self._movement == Character.UP:
+            inc_y = -increase[1] * elapsed_time
+            self._increase_position((0, inc_y))
+
+        if self._movement == Character.DOWN:
+            inc_y = increase[1] * elapsed_time
+            self._increase_position((0, inc_y))
+
+        if self._movement == Character.UP_RIGHT:
+            inc_x = increase[0] * math.cos(45) * elapsed_time
+            inc_y = -increase[1] * math.cos(45) * elapsed_time
+            self._increase_position((inc_x, inc_y))
+
         if self._movement == Character.RIGHT:
-            inc_x = increase[0] * self._velocity[0]
+            inc_x = increase[0] * elapsed_time
             self._increase_position((inc_x, 0))
-        elif self._movement == Character.LEFT:
-            inc_x = increase[0] * self._velocity[0]
-            self._increase_position((-inc_x, 0))
 
-    def move(self, direction):
-        self._movement = direction
+        if self._movement == Character.LEFT:
+            inc_x = -increase[0] * elapsed_time
+            self._increase_position((inc_x, 0))
 
-    def _update_image(self):
-        self.image = pygame.transform.flip(self.image, 1, 0)
+    def _update_collisions(self):
+        platform = pygame.sprite.spritecollideany(self, self._platforms)
+
+        if platform != None and platform.rect.bottom > self.rect.bottom:
+            self.set_global_position((self._position[0], platform._position[1] - platform.rect.height + 1))

@@ -43,7 +43,7 @@ class Director:
         self._end_scene = False
         while not self._end_scene:
             elapsed_time = self._clock.tick(60)
-            elapsed_time = elapsed_time / 1000
+            elapsed_time /= 1000
 
             scene.events(pygame.event.get())
             scene.update(elapsed_time)
