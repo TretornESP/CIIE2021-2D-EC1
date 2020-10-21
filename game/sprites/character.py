@@ -61,15 +61,6 @@ class Character(AbstractSprite):
             inc_y = -increase[1] * elapsed_time
             self._increase_position((0, inc_y))
 
-        if self._movement == Character.DOWN:
-            inc_y = increase[1] * elapsed_time
-            self._increase_position((0, inc_y))
-
-        if self._movement == Character.UP_RIGHT:
-            inc_x = increase[0] * math.cos(45) * elapsed_time
-            inc_y = -increase[1] * math.cos(45) * elapsed_time
-            self._increase_position((inc_x, inc_y))
-
         if self._movement == Character.RIGHT:
             inc_x = increase[0] * elapsed_time
             self._increase_position((inc_x, 0))
@@ -82,4 +73,4 @@ class Character(AbstractSprite):
         platform = pygame.sprite.spritecollideany(self, self._platforms)
 
         if platform != None and platform.rect.bottom > self.rect.bottom:
-            self.set_global_position((self._position[0], platform._position[1] - platform.rect.height + 1))
+            self.set_global_position((self._position[0], platform._position[1] - platform.rect.height))
