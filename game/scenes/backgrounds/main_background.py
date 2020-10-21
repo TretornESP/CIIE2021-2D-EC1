@@ -1,8 +1,11 @@
 import pygame
+from .abstract_background import AbstractBackground
 from game import ResourceManager, Configuration
 
-class MainBackground:
+class MainBackground(AbstractBackground):
     def __init__(self, scroll_x=0):
+        AbstractBackground.__init__(self, scroll_x)
+
         resolution = Configuration().get_resolution()
         image = ResourceManager.load_image("main_background.png")
 
@@ -14,9 +17,3 @@ class MainBackground:
 
         self.subimage_rect = pygame.Rect((0, 0), resolution)
         self.subimage_rect.left = scroll_x
-
-    def update(self, scroll_x):
-        self.subimage_rect.left = scroll_x
-
-    def draw(self, screen):
-        screen.blit(self.image, self.rect, self.subimage_rect)
