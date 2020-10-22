@@ -9,19 +9,18 @@ class Character(AbstractSprite):
     RIGHT = 2
     UP = 3
     DOWN = 4
-    UP_LEFT = 5
-    UP_RIGHT = 6
-    DOWN_LEFT = 7
-    DOWN_RIGHT = 8
 
-    def __init__(self, image, position, velocity):
+    def __init__(self, image, position, velocity_x, velocity_y):
         AbstractSprite.__init__(self)
 
         self.image = ResourceManager.load_image(image)
         self.rect = self.image.get_rect()
 
         self.set_global_position(position)
-        self._velocity = velocity
+
+        self._velocity = (0, 0)
+        self._velocity_x = velocity_x
+        self._velocity_y = velocity_y
 
         self._movement = Character.STILL
         self._orientation = Character.RIGHT
@@ -31,7 +30,7 @@ class Character(AbstractSprite):
     def update(self, elapsed_time):
         self._update_orientation()
         self._update_movement(elapsed_time)
-        self._update_collisions()
+        self._update_collisions(elapsed_time)
 
     def move(self, direction):
         self._movement = direction
@@ -45,9 +44,9 @@ class Character(AbstractSprite):
     def _update_orientation(self):
         next_orientation = None
 
-        if self._movement in [Character.LEFT, Character.UP_LEFT, Character.DOWN_LEFT]:
+        if self._movement == Character.LEFT:
             next_orientation = Character.LEFT
-        elif self._movement in [Character.RIGHT, Character.UP_RIGHT, Character.DOWN_RIGHT]:
+        elif self._movement == Character.RIGHT:
             next_orientation = Character.RIGHT
 
         if next_orientation != None and next_orientation != self._orientation:
@@ -55,22 +54,26 @@ class Character(AbstractSprite):
             self._orientation = next_orientation
 
     def _update_movement(self, elapsed_time):
-        increase = Configuration().get_pixels(self._velocity)
-
-        if self._movement == Character.UP:
-            inc_y = -increase[1] * elapsed_time
-            self._increase_position((0, inc_y))
-
-        if self._movement == Character.RIGHT:
-            inc_x = increase[0] * elapsed_time
-            self._increase_position((inc_x, 0))
+        vel_x, vel_y = self._velocity_x, self._velocity_y
+        vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
 
         if self._movement == Character.LEFT:
-            inc_x = -increase[0] * elapsed_time
-            self._increase_position((inc_x, 0))
+            self._velocity = (-vel_px * elapsed_time, self._velocity[1])
+        if self._movement == Character.RIGHT:
+            self._velocity = (vel_px * elapsed_time, self._velocity[1])
+        if self._movement == Character.STILL:
+            self._velocity = (0, self._velocity[1])
+        if self._velocity[1] == 0 and self._movement == Character.UP:
+            self._velocity = (self._velocity[0], -vel_py * elapsed_time)
 
-    def _update_collisions(self):
+        self._increase_position(self._velocity)
+
+    def _update_collisions(self, elapsed_time):
         platform = pygame.sprite.spritecollideany(self, self._platforms)
 
-        if platform != None and platform.rect.bottom > self.rect.bottom:
+        if platform != None:
             self.set_global_position((self._position[0], platform._position[1] - platform.rect.height))
+            self._velocity = (self._velocity[0], 0)
+        else:
+            _, vel_py = Configuration().get_pixels((0, self._velocity_y))
+            self._velocity = (self._velocity[0], self._velocity[1] + 0.07 * vel_py * elapsed_time)
