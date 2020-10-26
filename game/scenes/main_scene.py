@@ -19,7 +19,7 @@ class MainScene(AbstractHorizontalScene):
             self._enemies.append(Enemy((100+i*10, 300), 0, 0))
 
         # platforms
-        platform = Platform(pygame.Rect((0, resolution[1] - 20), (self._scroll_size, 20)))
+        platform = Platform("Level0", None, None, pygame.Rect((0, resolution[1] - 20), (self._scroll_size, 20)), False)
         self._platforms = pygame.sprite.Group(platform)
 
         # sprites

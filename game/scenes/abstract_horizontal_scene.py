@@ -36,8 +36,8 @@ class AbstractHorizontalScene(AbstractScene):
 
     def draw(self):
         self._background.draw(self._screen)
-        self._dynamic_sprites.draw(self._screen)
         self._static_sprites.draw(self._screen)
+        self._dynamic_sprites.draw(self._screen)
 
     def _update_scroll(self):
         player = self._player

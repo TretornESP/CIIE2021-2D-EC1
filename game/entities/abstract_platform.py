@@ -7,15 +7,15 @@ class AbstractPlatform(AbstractSprite):
         AbstractSprite.__init__(self)
 
         if sprite == None:
-            self.image = pygame.Rect(coord)
-            self.rect = self.image
+            self.image = pygame.Surface((coord.width, coord.height))
+            self.image.fill((255, 0, 255))
+            self.rect = coord
         else:
             self.image = ResourceManager.load_sprite(level, sprite)
-            self.rect = self.image.get_rect() #No estoy nada seguro de esto
+            self.rect = self.image.get_rect()
 
         if (invert):
             self.image = pygame.transform.flip(self.image, 1, 0)
 
-
-        self.set_global_position((coord.left, coord.bottom))
+        self.set_global_position(coord)
         self.set_collision(collision)
