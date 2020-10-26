@@ -107,6 +107,9 @@ class Character(AbstractSprite):
             item = pygame.sprite.spritecollideany(self, self._items) #TODO
         if (self._triggers != None):
             trigger = pygame.sprite.spritecollideany(self, self._triggers) #TODO
+            if (trigger != None):
+                 trigger.event()
+                 self._triggers.remove(trigger)
 
         if not has_collided:
             _, vel_py = Configuration().get_pixels((0, self._velocity_y))

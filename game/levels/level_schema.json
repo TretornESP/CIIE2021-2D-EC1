@@ -1,6 +1,6 @@
 {
    "$schema":"http://json-schema.org/draft-07/schema#",
-   "$id":"http://covideogame.es/schemas/v0.1.1/level_schema.json",
+   "$id":"http://covideogame.es/schemas/v0.1.2/level_schema.json",
    "definitions":{
       "id":{
          "type":"string",
@@ -13,6 +13,10 @@
       "kind":{
          "type":"string",
          "description":"kind of item"
+      },
+      "event":{
+        "type":"number",
+        "description":"event identifier"
       },
       "sprite":{
          "type":"string",
@@ -170,9 +174,6 @@
                    "description":"enemy",
                    "type":"object",
                    "properties":{
-                      "kind":{
-                         "$ref":"#/definitions/kind"
-                      },
                       "collides":{
                          "$ref":"#/definitions/collides"
                       },
@@ -197,8 +198,8 @@
                    "description":"trigger",
                    "type":"object",
                    "properties":{
-                      "id":{
-                         "$ref":"#/definitions/id"
+                      "event":{
+                         "$ref":"#/definitions/event"
                       },
                       "indicator":{
                          "$ref":"#/definitions/indicator"
@@ -211,8 +212,7 @@
                       }
                    },
                    "required":[
-                      "id",
-                      "indicator",
+                      "event",
                       "coords",
                       "size"
                    ]

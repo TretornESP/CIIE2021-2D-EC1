@@ -32,15 +32,6 @@
                   "pos_y":600,
                   "inverted": true
                }
-            },
-            {
-              "sprite":"car.png",
-              "collides": true,
-              "coords":{
-                "pos_x":600,
-                "pos_y":600,
-                "inverted": true
-              }
             }
          ],
          "objects":[
@@ -50,7 +41,32 @@
 
          ],
          "triggers":[
-
+            {
+              "event":0,
+              "indicator":true,
+              "coords":{
+                "pos_x":300,
+                "pos_y":600,
+                "inverted": true
+              },
+              "size":{
+                  "width":50,
+                  "height":50
+              }
+            },
+            {
+              "event":3,
+              "indicator":true,
+              "coords":{
+                "pos_x":700,
+                "pos_y":550,
+                "inverted": false
+              },
+              "size":{
+                  "width":10,
+                  "height":10
+              }
+            }
          ]
       }
    ]
