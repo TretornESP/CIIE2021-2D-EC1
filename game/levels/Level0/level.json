@@ -8,8 +8,8 @@
          "scroll":2000,
          "player":{
             "coords":{
-               "pos_x":0,
-               "pos_y":300,
+               "pos_x":500,
+               "pos_y":600,
                "inverted": false
             },
             "data":"player"
@@ -19,92 +19,38 @@
                "sprite":"lamp.png",
                "collides":false,
                "coords":{
-                  "pos_x":150,
-                  "pos_y":300,
-                  "inverted": false
+                  "pos_x":400,
+                  "pos_y":600,
+                  "inverted": true
                }
             },
             {
-               "sprite":"car.png",
-               "collides":true,
+               "sprite":"lamp.png",
+               "collides":false,
                "coords":{
-                  "pos_x":100,
-                  "pos_y":300,
-                  "inverted": false
+                  "pos_x":200,
+                  "pos_y":600,
+                  "inverted": true
                }
+            },
+            {
+              "sprite":"car.png",
+              "collides": true,
+              "coords":{
+                "pos_x":600,
+                "pos_y":600,
+                "inverted": true
+              }
             }
          ],
          "objects":[
-            {
-               "kind": "mask",
-               "sprite":"mask.png",
-               "collides":false,
-               "coords":{
-                  "pos_x":100,
-                  "pos_y":250,
-                  "inverted": false
-               }
-            },
-            {
-               "kind": "mask",
-               "sprite":"mask.png",
-               "collides":true,
-               "coords":{
-                  "pos_x":10,
-                  "pos_y":300,
-                  "inverted": false
-               }
-            }
+
          ],
          "enemies":[
-            {
-               "kind": "covid",
-               "collides":true,
-               "coords":{
-                  "pos_x":40,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "data":"covid"
-            },
-            {
-               "kind": "covid",
-               "collides":true,
-               "coords":{
-                  "pos_x":70,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "data":"covid"
-            }
+
          ],
          "triggers":[
-            {
-               "id":"EV0",
-               "indicator":true,
-               "coords":{
-                  "pos_x":80,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "size":{
-                 "width":10,
-                 "height":100
-               }
-            },
-            {
-               "id":"EV1",
-               "indicator":true,
-               "coords":{
-                  "pos_x":400,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "size":{
-                 "width":10,
-                 "height":100
-               }
-            }
+
          ]
       }
    ]
