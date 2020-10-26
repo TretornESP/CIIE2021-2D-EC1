@@ -1,6 +1,6 @@
 import pygame
 from .abstract_scene import AbstractScene
-from game.sprites import Platform, Player
+from game.entities import Platform, Player
 from .backgrounds import MainBackground
 from game import Configuration
 from pygame.locals import *

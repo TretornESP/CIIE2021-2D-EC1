@@ -1,0 +1,238 @@
+{
+   "$schema":"http://json-schema.org/draft-07/schema#",
+   "$id":"http://covideogame.es/schemas/v0.1.1/level_schema.json",
+   "definitions":{
+      "id":{
+         "type":"string",
+         "description":"unique id (relative to parent) of entity"
+      },
+      "data":{
+         "type":"string",
+         "description":"data FOLDER name for entity"
+      },
+      "kind":{
+         "type":"string",
+         "description":"kind of item"
+      },
+      "sprite":{
+         "type":"string",
+         "description":"Sprite file"
+      },
+      "collides":{
+         "type":"boolean",
+         "description":"The entity collides with other entities"
+      },
+      "indicator":{
+         "type":"boolean",
+         "description":"Show a rect over the trigger for debuggin purposes"
+      },
+      "size":{
+          "type":"object",
+          "description":"Size of triggers",
+          "properties":{
+            "width":{
+              "type":"number",
+              "description":"Width of the trigger"
+            },
+            "height":{
+              "type":"number",
+              "description":"Height of the trigger"
+            }
+          },
+          "required":[
+            "width",
+            "height"
+          ]
+      },
+      "coords":{
+         "type":"object",
+         "description":"coordinate definition",
+         "properties":{
+            "pos_x":{
+               "type":"number",
+               "description":"x coordinate"
+            },
+            "pos_y":{
+               "type":"number",
+               "description":"y coordinate"
+            },
+            "inverted":{
+               "type":"boolean",
+               "description":"invert original orientation of the sprite"
+            }
+         },
+         "required":[
+            "pos_x",
+            "pos_y"
+         ]
+      }
+   },
+   "title":"Level",
+   "description":"Level descriptor for covideogame",
+   "type":"object",
+   "properties":{
+      "id":{
+         "$ref":"#/definitions/id"
+      },
+      "name":{
+         "type":"string",
+         "description":"Display name of the level for the menu"
+      },
+      "scenes":{
+         "type":"array",
+         "description":"definition of every scene",
+         "items": {
+           "type": "object",
+           "description": "Scene definition",
+           "properties":{
+              "id":{
+                 "$ref":"#/definitions/id"
+              },
+              "background":{
+                 "type":"string",
+                 "description":"filename of the background image for the scene"
+              },
+              "scroll":{
+                "type":"number",
+                "description":"horizontal size of map"
+              },
+              "player":{
+                 "type":"object",
+                 "description":"player definition",
+                 "properties":{
+                    "coords":{
+                       "$ref":"#/definitions/coords"
+                    },
+                    "data":{
+                       "$ref":"#/definitions/data"
+                    }
+                 },
+                 "requiered":[
+                    "coords",
+                    "data"
+                 ]
+              },
+              "platforms":{
+                 "type":"array",
+                 "description":"foreground static items",
+                 "items":{
+                    "description":"foreground static item",
+                    "type":"object",
+                    "properties":{
+                       "sprite":{
+                          "$ref":"#/definitions/sprite"
+                       },
+                       "collides":{
+                          "$ref":"#/definitions/collides"
+                       },
+                       "coords":{
+                          "$ref":"#/definitions/coords"
+                       }
+                    },
+                    "required":[
+                       "sprite",
+                       "collides",
+                       "coords"
+                    ]
+                 }
+              },
+             "objects":{
+                "type":"array",
+                "description":"foreground items",
+                "items":{
+                   "description":"foreground item",
+                   "type":"object",
+                   "properties":{
+                     "kind":{
+                         "$ref":"#/definitions/kind"
+                     },
+                      "sprite":{
+                         "$ref":"#/definitions/sprite"
+                      },
+                      "collides":{
+                         "$ref":"#/definitions/collides"
+                      },
+                      "coords":{
+                         "$ref":"#/definitions/coords"
+                      }
+                   },
+                   "required":[
+                      "sprite",
+                      "collides",
+                      "coords"
+                   ]
+                }
+             },
+             "enemies":{
+                "type":"array",
+                "description":"enemy list",
+                "items":{
+                   "description":"enemy",
+                   "type":"object",
+                   "properties":{
+                      "kind":{
+                         "$ref":"#/definitions/kind"
+                      },
+                      "collides":{
+                         "$ref":"#/definitions/collides"
+                      },
+                      "coords":{
+                         "$ref":"#/definitions/coords"
+                      },
+                      "data":{
+                         "$ref":"#/definitions/data"
+                      }
+                   },
+                   "required":[
+                      "collides",
+                      "coords",
+                      "data"
+                   ]
+                }
+             },
+             "triggers":{
+                "type":"array",
+                "description":"trigger list",
+                "items":{
+                   "description":"trigger",
+                   "type":"object",
+                   "properties":{
+                      "id":{
+                         "$ref":"#/definitions/id"
+                      },
+                      "indicator":{
+                         "$ref":"#/definitions/indicator"
+                      },
+                      "coords":{
+                         "$ref":"#/definitions/coords"
+                      },
+                      "size":{
+                         "$ref":"#/definitions/size"
+                      }
+                   },
+                   "required":[
+                      "id",
+                      "indicator",
+                      "coords",
+                      "size"
+                   ]
+                }
+             }
+          },
+           "required":[
+              "id",
+              "background",
+              "player",
+              "enemies",
+              "platforms",
+              "objects"
+           ]
+         }
+      }
+    },
+   "required":[
+        "id",
+        "name",
+        "scenes"
+     ]
+}

@@ -3,11 +3,11 @@ from .abstract_background import AbstractBackground
 from game import ResourceManager, Configuration
 
 class MainBackground(AbstractBackground):
-    def __init__(self, scroll_x=0):
+    def __init__(self, level, filename, scroll_x=0):
         AbstractBackground.__init__(self, scroll_x)
 
         resolution = Configuration().get_resolution()
-        image = ResourceManager.load_image("main_background.png")
+        image = ResourceManager.load_sprite(level, filename)
 
         dest_resolution = (image.get_rect().width, resolution[1])
         self.image = pygame.transform.scale(image, dest_resolution)
