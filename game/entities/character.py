@@ -86,6 +86,16 @@ class Character(AbstractSprite):
             else:
                 self._velocity = (self._velocity[0], self._velocity[1] + 0.08 * vel_py * elapsed_time)
 
+        if (self._enemies != None):
+            enemy = pygame.sprite.spritecollideany(self, self._enemies) #TODO
+        if (self._items != None):
+            item = pygame.sprite.spritecollideany(self, self._items) #TODO
+        if (self._triggers != None):
+            trigger = pygame.sprite.spritecollideany(self, self._triggers) #TODO
+            if (trigger != None):
+                 trigger.event()
+                 self._triggers.remove(trigger)
+
     def _update_sprite(self):
         if self._velocity[0] < 0:
             self._left = True
