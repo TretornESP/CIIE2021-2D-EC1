@@ -7,8 +7,6 @@ class Player(Character):
     def move(self, keys_pressed, up, down, left, right):
         if keys_pressed[up]:
             Character.move(self, Character.UP)
-        elif keys_pressed[down]:
-            Character.move(self, Character.DOWN)
         elif keys_pressed[left]:
             Character.move(self, Character.LEFT)
         elif keys_pressed[right]:

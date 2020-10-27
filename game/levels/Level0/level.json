@@ -8,40 +8,13 @@
          "scroll":2000,
          "player":{
             "coords":{
-               "pos_x":0,
-               "pos_y":200,
+               "pos_x":500,
+               "pos_y":600,
                "inverted": false
             },
             "data":"player"
          },
          "platforms":[
-	    {
-	       "sprite":null,
-	       "collides": true,
-	       "coords":{
-		  "pos_x": 200,
-		  "pos_y": 600,
-		  "inverted": false
-	       }
-	    },
-	    {
-	       "sprite": null,
-	       "collides": true,
-	       "coords": {
-		  "pos_x": 400,
-		  "pos_y": 500,
-		  "inverted": false
-	       }
-	    },
-	    {
-	       "sprite": null,
-	       "collides": true,
-	       "coords": {
-		  "pos_x": 600,
-		  "pos_y": 400,
-		  "inverted": false
-	       }
-	    },
             {
                "sprite":"lamp.png",
                "collides":false,
