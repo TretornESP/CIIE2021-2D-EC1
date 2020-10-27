@@ -18,7 +18,7 @@ class Character(AbstractSprite):
         self._sheet = ResourceManager.load_sheet(level, data, colorkey=-1)
 
         if (invert):
-            self._sheet =  pygame.transform.flip(self._sheet, 1, 0) #Tal vez invierta controles??
+            self._sheet = pygame.transform.flip(self._sheet, 1, 0) #Tal vez invierta controles??
 
         self._left = False #Comentario de arriba
         self._animation_idx = 0
@@ -44,37 +44,20 @@ class Character(AbstractSprite):
         self._triggers = None
 
     def update(self, elapsed_time):
-        self._update_movement(elapsed_time)
-        self._update_collisions(elapsed_time)
-        self._update_sprite()
-
-    def move(self, direction):
-        self._movement = direction
-
-    def set_platform_group(self, platforms):
-        self._platforms = platforms
-
-    def set_enemy_group(self, enemies):
-        self._enemies = enemies
-
-    def set_item_group(self, items):
-        self._items = items
-
-    def set_trigger_group(self, trigger):
-        self._triggers = trigger
-
-    def _update_movement(self, elapsed_time):
+        res = Configuration().get_resolution()
         vel_x, vel_y = self._velocity_x, self._velocity_y
         vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
 
+        # update horizontal movement
         if self._movement == Character.LEFT:
             self._velocity = (-vel_px * elapsed_time, self._velocity[1])
         if self._movement == Character.RIGHT:
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
         if self._movement == Character.STILL:
             self._velocity = (0, self._velocity[1])
-        if self._velocity[1] == 0 and self._movement == Character.UP:
+        if self._movement == Character.UP and self._velocity[1] == 0:
             self._velocity = (self._velocity[0], -vel_py * elapsed_time)
+        self._update_sprite()
 
         self._increase_position(self._velocity)
 
@@ -120,19 +103,32 @@ class Character(AbstractSprite):
 
 
     def _update_sprite(self):
-        vel = self._velocity
-
-        if vel[0] < 0:
+        if self._velocity[0] < 0:
             self._left = True
-        elif vel[0] > 0:
+        elif self._velocity[0] > 0:
             self._left = False
 
-        if vel[1] != 0:
+        if self._velocity[1] != 0:
             self._set_sprite("MOV_Y")
-        elif vel[0] == 0:
+        elif self._velocity[0] == 0:
             self._set_sprite("STILL")
         else:
             self._set_sprite("MOV_X")
+
+    def move(self, direction):
+        self._movement = direction
+
+    def set_platform_group(self, platforms):
+        self._platforms = platforms
+
+    def set_enemy_group(self, enemies):
+        self._enemies = enemies
+
+    def set_item_group(self, items):
+        self._items = items
+
+    def set_trigger_group(self, trigger):
+        self._triggers = trigger
 
     def _set_sprite(self, posture):
         idx = self._animation_idx
@@ -149,7 +145,8 @@ class Character(AbstractSprite):
 
         pos = (info["POS"][0], info["POS"][1])
         dims = (info["W"], info["H"])
-        target_dims = (self._coords["TARGET_W"], self._coords["TARGET_H"])
+        scale = (self._coords["SCALE_W"], self._coords["SCALE_H"])
+        target_dims = (dims[0] * scale[0], dims[1] * scale[1])
 
         rect = pygame.Rect(pos, dims)
         image = self._sheet.subsurface(rect)
@@ -157,5 +154,6 @@ class Character(AbstractSprite):
 
         if self._left:
             self.image = pygame.transform.flip(self.image, 1, 0)
+        self.rect = self.image.get_rect()
 
         self._animation_idx = (idx + 1) % len(animations)
