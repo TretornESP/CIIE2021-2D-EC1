@@ -66,7 +66,6 @@ class Level():
         return (json['width'], json['height'])
 
     def parse_enemy(self, j):
-        kind   = j['kind']
         collid = j['collides']
         datafn = j['data']
         speedx = 25 #REPLACE ME
@@ -74,10 +73,10 @@ class Level():
         coords = self.parse_coords(j['coords'])
         invert = j['coords']['inverted']
 
-        return Enemy(self.name, kind, datafn, coords, speedx, speedy, invert)
+        return Enemy(self.name, datafn, coords, speedx, speedy, invert)
 
     def parse_trigger(self, json):
-        id     = json['id']
+        id     = json['event']
         indica = json['indicator']
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']

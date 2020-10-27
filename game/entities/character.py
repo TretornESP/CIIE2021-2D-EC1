@@ -59,32 +59,48 @@ class Character(AbstractSprite):
             self._velocity = (self._velocity[0], -vel_py * elapsed_time)
         self._update_sprite()
 
-        # check horizontal collisions
-        self._increase_position((self._velocity[0], 0))
-        platform = pygame.sprite.spritecollideany(self, self._platforms)
-        if platform != None and platform._collides and self.rect.bottom > platform.rect.top + 1:
-            if self._velocity[0] > 0:
-                self.set_global_position((platform._position[0] - self.rect.width, self._position[1]))
-            elif self._velocity[0] < 0:
-                self.set_global_position((platform._position[0] + platform.rect.width, self._position[1]))
+        self._increase_position(self._velocity)
 
-        # check vertical collisions
-        self._increase_position((0, self._velocity[1]))
-        platform = pygame.sprite.spritecollideany(self, self._platforms)
-        if platform != None and platform._collides:
-            if self._velocity[1] > 0:
-                self._velocity = (self._velocity[0], 0)
-                self.set_global_position((self._position[0], platform._position[1] - platform.rect.height + 1))
-            elif self._velocity[1] < 0:
-                self._velocity = (self._velocity[0], 0.04 * vel_py * elapsed_time)
-                self.set_global_position((self._position[0], platform._position[1] + self.rect.height))
-        else:
-            # check y axis boundaries
-            if self.rect.bottom >= res[1]:
-                self._velocity = (self._velocity[0], 0)
-                self.set_global_position((self._position[0], res[1]))
-            else:
-                self._velocity = (self._velocity[0], self._velocity[1] + 0.08 * vel_py * elapsed_time)
+    def _is_on_ground(self, offset=0):
+        return self.rect.bottom < (self._limit_y - offset - 20)
+
+    def _update_collisions(self, elapsed_time):
+        has_collided = False
+        (xvel, yvel) = self._velocity
+        on_ground =  self._is_on_ground()
+
+        if (self._platforms != None):
+            platform = pygame.sprite.spritecollideany(self, self._platforms)
+            if (platform != None and platform._collides): #No tengo claro esto
+                self._log.debug("XVEL: " + str(xvel) + " YVEL: " + str(yvel))
+                if (xvel < 0):
+                    self.set_global_position((platform._position[0] + platform.rect.width, self._position[1]))
+                if (xvel > 0):
+                    self.set_global_position((platform._position[0] - self.rect.width, self._position[1]))
+                if (yvel > 0):
+                    self.set_global_position((self._position[0], platform._position[1] - platform.rect.height))
+                if (yvel < 0):
+                    self.set_global_position((self._position[0], platform._position[1]))
+
+                has_collided = True
+
+        if (self._enemies != None):
+            enemy = pygame.sprite.spritecollideany(self, self._enemies) #TODO
+        if (self._items != None):
+            item = pygame.sprite.spritecollideany(self, self._items) #TODO
+        if (self._triggers != None):
+            trigger = pygame.sprite.spritecollideany(self, self._triggers) #TODO
+            if (trigger != None):
+                 trigger.event()
+                 self._triggers.remove(trigger)
+
+        if not has_collided:
+            _, vel_py = Configuration().get_pixels((0, self._velocity_y))
+            #self._log.debug("limit_y: "+ str(limit_y) + " bottom: " + str(self.rect.bottom))
+
+            vely = (self._velocity[1] + 0.08 * vel_py * elapsed_time) * on_ground
+            self._velocity = (self._velocity[0], vely)
+
 
     def _update_sprite(self):
         if self._velocity[0] < 0:
