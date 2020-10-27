@@ -7,9 +7,9 @@ class AbstractPlatform(AbstractSprite):
         AbstractSprite.__init__(self)
 
         if sprite == None:
-            self.image = pygame.Surface((coord.width, coord.height))
+            self.image = pygame.Surface((150, 10))
             self.image.fill((255, 0, 255))
-            self.rect = coord
+            self.rect = self.image.get_rect()
         else:
             self.image = ResourceManager.load_sprite(level, sprite)
             self.rect = self.image.get_rect()
