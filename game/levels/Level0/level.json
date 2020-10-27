@@ -1,0 +1,73 @@
+{
+   "id":"CVDG_LVL_0",
+   "name":"Level0",
+   "scenes":[
+      {
+         "id":"SCN_0",
+         "background":"background.png",
+         "scroll":2000,
+         "player":{
+            "coords":{
+               "pos_x":500,
+               "pos_y":600,
+               "inverted": false
+            },
+            "data":"player"
+         },
+         "platforms":[
+            {
+               "sprite":"lamp.png",
+               "collides":true,
+               "coords":{
+                  "pos_x":400,
+                  "pos_y":600,
+                  "inverted": true
+               }
+            },
+            {
+               "sprite":"lamp.png",
+               "collides":false,
+               "coords":{
+                  "pos_x":200,
+                  "pos_y":600,
+                  "inverted": true
+               }
+            }
+         ],
+         "objects":[
+
+         ],
+         "enemies":[
+
+         ],
+         "triggers":[
+            {
+              "event":0,
+              "indicator":true,
+              "coords":{
+                "pos_x":300,
+                "pos_y":600,
+                "inverted": true
+              },
+              "size":{
+                  "width":50,
+                  "height":50
+              }
+            },
+            {
+              "event":3,
+              "indicator":true,
+              "coords":{
+                "pos_x":700,
+                "pos_y":550,
+                "inverted": false
+              },
+              "size":{
+                  "width":10,
+                  "height":10
+              }
+            }
+         ]
+      }
+   ]
+}

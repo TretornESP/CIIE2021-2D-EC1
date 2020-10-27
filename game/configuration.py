@@ -1,10 +1,9 @@
-import os
-import json
+from game import ResourceManager
 
 class Singleton(type):
     _instances = {}
 
-    def __call__(cls, *args, **kwargs): 
+    def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
             instance = super(Singleton, cls).__call__(*args, **kwargs)
             cls._instances[cls] = instance
@@ -14,14 +13,9 @@ class Configuration(metaclass=Singleton):
     METERS_PER_PIXEL = 0.03837
 
     def __init__(self):
-        path = os.path.abspath(__package__)
-        config_path = os.path.join(path, "config.json")
-
-        with open(config_path, "r") as f:
-            config = json.load(f)
-
-            self._resolution = config["resolution"]
-            self._name = config["name"]
+        config = ResourceManager.load_config()
+        self._resolution = config["resolution"]
+        self._name = config["name"]
 
     def get_resolution(self):
         return (self._resolution[0], self._resolution[1])

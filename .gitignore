@@ -10,3 +10,5 @@ share
 .venv
 .DS_Store
 env
+test
+sprites

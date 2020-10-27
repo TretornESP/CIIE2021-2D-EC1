@@ -10,9 +10,6 @@ class Director:
     def execute(self):
         pygame.init()
 
-        self._screen = pygame.display.set_mode(Configuration().get_resolution())
-        pygame.display.set_caption(Configuration().get_name())
-
         while (len(self._scene_stack) > 0):
             scene = self._scene_stack[len(self._scene_stack) - 1]
             self._game_loop(scene)
@@ -49,4 +46,4 @@ class Director:
             scene.update(elapsed_time)
             scene.draw()
 
-            pygame.display.flip() 
+            pygame.display.flip()
