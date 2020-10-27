@@ -17,7 +17,7 @@
          "platforms":[
             {
                "sprite":"lamp.png",
-               "collides":false,
+               "collides":true,
                "coords":{
                   "pos_x":400,
                   "pos_y":600,
