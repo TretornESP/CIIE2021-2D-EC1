@@ -33,7 +33,9 @@ class Character(AbstractSprite):
         self._velocity_x = velocity_x
         self._velocity_y = velocity_y
 
-        self._movement = Character.STILL
+        self._movement_x = Character.STILL
+        self._movement_y = Character.STILL
+
         self._orientation = Character.RIGHT
 
         _, self._limit_y = Configuration().get_resolution()
@@ -49,13 +51,13 @@ class Character(AbstractSprite):
         vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
 
         # update horizontal movement
-        if self._movement == Character.LEFT:
+        if self._movement_x == Character.LEFT:
             self._velocity = (-vel_px * elapsed_time, self._velocity[1])
-        if self._movement == Character.RIGHT:
+        if self._movement_x == Character.RIGHT:
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
-        if self._movement == Character.STILL:
+        if self._movement_x == Character.STILL and self._movement_y == Character.STILL:
             self._velocity = (0, self._velocity[1])
-        if self._movement == Character.UP and self._velocity[1] == 0:
+        if self._movement_y == Character.UP and self._velocity[1] == 0:
             self._velocity = (self._velocity[0], -vel_py * elapsed_time)
         self._update_sprite()
 
@@ -110,7 +112,8 @@ class Character(AbstractSprite):
             self._set_sprite("MOV_X")
 
     def move(self, direction):
-        self._movement = direction
+        self._movement_x = direction[0]
+        self._movement_y = direction[1]
 
     def set_platform_group(self, platforms):
         self._platforms = platforms
