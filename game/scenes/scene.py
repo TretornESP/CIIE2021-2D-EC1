@@ -21,6 +21,7 @@ class Scene(AbstractHorizontalScene):
 
         self._dynamic_sprites = pygame.sprite.Group()
         self._static_sprites  = pygame.sprite.Group()
+        self._overlay_sprites = pygame.sprite.Group()
 
     def set_player(self, player):
         self._player = player
@@ -41,6 +42,7 @@ class Scene(AbstractHorizontalScene):
         self._dynamic_sprites.add(enemy)
         self._player.set_enemy_group(self._enemies)
     def add_trigger(self, trigger):
+        trigger.set_overlay_connector(self._overlay_sprites)
         self._triggers.add(trigger)
         self._static_sprites.add(trigger)
         self._player.set_trigger_group(self._triggers)
