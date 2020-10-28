@@ -22,7 +22,6 @@ class Trigger(AbstractPlatform):
             self.log.debug("CHECKPOINT REACHED")
         if self._id == Trigger.DIALOG:
             self.log.debug("BLABLABLA")
-            
         if self._id == Trigger.SCENE_END:
             self.log.debug("SCNE ENDED!")
 

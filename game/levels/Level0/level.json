@@ -50,7 +50,7 @@
            {
               "collides":true,
               "coords":{
-                "pos_x":450,
+                "pos_x":350,
                 "pos_y":600,
                 "inverted":false
               },

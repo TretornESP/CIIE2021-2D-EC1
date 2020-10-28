@@ -1,6 +1,7 @@
 from .character import Character
 from game import Configuration
 from ..util.log import Clog
+from .object import Object
 import pygame
 
 class Player(Character):
@@ -11,14 +12,29 @@ class Player(Character):
         Character.__init__(self, level, data, coord, invert, speedx, speedy)
         self.log = Clog(__name__)
 
+        self._hud = None
         self._hp = 3
+        self._masks = 0
         self._last_hit = 0
+
+    def attach(self, hud):
+        self._hud = hud
 
     def hit(self):
         self._hp = self._hp - 1
+        if self._hud != None:
+            self._hud.remove_heart()
         #TODO: Update animation as untouchable
 
+    def picked_item(self, item):
+        if item==Object.MASK:
+            self._masks = self._masks + 1
+            self._hud.add_mask()
+
     def update(self, elapsed_time):
+        current_x = self._position[0]
+        current_y = self._position[1]
+
         res = Configuration().get_resolution()
         vel_x, vel_y = self._velocity_x, self._velocity_y
         vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
@@ -87,10 +103,10 @@ class Player(Character):
             enemy = pygame.sprite.spritecollideany(self, self._enemies) #TODO
             if (enemy != None):
                 #self.log.debug("Colliding with enemy")
-                if (elapsed_time - self._last_hit) > Player.INVULNERABILITY_LAPSE:
+                if self._last_hit > Player.INVULNERABILITY_LAPSE:
                     self.log.debug("Player hit!")
-                    self._hp = self._hp - 1
-                    self._last_hit = elapsed_time
+                    self.hit()
+                    self._last_hit = 0
 
         if (self._items != None):
             item = pygame.sprite.spritecollideany(self, self._items) #TODO
@@ -103,6 +119,11 @@ class Player(Character):
             if (trigger != None):
                  trigger.event()
                  self._triggers.remove(trigger)
+
+        delta_x = self._position[0] - current_x
+        delta_y = self._position[1] - current_y
+
+        #self._hud.move((delta_x, delta_y)) 
 
     def move(self, keys_pressed, up, down, left, right):
         if keys_pressed[up]:

@@ -3,6 +3,7 @@ from .abstract_scene import AbstractScene
 from game.entities import Platform, Player
 from .backgrounds import MainBackground
 from game import Configuration
+from ..util.log import Clog
 from pygame.locals import *
 
 class AbstractHorizontalScene(AbstractScene):
@@ -11,6 +12,7 @@ class AbstractHorizontalScene(AbstractScene):
 
     def __init__(self, director):
         AbstractScene.__init__(self, director)
+        self.log = Clog(__name__)
         self._scroll_x = 0
 
     def update(self, elapsed_time):
@@ -19,6 +21,7 @@ class AbstractHorizontalScene(AbstractScene):
         self._overlay_sprites.update(elapsed_time)
 
         if self._update_scroll():
+
             self._background.update(self._scroll_x)
 
             for sprite in iter(self._static_sprites):

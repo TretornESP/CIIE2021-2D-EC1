@@ -1,6 +1,7 @@
 from . import AbstractHorizontalScene
 from .. import Configuration
 from .backgrounds import MainBackground
+from ..entities.hud import Hud
 import pygame
 
 class Scene(AbstractHorizontalScene):
@@ -13,6 +14,7 @@ class Scene(AbstractHorizontalScene):
         self._scroll_size = size
 
         self._player = None
+        self._hud = None
 
         self._objects   = pygame.sprite.Group()
         self._enemies   = pygame.sprite.Group()
@@ -26,6 +28,9 @@ class Scene(AbstractHorizontalScene):
     def set_player(self, player):
         self._player = player
         self._dynamic_sprites.add(player)
+        self._hud = Hud(player)
+        self._hud.attach(self)
+
     def add_platform(self, platform):
         self._platforms.add(platform)
         self._static_sprites.add(platform)
@@ -34,6 +39,7 @@ class Scene(AbstractHorizontalScene):
             enemy.set_platform_group(self._platforms)
     def add_object(self, object):
         object.set_item_connector(self._static_sprites)
+        object.set_player_connector(self._player)
         self._objects.add(object)
         self._static_sprites.add(object)
         self._player.set_item_group(self._objects)

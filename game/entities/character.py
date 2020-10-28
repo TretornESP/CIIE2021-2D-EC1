@@ -17,6 +17,7 @@ class Character(AbstractSprite):
         self._log.info("loading character "+data)
         self._coords = ResourceManager.load_coords(level, data)
         self._sheet = ResourceManager.load_sheet(level, data, colorkey=-1)
+        self._level = level
 
         if (invert):
             self._sheet = pygame.transform.flip(self._sheet, 1, 0) #Tal vez invierta controles??
