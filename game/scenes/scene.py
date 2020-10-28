@@ -29,6 +29,8 @@ class Scene(AbstractHorizontalScene):
         self._platforms.add(platform)
         self._static_sprites.add(platform)
         self._player.set_platform_group(self._platforms)
+        for enemy in self._enemies:
+            enemy.set_platform_group(self._platforms)
     def add_object(self, object):
         self._objects.add(object)
         self._static_sprites.add(object)

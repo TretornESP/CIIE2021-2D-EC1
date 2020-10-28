@@ -68,8 +68,8 @@ class Level():
     def parse_enemy(self, j):
         collid = j['collides']
         datafn = j['data']
-        speedx = 25 #REPLACE ME
-        speedy = 40 #REPLACE ME
+        speedx = 10 #REPLACE ME
+        speedy = 20 #REPLACE ME
         coords = self.parse_coords(j['coords'])
         invert = j['coords']['inverted']
 
@@ -91,14 +91,14 @@ class Level():
         for scene in json['scenes']:
             s = Scene(self.name, self.director, scene['id'], scene['background'], scene['scroll'])
             s.set_player(self.parse_player(scene['player']))
-        for platform in scene['platforms']:
-            s.add_platform(self.parse_platform(platform))
         for object in scene['objects']:
             s.add_object(self.parse_object(object))
         for enemy in scene['enemies']:
             s.add_enemy(self.parse_enemy(enemy))
         for trigger in scene['triggers']:
             s.add_trigger(self.parse_trigger(trigger))
-
+        for platform in scene['platforms']:   ###### CAREFUL ###### THIS ###### MUST ####### BE ###### THE #######
+            s.add_platform(self.parse_platform(platform)) ###### LAST ###### ADDED ###### ELEMENT
+                                                        ###### scene needs to know the enemies/players before this
         self.scenes.append(s)
         self._clog.info("scene added")

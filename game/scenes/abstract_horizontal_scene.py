@@ -32,8 +32,8 @@ class AbstractHorizontalScene(AbstractScene):
                 self._director.end_scene()
 
         keys_pressed = pygame.key.get_pressed()
-        self._player.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
-
+        for dyn in self._dynamic_sprites:
+            dyn.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
     def draw(self):
         self._background.draw(self._screen)
         self._static_sprites.draw(self._screen)
