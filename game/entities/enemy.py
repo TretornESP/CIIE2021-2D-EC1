@@ -38,7 +38,7 @@ class Enemy(Character):
         self._increase_position((self._velocity[0], 0))
         platform = pygame.sprite.spritecollideany(self, self._platforms)
         if platform != None and platform._collides and self.rect.bottom > platform.rect.top + 1:
-            print("Enemy collided with h platform")
+            #print("Enemy collided with h platform")
             self._dir = not self._dir
             if self._velocity[0] > 0:
                 self.set_global_position((platform._position[0] - self.rect.width, self._position[1]))
@@ -49,7 +49,7 @@ class Enemy(Character):
         self._increase_position((0, self._velocity[1]))
         platform = pygame.sprite.spritecollideany(self, self._platforms)
         if platform != None and platform._collides:
-            print("Enemy collided with yplatform")
+            #print("Enemy collided with yplatform")
             if self._velocity[1] > 0:
                 self._velocity = (self._velocity[0], 0)
                 self.set_global_position((self._position[0], platform._position[1] - platform.rect.height + 1))

@@ -4,14 +4,25 @@ from ..util.log import Clog
 import pygame
 
 class Player(Character):
+
+    INVULNERABILITY_LAPSE = 2
+
     def __init__(self, level, data, coord, speedx = 25, speedy = 40, invert = False):
         Character.__init__(self, level, data, coord, invert, speedx, speedy)
         self.log = Clog(__name__)
+
+        self._hp = 3
+        self._last_hit = 0
+
+    def hit(self):
+        self._hp = self._hp - 1
+        #TODO: Update animation as untouchable
 
     def update(self, elapsed_time):
         res = Configuration().get_resolution()
         vel_x, vel_y = self._velocity_x, self._velocity_y
         vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
+        self._last_hit = self._last_hit + elapsed_time
 
         # update horizontal movement
         if self._movement_x == Character.LEFT:
@@ -36,9 +47,18 @@ class Player(Character):
         if (self._enemies != None):
             enemy = pygame.sprite.spritecollideany(self, self._enemies) #TODO
             if (enemy != None):
-                self.log.debug("Colliding with enemy")
+                #self.log.debug("Elapsed: "+str(self._last_hit))
+                if self._last_hit > Player.INVULNERABILITY_LAPSE:
+                    self.log.debug("Player hit!")
+                    self.hit()
+                    self._last_hit = 0
+
         if (self._items != None):
             item = pygame.sprite.spritecollideany(self, self._items) #TODO
+            if (item != None):
+                self._items.remove(item)
+                item.collect()
+
         if (self._triggers != None):
             trigger = pygame.sprite.spritecollideany(self, self._triggers) #TODO
             if (trigger != None):
@@ -65,8 +85,19 @@ class Player(Character):
 
         if (self._enemies != None):
             enemy = pygame.sprite.spritecollideany(self, self._enemies) #TODO
+            if (enemy != None):
+                #self.log.debug("Colliding with enemy")
+                if (elapsed_time - self._last_hit) > Player.INVULNERABILITY_LAPSE:
+                    self.log.debug("Player hit!")
+                    self._hp = self._hp - 1
+                    self._last_hit = elapsed_time
+
         if (self._items != None):
             item = pygame.sprite.spritecollideany(self, self._items) #TODO
+            if (item != None):
+                self._items.remove(item)
+                item.collect()
+
         if (self._triggers != None):
             trigger = pygame.sprite.spritecollideany(self, self._triggers) #TODO
             if (trigger != None):

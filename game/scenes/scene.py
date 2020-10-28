@@ -32,6 +32,7 @@ class Scene(AbstractHorizontalScene):
         for enemy in self._enemies:
             enemy.set_platform_group(self._platforms)
     def add_object(self, object):
+        object.set_item_connector(self._static_sprites)
         self._objects.add(object)
         self._static_sprites.add(object)
         self._player.set_item_group(self._objects)
