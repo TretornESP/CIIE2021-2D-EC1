@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
-from game import Director, MainScene
-from game.levels import Level
+from game import Director
+from game.scenes import MainMenu
 
 if __name__ == '__main__':
     director = Director()
-    level = Level("Level0", director)
-    for scene in level.get_scenes():
-        director.push_scene(scene)
+    director.push_scene(MainMenu(director))
     director.execute()

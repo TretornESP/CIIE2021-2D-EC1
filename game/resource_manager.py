@@ -59,6 +59,54 @@ class ResourceManager(object):
         return cls._resources[name]
 
     @classmethod
+    def load_image_asset(cls, name):
+        if not name in cls._resources:
+            path = os.path.abspath(__package__)
+            fullname = os.path.join(path, "assets", "images", name)
+            try:
+                image = pygame.image.load(fullname)
+            except Exception:
+                print(f"Cannot load resource with name {name} at {fullname}")
+                raise SystemExit
+            cls._resources[name] = image
+        return cls._resources[name]
+
+    @classmethod
+    def load_music_asset(cls, name):
+        if not name in cls._resources:
+            path = os.path.abspath(__package__)
+            fullname = os.path.join(path, "assets", "music", name)
+            try:
+                sound = pygame.mixer.Sound(fullname)
+            except Exception:
+                print(f"Cannot load resource with name {name} at {fullname}")
+                raise SystemExit
+            cls._resources[name] = sound
+        return cls._resources[name]
+
+    @classmethod
+    def load_font_asset(cls, name, size):
+        res_name = name + "_" + str(size)
+        if not res_name in cls._resources:
+            path = os.path.abspath(__package__)
+            fullname = os.path.join(path, "assets", "fonts", name)
+            try:
+                font = pygame.font.Font(fullname, size)
+            except Exception:
+                print(f"Cannot load resource with name {name} at {fullname}")
+                raise SystemExit
+            cls._resources[res_name] = font
+        return cls._resources[res_name]
+
+    @classmethod
+    def load_music_channel(cls):
+        name = "music_channel"
+        if not name in cls._resources:
+            channel = pygame.mixer.Channel(0)
+            cls._resources[name] = channel
+        return cls._resources[name]
+
+    @classmethod
     def load_coords(cls, level, folder, name="coords.json"):
         if not name in cls._resources:
             path = os.path.abspath(__package__)

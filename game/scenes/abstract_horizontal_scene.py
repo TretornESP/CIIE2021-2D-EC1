@@ -3,6 +3,7 @@ from .abstract_scene import AbstractScene
 from game.entities import Platform, Player
 from .backgrounds import MainBackground
 from game import Configuration
+from .pause_menu import PauseMenu
 from pygame.locals import *
 
 class AbstractHorizontalScene(AbstractScene):
@@ -29,7 +30,9 @@ class AbstractHorizontalScene(AbstractScene):
     def events(self, events):
         for event in events:
             if event.type == pygame.QUIT:
-                self._director.end_scene()
+                self._director.quit_game()
+            elif event.type == KEYDOWN and event.key == K_ESCAPE:
+                self._director.push_scene(PauseMenu(self._director))
 
         keys_pressed = pygame.key.get_pressed()
         self._player.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
