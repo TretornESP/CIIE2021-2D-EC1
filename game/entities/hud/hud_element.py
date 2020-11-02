@@ -1,4 +1,4 @@
-from ..abstract_sprite  import AbstractSprite
+from ..abstract_sprite import AbstractSprite
 from ...resource_manager import ResourceManager
 
 class HudElement(AbstractSprite):
@@ -16,3 +16,9 @@ class HudElement(AbstractSprite):
     # TODO CHECK THIS
     def update(self, elapsed_time):
         self.set_static_position(self._coord)
+
+    def set_collision(self, coll):
+        pass
+
+    def _increase_position(self, increment):
+        pass

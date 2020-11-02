@@ -12,9 +12,9 @@ class Hud:
     GROW_DOWN = 2
 
     # Relative offsets in %
-    X_RELATIVE_LEFT_OFFSET = 10
+    X_RELATIVE_LEFT_OFFSET = 6
     X_RELATIVE_RIGHT_OFFSET = 0 # To be changed if necessary
-    Y_RELATIVE_TOP_OFFSET = 5
+    Y_RELATIVE_TOP_OFFSET = 8
     Y_RELATIVE_BOTTOM_OFFSET = 0 # TBC
 
     def __init__(self):
@@ -38,8 +38,10 @@ class Hud:
         # Set hud offsets
         self._x_min_offset = self._X_TOTAL*self.X_RELATIVE_LEFT_OFFSET/100
         self._y_min_offset = self._Y_TOTAL*self.Y_RELATIVE_TOP_OFFSET/100
-        self._x_max_offset = self._X_TOTAL - self._x_min_offset
-        self._y_max_offset = self._Y_TOTAL - self._y_min_offset
+        self._x_max_offset = self._X_TOTAL - self._X_TOTAL*self.X_RELATIVE_RIGHT_OFFSET/100
+        self._y_max_offset = self._Y_TOTAL - self._Y_TOTAL*self.Y_RELATIVE_BOTTOM_OFFSET/100
+
+        # DEBUG print(f"{self._x_min_offset} {self._y_min_offset} {self._x_max_offset} {self._y_max_offset}")
 
     # Attach HUD to scene
     def attach(self, scene):
@@ -60,12 +62,12 @@ class Hud:
             "count": 0
         }
         self._sprite_groups.append(my_dict)
-        return len(self._sprite_groups)
+        return len(self._sprite_groups)-1
 
     # # Returns MUTABLE sprite group
     # def get_sprite_group(self, identifier):
     #     if not self._sprite_groups:
-    #         return self._sprite_groups[identifier-1]
+    #         return self._sprite_groups[identifier]
     #     else:
     #         return None
 
@@ -80,11 +82,11 @@ class Hud:
 
         # Horizontal alignment
         if abs(my_element["alignment"]) < 2:
-            coord_x = self._x_min_offset*(1 + (my_element["coords"][0]/100)) + my_element["spacing"]*my_element["alignment"]*my_element["count"]
-            coord_y = self._y_min_offset*(1 + (my_element["coords"][1]/100))
+            coord_x = self._x_min_offset+((abs(self._x_min_offset-self._x_max_offset))*my_element["coords"][0]/100) + my_element["spacing"]*my_element["alignment"]*my_element["count"]
+            coord_y = self._y_min_offset+((abs(self._y_min_offset-self._y_max_offset))*my_element["coords"][1]/100)
         else:
-            coord_x = self._x_min_offset*(1 + (my_element["coords"][0]/100))
-            coord_y = self._y_min_offset*(1 + (my_element["coords"][1]/100)) + my_element["spacing"]*(my_element["alignment"]>>1)*my_element["count"]
+            coord_x = self._x_min_offset+((abs(self._x_min_offset-self._x_max_offset))*my_element["coords"][0]/100)
+            coord_y = self._y_min_offset+((abs(self._y_min_offset-self._y_max_offset))*my_element["coords"][1]/100) + my_element["spacing"]*(my_element["alignment"]>>1)*my_element["count"]
 
         element = self._sprite_groups[identifier]["hud_element"]((coord_x, coord_y))
 

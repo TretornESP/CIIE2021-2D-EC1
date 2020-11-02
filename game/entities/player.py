@@ -27,9 +27,9 @@ class Player(Character):
 
     def bind_hud(self, hud):
         self._hud = hud
-        self._hud_heart_id = self._hud.create_hud_group(HudHeart, (0, 0), Hud.GROW_RIGHT, 50)
-        self._hud_mask_id  = self._hud.create_hud_group(HudMask, (80, 0), Hud.GROW_LEFT,  50)
-        self._hud.add(self._hud_heart_id)
+        self._hud_heart_id = self._hud.create_hud_group(HudHeart, (0, 0), Hud.GROW_RIGHT, 10)
+        self._hud_mask_id  = self._hud.create_hud_group(HudMask, (80, 0), Hud.GROW_LEFT,  25)
+        self._hud.add_element(self._hud_heart_id)
 
     def hit(self):
         self._hp = self._hp - 1
@@ -41,6 +41,19 @@ class Player(Character):
         if item==Object.MASK:
             self._masks = self._masks + 1 # revisar si esto es necesario
             self._hud.add_element(self._hud_mask_id)
+
+            # DEBUG TODO REMOVE
+            self._hud.add_element(self._hud_heart_id)
+            self._hud.add_element(self._hud_heart_id)
+            self._hud.add_element(self._hud_heart_id)
+
+            self._hud.add_element(self._hud_mask_id)
+            self._hud.add_element(self._hud_mask_id)
+            self._hud.add_element(self._hud_mask_id)
+            self._hud.add_element(self._hud_mask_id)
+            self._hud.add_element(self._hud_mask_id)
+            self._hud.add_element(self._hud_mask_id)
+            #end debug
 
     def update(self, elapsed_time):
         current_x = self._position[0]
