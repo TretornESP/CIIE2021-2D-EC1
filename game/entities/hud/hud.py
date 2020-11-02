@@ -48,10 +48,10 @@ class Hud():
         for i in range(0, self._player._masks):
             self.add_mask()
 
-    def move(self, offset):
-        for heart in self._hearts:
-            pos = heart.get_global_position()
-            heart.set_global_position((pos.left + offset[0], pos.bottom + offset[1]))
-        for mask in self._masks:
-            pos = mask.get_global_position()
-            mask.set_global_position((pos.left + offset[0], pos.bottom + offset[1]))
+    # def move(self, offset):
+    #     for heart in self._hearts:
+    #         pos = heart.get_global_position()
+    #         #heart.set_global_position((pos.left + offset[0], pos.bottom + offset[1]))
+    #     for mask in self._masks:
+    #         pos = mask.get_global_position()
+    #         #mask.set_global_position((pos.left + offset[0], pos.bottom + offset[1]))

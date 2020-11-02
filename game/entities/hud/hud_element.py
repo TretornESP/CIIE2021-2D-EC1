@@ -7,4 +7,5 @@ class HudElement(AbstractSprite):
 
         self.image = ResourceManager.load_sprite(level, sprite)
         self.rect = self.image.get_rect()
-        self.set_global_position(coord)
+        self.set_static_position(coord) # TODO Esto es un bug y debería eliminarse.
+                                        # wip: set_static_position
