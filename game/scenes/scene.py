@@ -4,6 +4,7 @@ from .backgrounds import MainBackground
 from ..entities.hud import Hud
 import pygame
 
+
 class Scene(AbstractHorizontalScene):
     def __init__(self, level, director, id, background, size):
         AbstractHorizontalScene.__init__(self, director)
@@ -28,8 +29,10 @@ class Scene(AbstractHorizontalScene):
     def set_player(self, player):
         self._player = player
         self._dynamic_sprites.add(player)
-        self._hud = Hud(player)
+        # Attach HUD
+        self._hud = Hud()
         self._hud.attach(self)
+        self._player.bind_hud(self._hud)
 
     def add_platform(self, platform):
         self._platforms.add(platform)
@@ -52,3 +55,10 @@ class Scene(AbstractHorizontalScene):
         self._triggers.add(trigger)
         self._static_sprites.add(trigger)
         self._player.set_trigger_group(self._triggers)
+
+    def add_overlay_sprite(self, sprite):
+        self._overlay_sprites.add(sprite)
+
+    def del_overlay_sprite(self, sprite):
+        self._overlay_sprites.remove(sprite)
+

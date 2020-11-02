@@ -1,8 +1,13 @@
 from .character import Character
 from game import Configuration
+from .hud import Hud
+from .hud.hud_elements.hud_mask import HudMask
 from ..util.log import Clog
 from .object import Object
 import pygame
+
+from ..entities.hud  import HudHeart
+
 
 class Player(Character):
 
@@ -17,19 +22,25 @@ class Player(Character):
         self._masks = 0
         self._last_hit = 0
 
-    def attach(self, hud):
+        self._hud_heart_id = None
+        self._hud_mask_id  = None
+
+    def bind_hud(self, hud):
         self._hud = hud
+        self._hud_heart_id = self._hud.create_hud_group(HudHeart, (0, 0), Hud.GROW_RIGHT, 50)
+        self._hud_mask_id  = self._hud.create_hud_group(HudMask, (80, 0), Hud.GROW_LEFT,  50)
+        self._hud.add(self._hud_heart_id)
 
     def hit(self):
         self._hp = self._hp - 1
-        if self._hud != None:
-            self._hud.remove_heart()
+        #if self._hud != None:
+            #self._hud.remove_heart()
         #TODO: Update animation as untouchable
 
     def picked_item(self, item):
         if item==Object.MASK:
-            self._masks = self._masks + 1
-            self._hud.add_mask()
+            self._masks = self._masks + 1 # revisar si esto es necesario
+            self._hud.add_element(self._hud_mask_id)
 
     def update(self, elapsed_time):
         current_x = self._position[0]
@@ -101,15 +112,6 @@ class Player(Character):
             else:
                 self._velocity = (self._velocity[0], self._velocity[1] + 0.08 * vel_py * elapsed_time)
 
-        if (self._enemies != None):
-            enemy = pygame.sprite.spritecollideany(self, self._enemies) #TODO
-            if (enemy != None):
-                #self.log.debug("Colliding with enemy")
-                if self._last_hit > Player.INVULNERABILITY_LAPSE:
-                    self.log.debug("Player hit!")
-                    self.hit()
-                    self._last_hit = 0
-
         if (self._items != None):
             item = pygame.sprite.spritecollideany(self, self._items) #TODO
             if (item != None):
@@ -142,6 +144,7 @@ class Player(Character):
         else:
             x = Character.STILL
 
-        print(f"{keys_pressed[up]} {keys_pressed[down]} {keys_pressed[left]} {keys_pressed[right]}")
+        # DEBUG
+        #print(f"{keys_pressed[up]} {keys_pressed[down]} {keys_pressed[left]} {keys_pressed[right]}")
 
         Character.move(self, (x,y))
