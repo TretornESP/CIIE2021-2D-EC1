@@ -4,6 +4,7 @@ from game.entities import Platform, Player
 from .backgrounds import MainBackground
 from game import Configuration
 from .pause_menu import PauseMenu
+from ..util.log import Clog
 from pygame.locals import *
 
 class AbstractHorizontalScene(AbstractScene):
@@ -12,19 +13,25 @@ class AbstractHorizontalScene(AbstractScene):
 
     def __init__(self, director):
         AbstractScene.__init__(self, director)
+        self.log = Clog(__name__)
         self._scroll_x = 0
 
     def update(self, elapsed_time):
         self._static_sprites.update(elapsed_time)
         self._dynamic_sprites.update(elapsed_time)
+        self._overlay_sprites.update(elapsed_time)
 
         if self._update_scroll():
+
             self._background.update(self._scroll_x)
 
             for sprite in iter(self._static_sprites):
                 sprite.set_position((self._scroll_x, 0))
 
             for sprite in iter(self._dynamic_sprites):
+                sprite.set_position((self._scroll_x, 0))
+
+            for sprite in iter(self._overlay_sprites):
                 sprite.set_position((self._scroll_x, 0))
 
     def events(self, events):
@@ -35,13 +42,13 @@ class AbstractHorizontalScene(AbstractScene):
                 self._director.push_scene(PauseMenu(self._director))
 
         keys_pressed = pygame.key.get_pressed()
-        self._player.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
-
+        for dyn in self._dynamic_sprites:
+            dyn.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
     def draw(self):
         self._background.draw(self._screen)
         self._static_sprites.draw(self._screen)
         self._dynamic_sprites.draw(self._screen)
-
+        self._overlay_sprites.draw(self._screen)
     def _update_scroll(self):
         player = self._player
         resolution = Configuration().get_resolution()

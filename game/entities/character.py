@@ -14,8 +14,10 @@ class Character(AbstractSprite):
     def __init__(self, level, data, position, invert, velocity_x = 0, velocity_y = 0):
         AbstractSprite.__init__(self)
         self._log = Clog(__name__)
+        self._log.info("loading character "+data)
         self._coords = ResourceManager.load_coords(level, data)
         self._sheet = ResourceManager.load_sheet(level, data, colorkey=-1)
+        self._level = level
 
         if (invert):
             self._sheet = pygame.transform.flip(self._sheet, 1, 0) #Tal vez invierta controles??
@@ -143,10 +145,14 @@ class Character(AbstractSprite):
         pos = (info["POS"][0], info["POS"][1])
         dims = (info["W"], info["H"])
         scale = (self._coords["SCALE_W"], self._coords["SCALE_H"])
-        target_dims = (dims[0] * scale[0], dims[1] * scale[1])
+        target_dims = (int(dims[0] * scale[0]), int(dims[1] * scale[1]))
 
         rect = pygame.Rect(pos, dims)
-        image = self._sheet.subsurface(rect)
+        try:
+            image = self._sheet.subsurface(rect)
+        except Exception:
+            print(f"Coords JSON is invalid! (X,Y)(H,W) are bigger than image: ! {self._sheet.get_width()}, {self._sheet.get_height()}")
+            raise SystemExit
         self.image = pygame.transform.scale(image, target_dims)
 
         if self._left:

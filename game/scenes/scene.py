@@ -1,6 +1,7 @@
 from . import AbstractHorizontalScene
 from .. import Configuration
 from .backgrounds import MainBackground
+from ..entities.hud import Hud
 import pygame
 
 class Scene(AbstractHorizontalScene):
@@ -13,6 +14,7 @@ class Scene(AbstractHorizontalScene):
         self._scroll_size = size
 
         self._player = None
+        self._hud = None
 
         self._objects   = pygame.sprite.Group()
         self._enemies   = pygame.sprite.Group()
@@ -21,15 +23,23 @@ class Scene(AbstractHorizontalScene):
 
         self._dynamic_sprites = pygame.sprite.Group()
         self._static_sprites  = pygame.sprite.Group()
+        self._overlay_sprites = pygame.sprite.Group()
 
     def set_player(self, player):
         self._player = player
         self._dynamic_sprites.add(player)
+        self._hud = Hud(player)
+        self._hud.attach(self)
+
     def add_platform(self, platform):
         self._platforms.add(platform)
         self._static_sprites.add(platform)
         self._player.set_platform_group(self._platforms)
+        for enemy in self._enemies:
+            enemy.set_platform_group(self._platforms)
     def add_object(self, object):
+        object.set_item_connector(self._static_sprites)
+        object.set_player_connector(self._player)
         self._objects.add(object)
         self._static_sprites.add(object)
         self._player.set_item_group(self._objects)
@@ -38,6 +48,7 @@ class Scene(AbstractHorizontalScene):
         self._dynamic_sprites.add(enemy)
         self._player.set_enemy_group(self._enemies)
     def add_trigger(self, trigger):
+        trigger.set_overlay_connector(self._overlay_sprites)
         self._triggers.add(trigger)
         self._static_sprites.add(trigger)
         self._player.set_trigger_group(self._triggers)

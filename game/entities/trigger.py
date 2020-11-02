@@ -13,6 +13,7 @@ class Trigger(AbstractPlatform):
         AbstractPlatform.__init__(self, level, None, True, pygame.Rect(coord, size), invert, not indic)
         self.log = Clog(__name__)
         self._id = id
+        self._overlay_connector = []
 
     def event(self):
         if self._id == Trigger.MUSIC_START:
@@ -25,3 +26,6 @@ class Trigger(AbstractPlatform):
             self.log.debug("SCNE ENDED!")
 
         self.event_deactivate()
+
+    def set_overlay_connector(self, connector):
+        self._overlay_connector = connector
