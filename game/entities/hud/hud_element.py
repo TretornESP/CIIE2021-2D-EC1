@@ -15,7 +15,8 @@ class HudElement(AbstractSprite):
 
     # TODO CHECK THIS
     def update(self, elapsed_time):
-        self.set_static_position(self._coord)
+        pass
+        #self.set_static_position(self._coord)
 
     def set_collision(self, coll):
         pass

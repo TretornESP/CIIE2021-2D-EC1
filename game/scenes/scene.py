@@ -46,6 +46,7 @@ class Scene(AbstractHorizontalScene):
         self._objects.add(object)
         self._static_sprites.add(object)
         self._player.set_item_group(self._objects)
+        self._player.set_item_group(self._objects)
     def add_enemy(self, enemy):
         self._enemies.add(enemy)
         self._dynamic_sprites.add(enemy)
@@ -56,6 +57,7 @@ class Scene(AbstractHorizontalScene):
         self._static_sprites.add(trigger)
         self._player.set_trigger_group(self._triggers)
 
+    # TODO ELIMINAR ESTA MIERDA
     def add_overlay_sprite(self, sprite):
         self._overlay_sprites.add(sprite)
 

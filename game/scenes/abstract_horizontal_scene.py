@@ -19,7 +19,8 @@ class AbstractHorizontalScene(AbstractScene):
     def update(self, elapsed_time):
         self._static_sprites.update(elapsed_time)
         self._dynamic_sprites.update(elapsed_time)
-        self._overlay_sprites.update(elapsed_time)
+        # TODO revisar
+        #self._overlay_sprites.update(elapsed_time)
 
         if self._update_scroll():
 
@@ -31,8 +32,9 @@ class AbstractHorizontalScene(AbstractScene):
             for sprite in iter(self._dynamic_sprites):
                 sprite.set_position((self._scroll_x, 0))
 
-            for sprite in iter(self._overlay_sprites):
-                sprite.set_position((self._scroll_x, 0))
+            # TODO revisar
+            #for sprite in iter(self._overlay_sprites):
+            #    sprite.set_position((self._scroll_x, 0))
 
     def events(self, events):
         for event in events:
@@ -48,7 +50,10 @@ class AbstractHorizontalScene(AbstractScene):
         self._background.draw(self._screen)
         self._static_sprites.draw(self._screen)
         self._dynamic_sprites.draw(self._screen)
+        # TODO quitamos esto de aquí
         self._overlay_sprites.draw(self._screen)
+        # llamar al draw() del HUD (?)
+
     def _update_scroll(self):
         player = self._player
         resolution = Configuration().get_resolution()

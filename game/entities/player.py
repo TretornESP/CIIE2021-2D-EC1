@@ -59,21 +59,28 @@ class Player(Character):
         current_x = self._position[0]
         current_y = self._position[1]
 
+        # TODO DEDEDELEET DIS SHIT
+
         res = Configuration().get_resolution()
         vel_x, vel_y = self._velocity_x, self._velocity_y
         vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
         self._last_hit = self._last_hit + elapsed_time
 
-        # update horizontal movement
-        if self._movement_x == Character.LEFT:
-            self._velocity = (-vel_px * elapsed_time, self._velocity[1])
-        if self._movement_x == Character.RIGHT:
-            self._velocity = (vel_px * elapsed_time, self._velocity[1])
-        if self._movement_x == Character.STILL:             # no hace falta que estemos quietos en y para que
-            self._velocity = (0, self._velocity[1])         #  la gravedad fluya normalmente
-        if self._movement_y == Character.UP and self._velocity[1] == 0:
-            self._velocity = (self._velocity[0], -vel_py * elapsed_time)
-        self._update_sprite()
+        # # update horizontal movement
+        # if self._movement_x == Character.LEFT:
+        #     self._velocity = (-vel_px * elapsed_time, self._velocity[1])
+        # if self._movement_x == Character.RIGHT:
+        #     self._velocity = (vel_px * elapsed_time, self._velocity[1])
+        # if self._movement_x == Character.STILL:             # no hace falta que estemos quietos en y para que
+        #     self._velocity = (0, self._velocity[1])         #  la gravedad fluya normalmente
+        # #self._update_sprite()
+        #
+        #
+        # # TODO ADD VERTICAL COLLISIONS
+        # if self._movement_y == Character.UP:
+        #     self._velocity = (self._velocity[0], -vel_py * elapsed_time)
+        #
+        # self._update_sprite()
 
 
 
