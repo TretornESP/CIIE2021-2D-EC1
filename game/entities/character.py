@@ -31,7 +31,7 @@ class Character(AbstractSprite):
 
         self.set_global_position(position)
 
-        self._velocity = (0, 0)
+        self._velocity = (0, 1)
         self._velocity_x = velocity_x
         self._velocity_y = velocity_y
 
@@ -40,15 +40,12 @@ class Character(AbstractSprite):
 
         self._orientation = Character.RIGHT
 
-        _, self._limit_y = Configuration().get_resolution()
-
         self._platforms = None
         self._enemies = None
         self._items = None
         self._triggers = None
 
     def update(self, elapsed_time):
-        raise NotImplemented("DUPLICATE! (is this intended behaviour?) REVIEW update on character.py")
         res = Configuration().get_resolution()
         vel_x, vel_y = self._velocity_x, self._velocity_y
         vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
@@ -58,14 +55,10 @@ class Character(AbstractSprite):
             self._velocity = (-vel_px * elapsed_time, self._velocity[1])
         if self._movement_x == Character.RIGHT:
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
-        if self._movement_x == Character.STILL:             # BUGFIX no hace falta que estemos quietos en y para que
-            self._velocity = (0, self._velocity[1])         #  la gravedad fluya normalmente
-
-
-        # TODO ADD VERTICAL COLLISIONS
-        if self._movement_y == Character.UP:
-            self._velocity = (self._velocity[0], -vel_py * elapsed_time) # fix infinite jump
-
+        if self._movement_x == Character.STILL:
+            self._velocity = (0, self._velocity[1])
+        if self._movement_y == Character.UP and self._velocity[1] == 0:
+            self._velocity = (self._velocity[0], -vel_py * elapsed_time)
         self._update_sprite()
 
         # check horizontal collisions
@@ -94,16 +87,6 @@ class Character(AbstractSprite):
                 self.set_global_position((self._position[0], res[1]))
             else:
                 self._velocity = (self._velocity[0], self._velocity[1] + 0.08 * vel_py * elapsed_time)
-        #
-        # if (self._enemies != None):
-        #     enemy = pygame.sprite.spritecollideany(self, self._enemies) #TODO
-        # if (self._items != None):
-        #     item = pygame.sprite.spritecollideany(self, self._items) #TODO
-        # if (self._triggers != None):
-        #     trigger = pygame.sprite.spritecollideany(self, self._triggers) #TODO
-        #     if (trigger != None):
-        #          trigger.event()
-        #          self._triggers.remove(trigger)
 
     def _update_sprite(self):
         if self._velocity[0] < 0:

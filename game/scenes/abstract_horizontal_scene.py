@@ -17,24 +17,20 @@ class AbstractHorizontalScene(AbstractScene):
         self._scroll_x = 0
 
     def update(self, elapsed_time):
+        for enemy in iter(self._enemies):
+            enemy.move_cpu()
+
         self._static_sprites.update(elapsed_time)
         self._dynamic_sprites.update(elapsed_time)
         # TODO revisar
         #self._overlay_sprites.update(elapsed_time)
 
         if self._update_scroll():
-
             self._background.update(self._scroll_x)
-
             for sprite in iter(self._static_sprites):
                 sprite.set_position((self._scroll_x, 0))
-
             for sprite in iter(self._dynamic_sprites):
                 sprite.set_position((self._scroll_x, 0))
-
-            # TODO revisar
-            #for sprite in iter(self._overlay_sprites):
-            #    sprite.set_position((self._scroll_x, 0))
 
     def events(self, events):
         for event in events:
@@ -42,10 +38,9 @@ class AbstractHorizontalScene(AbstractScene):
                 self._director.quit_game()
             elif event.type == KEYDOWN and event.key == K_ESCAPE:
                 self._director.push_scene(PauseMenu(self._director))
-
         keys_pressed = pygame.key.get_pressed()
-        for dyn in self._dynamic_sprites:
-            dyn.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
+        self._player.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
+
     def draw(self):
         self._background.draw(self._screen)
         self._static_sprites.draw(self._screen)

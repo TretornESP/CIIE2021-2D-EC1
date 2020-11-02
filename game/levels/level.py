@@ -1,6 +1,6 @@
 import pygame
 from ..scenes import AbstractHorizontalScene
-from game.entities import Platform, Player, Enemy
+from game.entities import Platform, Player, Covid
 from ..scenes.backgrounds import MainBackground
 from ..scenes import Scene
 from ..util import Clog
@@ -66,6 +66,12 @@ class Level():
         return (json['width'], json['height'])
 
     def parse_enemy(self, j):
+        # el comportamiento depende de codigo
+        # el sprite es generico pero no su comportamiento
+        # necesaria especificacion en clases
+        #
+        # @author: iñaki
+
         collid = j['collides']
         datafn = j['data']
         speedx = 10 #REPLACE ME
@@ -73,7 +79,10 @@ class Level():
         coords = self.parse_coords(j['coords'])
         invert = j['coords']['inverted']
 
-        return Enemy(self.name, datafn, coords, speedx, speedy, invert)
+        if datafn == 'covid':
+            return Covid(self.name, datafn, coords, speedx, speedy, invert)
+        else:
+            raise NotImplemented("No existe este enemigo")
 
     def parse_trigger(self, json):
         id     = json['event']
