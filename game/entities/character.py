@@ -55,8 +55,8 @@ class Character(AbstractSprite):
             self._velocity = (-vel_px * elapsed_time, self._velocity[1])
         if self._movement_x == Character.RIGHT:
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
-        if self._movement_x == Character.STILL and self._movement_y == Character.STILL:
-            self._velocity = (0, self._velocity[1])
+        if self._movement_x == Character.STILL:             # BUGFIX no hace falta que estemos quietos en y para que
+            self._velocity = (0, self._velocity[1])         #  la gravedad fluya normalmente
         if self._movement_y == Character.UP and self._velocity[1] == 0:
             self._velocity = (self._velocity[0], -vel_py * elapsed_time)
         self._update_sprite()
