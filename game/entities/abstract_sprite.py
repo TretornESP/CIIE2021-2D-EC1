@@ -16,6 +16,13 @@ class AbstractSprite(pygame.sprite.Sprite):
         self.rect.left = position[0] - self._scroll[0]
         self.rect.bottom = position[1] - self._scroll[1]
 
+    def set_static_position(self, position):
+        self._position = position
+        (self.rect.left, self.rect.bottom) = (position[0], position[1])
+
+    def get_global_position(self):
+        return self.rect
+
     def set_position(self, scroll):
         (scroll_x, scroll_y) = scroll
         (pos_x, pos_y) = self._position

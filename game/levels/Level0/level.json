@@ -26,7 +26,7 @@
             },
             {
                "sprite":"lamp.png",
-               "collides":false,
+               "collides":true,
                "coords":{
                   "pos_x":200,
                   "pos_y":600,
@@ -35,10 +35,27 @@
             }
          ],
          "objects":[
-
+           {
+             "kind":"mask",
+             "sprite":"mask.png",
+             "collides":true,
+             "coords":{
+               "pos_x":600,
+               "pos_y":600,
+               "inverted":false
+             }
+           }
          ],
          "enemies":[
-
+           {
+              "collides":true,
+              "coords":{
+                "pos_x":350,
+                "pos_y":600,
+                "inverted":false
+              },
+              "data":"covid"
+            }
          ],
          "triggers":[
             {
