@@ -90,6 +90,7 @@ class Character(AbstractSprite):
                 self._velocity = (self._velocity[0], 0)
                 self.set_global_position((self._position[0], res[1]))
             else:
+                self._is_jumping = True
                 self._velocity = (self._velocity[0], self._velocity[1] + 0.08 * vel_py * elapsed_time)
 
     def _update_sprite(self):
