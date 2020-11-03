@@ -21,6 +21,7 @@ class AbstractScreen:
             song = ResourceManager.load_music_asset(song)
             channel.play(song, loops=-1)
 
+        self._clicked = None
         self._gui_elements = []
 
     def events(self, events):
@@ -34,7 +35,7 @@ class AbstractScreen:
             if event.type == MOUSEBUTTONUP:
                 for element in self._gui_elements:
                     if element.pos_in_element(event.pos):
-                        if element == self._clicked:
+                        if self._clicked != None and element == self._clicked:
                             self._clicked.callback()
                             break
 
