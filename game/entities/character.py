@@ -31,7 +31,8 @@ class Character(AbstractSprite):
 
         self.set_global_position(position)
 
-        self._velocity = (0, 1)
+        self._is_jumping = True
+        self._velocity = (0, 0)
         self._velocity_x = velocity_x
         self._velocity_y = velocity_y
 
@@ -57,8 +58,9 @@ class Character(AbstractSprite):
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
         if self._movement_x == Character.STILL:
             self._velocity = (0, self._velocity[1])
-        if self._movement_y == Character.UP and self._velocity[1] == 0:
-            self._velocity = (self._velocity[0], -vel_py * elapsed_time)
+        if self._movement_y == Character.UP and not self._is_jumping:
+            self._is_jumping = True
+            self._velocity = (self._velocity[0], -vel_py * 0.018)
         self._update_sprite()
 
         # check horizontal collisions
@@ -75,6 +77,7 @@ class Character(AbstractSprite):
         platform = pygame.sprite.spritecollideany(self, self._platforms)
         if platform != None and platform._collides:
             if self._velocity[1] > 0:
+                self._is_jumping = False
                 self._velocity = (self._velocity[0], 0)
                 self.set_global_position((self._position[0], platform._position[1] - platform.rect.height + 1))
             elif self._velocity[1] < 0:
@@ -83,6 +86,7 @@ class Character(AbstractSprite):
         else:
             # check y axis boundaries
             if self.rect.bottom >= res[1]:
+                self._is_jumping = False
                 self._velocity = (self._velocity[0], 0)
                 self.set_global_position((self._position[0], res[1]))
             else:
