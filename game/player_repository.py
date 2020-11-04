@@ -9,8 +9,10 @@ class PlayerRepository:
 
     def __init__(self):
         self._data = {}
+        self.updated = []
 
     def set_parameter(self, param_name, value):
+        self.updated.append(param_name)
         self._data[param_name] = value
 
     def get_parameter(self, param_name):
