@@ -20,8 +20,8 @@ class AbstractHorizontalScene(AbstractScene):
         self._scroll_x = 0
 
         self._hud = Hud()
-        self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0,0), Hud.GROW_RIGHT, 10)
-        self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (80, 0), Hud.GROW_LEFT, 25)
+        self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0,0), Hud.GROW_RIGHT, 100)
+        self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (80, 0), Hud.GROW_LEFT, 100)
 
     def update(self, elapsed_time):
         for enemy in iter(self._enemies):
