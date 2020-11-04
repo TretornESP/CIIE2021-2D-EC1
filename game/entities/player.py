@@ -26,13 +26,13 @@ class Player(Character):
         #if self._hud != None:
             #self._hud.remove_heart()
         #TODO: Update animation as untouchable
+        self.player_repo.set_parameter(PlayerRepository.ATTR_HEALTH, self.player_repo.get_parameter(PlayerRepository.ATTR_HEALTH) - 1)
+        #print(f"{self.player_repo.get_parameter(PlayerRepository.ATTR_HEALTH)}")
 
     def picked_item(self, item):
         if item==Object.MASK:
             self._masks = self._masks + 1 # revisar si esto es necesario
 
-            self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, self.player_repo.get_parameter(PlayerRepository.ATTR_MASKS) + 1)
-            self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, self.player_repo.get_parameter(PlayerRepository.ATTR_MASKS) + 1)
             self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, self.player_repo.get_parameter(PlayerRepository.ATTR_MASKS) + 1)
 
     def update(self, elapsed_time):

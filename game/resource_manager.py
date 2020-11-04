@@ -128,6 +128,10 @@ class ResourceManager(object):
         return cls._resources[(level+folder+name)]
 
     @classmethod
+    def get_hud_sprite(cls):
+        pass
+
+    @classmethod
     def get_player_repository(cls):
         if cls.PLAYER_REPOSITORY_NAME not in cls._resources:
             cls._resources[cls.PLAYER_REPOSITORY_NAME] = PlayerRepository()

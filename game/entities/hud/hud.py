@@ -42,7 +42,7 @@ class Hud:
     # Create zone
     #  hud_element: Hud element component of the group
     #  coords: Relative to the HUD offset: (x_%_start, y_%_start)
-    #  spacing: Spacing from starting side of drawing
+    #  spacing: Spacing % relative to the sprite scaled size (consecutive would be 100, overlapping <100, spaced >100, etc)
     def create_hud_group(self, param_name, hud_element, coords, alignment, spacing):
         self._sprite_groups[param_name] = {
             "hud_element": hud_element,
@@ -61,10 +61,18 @@ class Hud:
     def draw(self, screen):
         for key in self._sprite_groups:
             for local_offset in range(0, self._sprite_groups[key]["count"]):
+
+                # Solución palleira a lo del porcentaje, pero bueno
+                # Lo ideal sería tener una funcion en el resourcemanager que nos leyese los archivos, y los escalase
+                # siguiendo unas pautas establecidas en un .json
+                # Por el momento va aquí encima en vez de debajo del if else
+                element = self._sprite_groups[key]["hud_element"]((0, 0))
+                (_, _, rect_x, rect_y) = element.image.get_rect()
+
                 if abs(self._sprite_groups[key]["alignment"]) < 2:
                     coord_x = self._x_min_offset + (
                                 (abs(self._x_min_offset - self._x_max_offset)) * self._sprite_groups[key]["coords"][0] / 100) + \
-                              self._sprite_groups[key]["spacing"] * self._sprite_groups[key]["alignment"] * local_offset
+                              (self._sprite_groups[key]["spacing"]*rect_x)/100 * self._sprite_groups[key]["alignment"] * local_offset
 
                     coord_y = self._y_min_offset + (
                                 (abs(self._y_min_offset - self._y_max_offset)) * self._sprite_groups[key]["coords"][1] / 100)
@@ -74,7 +82,10 @@ class Hud:
 
                     coord_y = self._y_min_offset + (
                                 (abs(self._y_min_offset - self._y_max_offset)) * self._sprite_groups[key]["coords"][1] / 100) + \
-                              self._sprite_groups[key]["spacing"] * (self._sprite_groups[key]["alignment"] >> 1) * local_offset
+                              (self._sprite_groups[key]["spacing"]*rect_y)/100 * (self._sprite_groups[key]["alignment"] >> 1) * local_offset
 
-                element = self._sprite_groups[key]["hud_element"]((coord_x, coord_y))
+                # Por lo tanto ahora tenemos que cambiar las coordenadas del sprite
+                # de nuevo, solución palleira pero que (de momento) nos vale
+                element.rect = (coord_x, coord_y)
+
                 element.draw(screen)
