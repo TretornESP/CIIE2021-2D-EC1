@@ -29,10 +29,6 @@ class Scene(AbstractHorizontalScene):
     def set_player(self, player):
         self._player = player
         self._dynamic_sprites.add(player)
-        # Attach HUD
-        self._hud = Hud()
-        self._hud.attach(self)
-        self._player.bind_hud(self._hud)
 
     def add_platform(self, platform):
         self._platforms.add(platform)

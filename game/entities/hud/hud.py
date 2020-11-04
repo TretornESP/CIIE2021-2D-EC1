@@ -27,10 +27,6 @@ class Hud:
         # Init log and so
         self.log = Clog(__name__)
 
-        # wth this bullshit
-        # self._player = player
-        # self._player.attach(self)
-
         # We store here the sprite groups
         self._sprite_groups = {}
         self._sprite_group = pygame.sprite.Group()
@@ -42,10 +38,6 @@ class Hud:
         self._y_max_offset = self._Y_TOTAL - self._Y_TOTAL*self.Y_RELATIVE_BOTTOM_OFFSET/100
 
         # DEBUG print(f"{self._x_min_offset} {self._y_min_offset} {self._x_max_offset} {self._y_max_offset}")
-
-    # Attach HUD to scene
-    # def attach(self, scene):
-    #     self._scene = scene
 
     # Create zone
     #  hud_element: Hud element component of the group

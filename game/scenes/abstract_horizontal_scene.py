@@ -4,7 +4,9 @@ from game.entities import Platform, Player
 from .backgrounds import MainBackground
 from game import Configuration
 from .pause_menu import PauseMenu
-from ..entities.hud import Hud
+from ..entities.hud import Hud, HudHeart
+from ..entities.hud.hud_elements.hud_mask import HudMask
+from ..player_repository import PlayerRepository
 from ..util.log import Clog
 from pygame.locals import *
 
@@ -16,8 +18,10 @@ class AbstractHorizontalScene(AbstractScene):
         AbstractScene.__init__(self, director)
         self.log = Clog(__name__)
         self._scroll_x = 0
-        self._hud = Hud()
-        self._hud.create_hud_group()
+
+        self._hud = Hud().__init__()
+        self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0,0), Hud.GROW_RIGHT, 10)
+        self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (80, 0), Hud.GROW_LEFT, 25)
 
     def update(self, elapsed_time):
         for enemy in iter(self._enemies):
@@ -27,6 +31,8 @@ class AbstractHorizontalScene(AbstractScene):
         self._dynamic_sprites.update(elapsed_time)
         # TODO revisar
         #self._overlay_sprites.update(elapsed_time)
+
+        #if self._hud is not None:
         self._hud.update()
 
 
@@ -53,6 +59,8 @@ class AbstractHorizontalScene(AbstractScene):
         # TODO quitamos esto de aquí
         #self._overlay_sprites.draw(self._screen)
         # llamar al draw() del HUD (?)
+
+        #if self._hud is not None:
         self._hud.draw(self._screen)
 
     def _update_scroll(self):
