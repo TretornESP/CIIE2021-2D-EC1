@@ -3,8 +3,13 @@ import json
 import pygame
 from pygame.locals import *
 
+from game.player_repository import PlayerRepository
+
 
 class ResourceManager(object):
+
+    PLAYER_REPOSITORY_NAME = "player.repository"
+
     _resources = {}
 
     @classmethod
@@ -121,3 +126,9 @@ class ResourceManager(object):
                 print("Check JSON sanity!!!")
                 raise SystemExit
         return cls._resources[(level+folder+name)]
+
+    @classmethod
+    def get_player_repository(cls):
+        if cls.PLAYER_REPOSITORY_NAME not in cls._resources:
+            cls._resources[cls.PLAYER_REPOSITORY_NAME] = PlayerRepository()
+        return cls._resources[cls.PLAYER_REPOSITORY_NAME]

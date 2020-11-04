@@ -57,10 +57,10 @@ class Scene(AbstractHorizontalScene):
         self._static_sprites.add(trigger)
         self._player.set_trigger_group(self._triggers)
 
-    # TODO ELIMINAR ESTA MIERDA
-    def add_overlay_sprite(self, sprite):
-        self._overlay_sprites.add(sprite)
-
-    def del_overlay_sprite(self, sprite):
-        self._overlay_sprites.remove(sprite)
+    # # TODO ELIMINAR ESTA MIERDA
+    # def add_overlay_sprite(self, sprite):
+    #     self._overlay_sprites.add(sprite)
+    #
+    # def del_overlay_sprite(self, sprite):
+    #     self._overlay_sprites.remove(sprite)
 
