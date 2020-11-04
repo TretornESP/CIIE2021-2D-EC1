@@ -1,12 +1,9 @@
 from .character import Character
-from game import Configuration
-from .hud import Hud
-from .hud.hud_elements.hud_mask import HudMask
+from game import Configuration, ResourceManager
+from ..player_repository import PlayerRepository
 from ..util.log import Clog
 from .object import Object
 import pygame
-
-from ..entities.hud  import HudHeart
 
 
 class Player(Character):
@@ -16,19 +13,13 @@ class Player(Character):
         Character.__init__(self, level, data, coord, invert, speedx, speedy)
         self.log = Clog(__name__)
 
-        self._hud = None
+        self.player_repo = ResourceManager.get_player_repository()
+        self.player_repo.set_parameter(PlayerRepository.ATTR_HEALTH, 3)
+        self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, 1)
+
         self._hp = 3
         self._masks = 0
         self._last_hit = 0
-
-        self._hud_heart_id = None
-        self._hud_mask_id  = None
-
-    def bind_hud(self, hud):
-        self._hud = hud
-        self._hud_heart_id = self._hud.create_hud_group(HudHeart, (0, 0), Hud.GROW_RIGHT, 10)
-        self._hud_mask_id  = self._hud.create_hud_group(HudMask, (80, 0), Hud.GROW_LEFT,  25)
-        self._hud.add_element(self._hud_heart_id)
 
     def hit(self):
         self._hp = self._hp - 1
@@ -39,18 +30,10 @@ class Player(Character):
     def picked_item(self, item):
         if item==Object.MASK:
             self._masks = self._masks + 1 # revisar si esto es necesario
-            self._hud.add_element(self._hud_mask_id)
 
-            self._hud.add_element(self._hud_heart_id)
-            self._hud.add_element(self._hud_heart_id)
-            self._hud.add_element(self._hud_heart_id)
-
-            self._hud.add_element(self._hud_mask_id)
-            self._hud.add_element(self._hud_mask_id)
-            self._hud.add_element(self._hud_mask_id)
-            self._hud.add_element(self._hud_mask_id)
-            self._hud.add_element(self._hud_mask_id)
-            self._hud.add_element(self._hud_mask_id)
+            self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, self.player_repo.get_parameter(PlayerRepository.ATTR_MASKS) + 1)
+            self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, self.player_repo.get_parameter(PlayerRepository.ATTR_MASKS) + 1)
+            self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, self.player_repo.get_parameter(PlayerRepository.ATTR_MASKS) + 1)
 
     def update(self, elapsed_time):
         Character.update(self, elapsed_time)

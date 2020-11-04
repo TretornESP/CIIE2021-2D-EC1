@@ -5,13 +5,8 @@ class HudElement(AbstractSprite):
     def __init__(self, level, sprite, coord):
         AbstractSprite.__init__(self)
 
-        self._coord = coord
-
         self.image = ResourceManager.load_sprite(level, sprite)
-        self.rect = self.image.get_rect()
-
-        #self.set_static_position(self._coord) # TODO Esto es un bug y debería eliminarse.
-        #                                      # wip: set_static_position
+        self.rect = coord
 
     # TODO CHECK THIS
     def update(self, elapsed_time):
@@ -24,4 +19,4 @@ class HudElement(AbstractSprite):
         pass
 
     def draw(self, screen):
-        screen.blit(self.image, self._coord)
+        screen.blit(self.image, self.rect)
