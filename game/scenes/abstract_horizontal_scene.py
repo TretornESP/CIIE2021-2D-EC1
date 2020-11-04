@@ -19,7 +19,7 @@ class AbstractHorizontalScene(AbstractScene):
         self.log = Clog(__name__)
         self._scroll_x = 0
 
-        self._hud = Hud().__init__()
+        self._hud = Hud()
         self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0,0), Hud.GROW_RIGHT, 10)
         self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (80, 0), Hud.GROW_LEFT, 25)
 
@@ -32,7 +32,6 @@ class AbstractHorizontalScene(AbstractScene):
         # TODO revisar
         #self._overlay_sprites.update(elapsed_time)
 
-        #if self._hud is not None:
         self._hud.update()
 
 
@@ -60,7 +59,6 @@ class AbstractHorizontalScene(AbstractScene):
         #self._overlay_sprites.draw(self._screen)
         # llamar al draw() del HUD (?)
 
-        #if self._hud is not None:
         self._hud.draw(self._screen)
 
     def _update_scroll(self):

@@ -15,7 +15,6 @@ class Scene(AbstractHorizontalScene):
         self._scroll_size = size
 
         self._player = None
-        self._hud = None
 
         self._objects   = pygame.sprite.Group()
         self._enemies   = pygame.sprite.Group()
