@@ -1,7 +1,7 @@
 from game.entities.hud.hud_element import HudElement
 
 class HudHeart(HudElement):
-    X_SIZE = 50
+    X_SIZE = 30
 
     SPRITE_NAME = "heart_hud.png"
 

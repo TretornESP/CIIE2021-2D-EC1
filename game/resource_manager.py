@@ -2,13 +2,13 @@ import os
 import json
 import pygame
 from pygame.locals import *
-
 from game.player_repository import PlayerRepository
+from game.text_repository import TextRepository
 
 
 class ResourceManager(object):
-
     PLAYER_REPOSITORY_NAME = "player.repository"
+    TEXT_REPO_NAME = "text.repository"
 
     _resources = {}
 
@@ -123,3 +123,9 @@ class ResourceManager(object):
         if cls.PLAYER_REPOSITORY_NAME not in cls._resources:
             cls._resources[cls.PLAYER_REPOSITORY_NAME] = PlayerRepository()
         return cls._resources[cls.PLAYER_REPOSITORY_NAME]
+
+    @classmethod
+    def get_text_repository(cls):
+        if cls.TEXT_REPO_NAME not in cls._resources:
+            cls._resources[cls.TEXT_REPO_NAME] = TextRepository()
+        return cls._resources[cls.TEXT_REPO_NAME]

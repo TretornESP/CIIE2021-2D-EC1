@@ -1,5 +1,6 @@
 import pygame
 from ..scenes import AbstractHorizontalScene
+from ..scenes.skies import AbstractSky
 from game.entities import Platform, Player, Covid
 from ..scenes.backgrounds import MainBackground
 from ..scenes import Scene
@@ -98,7 +99,7 @@ class Level():
 
         self._clog.info("populating level")
         for scene in json['scenes']:
-            s = Scene(self.name, self.director, scene['id'], scene['background'], scene['scroll'])
+            s = Scene(self.name, self.director, scene['id'], scene['background'], scene['scroll'], scene['sky'])
             s.set_player(self.parse_player(scene['player']))
         for object in scene['objects']:
             s.add_object(self.parse_object(object))

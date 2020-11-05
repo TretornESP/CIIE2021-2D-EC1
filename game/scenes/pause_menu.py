@@ -24,6 +24,5 @@ class PauseMenu(AbstractMenu):
         self._director.end_scene()
 
     def quit_game(self):
-        from .main_menu import MainMenu
-        self._director.quit_game()
-        self._director.push_scene(MainMenu(self._director))
+        self._director.end_scene()
+        self._director.end_scene()

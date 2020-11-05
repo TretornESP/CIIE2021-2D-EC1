@@ -18,3 +18,6 @@ class AbstractScene:
 
     def draw(self, *args):
         raise NotImplemented()
+
+    def start_scene(self):
+        pass

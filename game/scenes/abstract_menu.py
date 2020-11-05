@@ -9,6 +9,10 @@ class AbstractMenu(AbstractScene):
     def update(self, *args):
         pass
 
+    def start_scene(self):
+        AbstractScene.start_scene(self)
+        self._screen_list[self._current_screen].start_scene()
+
     def events(self, events):
         for event in events:
             if event.type == pygame.QUIT:

@@ -16,13 +16,16 @@ class AbstractScreen:
         self.rect.left = 0
         self.rect.bottom = res[1]
 
-        if song != None:
-            song_path = ResourceManager.get_song_path(song)
-            pygame.mixer.music.load(song_path)
-            pygame.mixer.music.play(loops=-1)
+        self._song = song
 
         self._clicked = None
         self._gui_elements = []
+
+    def start_scene(self):
+        if self._song != None:
+            song_path = ResourceManager.get_song_path(self._song)
+            pygame.mixer.music.load(song_path)
+            pygame.mixer.music.play(loops=-1)
 
     def events(self, events):
         for event in events:

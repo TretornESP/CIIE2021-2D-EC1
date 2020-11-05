@@ -1,7 +1,7 @@
 from game.entities.hud.hud_element import HudElement
 
 class HudMask(HudElement):
-    X_SIZE = 50
+    X_SIZE = 30
 
     SPRITE_NAME = "mask_hud.png"
 
