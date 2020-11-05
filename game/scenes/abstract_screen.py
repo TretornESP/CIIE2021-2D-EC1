@@ -17,9 +17,9 @@ class AbstractScreen:
         self.rect.bottom = res[1]
 
         if song != None:
-            channel = ResourceManager.load_music_channel()
-            song = ResourceManager.load_music_asset(song)
-            channel.play(song, loops=-1)
+            song_path = ResourceManager.get_song_path(song)
+            pygame.mixer.music.load(song_path)
+            pygame.mixer.music.play(loops=-1)
 
         self._clicked = None
         self._gui_elements = []

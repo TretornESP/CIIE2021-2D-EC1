@@ -16,8 +16,7 @@ class MainMenu(AbstractMenu):
 
     def play_game(self):
         # stop music
-        channel = ResourceManager.load_music_channel()
-        channel.stop()
+        pygame.mixer.music.stop()
 
         level = Level("Level0", self._director)
         for scene in level.get_scenes():

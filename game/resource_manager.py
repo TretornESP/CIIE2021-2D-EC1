@@ -78,16 +78,11 @@ class ResourceManager(object):
         return cls._resources[name]
 
     @classmethod
-    def load_music_asset(cls, name):
+    def get_song_path(cls, name):
         if not name in cls._resources:
             path = os.path.abspath(__package__)
             fullname = os.path.join(path, "assets", "music", name)
-            try:
-                sound = pygame.mixer.Sound(fullname)
-            except Exception:
-                print(f"Cannot load resource with name {name} at {fullname}")
-                raise SystemExit
-            cls._resources[name] = sound
+            cls._resources[name] = fullname
         return cls._resources[name]
 
     @classmethod
@@ -103,14 +98,6 @@ class ResourceManager(object):
                 raise SystemExit
             cls._resources[res_name] = font
         return cls._resources[res_name]
-
-    @classmethod
-    def load_music_channel(cls):
-        name = "music_channel"
-        if not name in cls._resources:
-            channel = pygame.mixer.Channel(0)
-            cls._resources[name] = channel
-        return cls._resources[name]
 
     @classmethod
     def load_coords(cls, level, folder, name="coords.json"):
