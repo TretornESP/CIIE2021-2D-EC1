@@ -11,7 +11,6 @@ class Director:
     def execute(self):
         pygame.init()
         pygame.mixer.init()
-        pygame.mixer.set_reserved(1)
 
         while (len(self._scene_stack) > 0):
             scene = self._scene_stack[len(self._scene_stack) - 1]
