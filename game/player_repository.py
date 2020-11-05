@@ -2,14 +2,19 @@ from pygame.locals import *
 
 
 class PlayerRepository:
+    DEFAULT_HEALTH = 3
+    DEFAULT_MASKS = 3
 
-    # Default names (for not fucking up with typos)
     ATTR_HEALTH = "attr_health"
     ATTR_MASKS = "attr_masks"
 
     def __init__(self):
         self._data = {}
         self.updated = []
+
+    def reset_attr(self):
+        self.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
+        self.set_parameter(PlayerRepository.ATTR_MASKS, PlayerRepository.DEFAULT_MASKS)
 
     def set_parameter(self, param_name, value):
         self.updated.append(param_name)
