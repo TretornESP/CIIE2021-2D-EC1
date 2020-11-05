@@ -18,6 +18,10 @@ class MainMenu(AbstractMenu):
         # stop music
         pygame.mixer.music.stop()
 
+        # init repo
+        repo = ResourceManager.get_player_repository()
+        repo.reset_attr()
+
         level = Level("Level0", self._director)
         for scene in level.get_scenes():
             self._director.push_scene(scene)

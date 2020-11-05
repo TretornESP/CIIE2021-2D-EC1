@@ -10,6 +10,7 @@ class Character(AbstractSprite):
     RIGHT = 2
     UP = 3
     DOWN = 4
+    DASH = 5
 
     STEP_OVER = 3
     JUMPING_DELAY = 0
@@ -23,9 +24,9 @@ class Character(AbstractSprite):
         self._level = level
 
         if (invert):
-            self._sheet = pygame.transform.flip(self._sheet, 1, 0) #Tal vez invierta controles??
+            self._sheet = pygame.transform.flip(self._sheet, 1, 0)
 
-        self._left = False #Comentario de arriba
+        self._left = False
         self._animation_idx = 0
         self._animation_dur = -1
 

@@ -9,31 +9,13 @@ import pygame
 class Player(Character):
     INVULNERABILITY_LAPSE = 2
 
-    def __init__(self, level, data, coord, speedx = 25, speedy = 40, invert = False):
+    def __init__(self, level, data, coord, speedx=25, speedy=40, invert=False):
         Character.__init__(self, level, data, coord, invert, speedx, speedy)
         self.log = Clog(__name__)
 
-        self.player_repo = ResourceManager.get_player_repository()
-        self.player_repo.set_parameter(PlayerRepository.ATTR_HEALTH, 3)
-        self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, 1)
+        self._repo = ResourceManager.get_player_repository()
 
-        self._hp = 3
-        self._masks = 0
         self._last_hit = 0
-
-    def hit(self):
-        self._hp = self._hp - 1
-        #if self._hud != None:
-            #self._hud.remove_heart()
-        #TODO: Update animation as untouchable
-        self.player_repo.set_parameter(PlayerRepository.ATTR_HEALTH, self.player_repo.get_parameter(PlayerRepository.ATTR_HEALTH) - 1)
-        #print(f"{self.player_repo.get_parameter(PlayerRepository.ATTR_HEALTH)}")
-
-    def picked_item(self, item):
-        if item==Object.MASK:
-            self._masks = self._masks + 1 # revisar si esto es necesario
-
-            self.player_repo.set_parameter(PlayerRepository.ATTR_MASKS, self.player_repo.get_parameter(PlayerRepository.ATTR_MASKS) + 1)
 
     def update(self, elapsed_time):
         Character.update(self, elapsed_time)
@@ -44,7 +26,7 @@ class Player(Character):
             if (enemy != None):
                 if self._last_hit > Player.INVULNERABILITY_LAPSE:
                     self.log.debug("Player hit!")
-                    self.hit()
+                    self._hit()
                     self._last_hit = 0
 
         if (self._items != None):
@@ -74,3 +56,12 @@ class Player(Character):
         else:
             x = Character.STILL
         Character.move(self, (x,y))
+
+    def _hit(self):
+        current_health = self._repo.get_parameter(PlayerRepository.ATTR_HEALTH)
+        self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, current_health - 1)
+
+    def _picked_item(self, item):
+        if item == Object.MASK:
+            current_masks = self._repo.get_parameter(PlayerRepository.ATTR_MASKS)
+            self._repo.set_parameter(PlayerRepository.ATTR_MASKS, current_masks + 1)

@@ -5,6 +5,7 @@ import pygame
 
 class Object(AbstractPlatform):
     MASK = "mask"
+
     def __init__(self, level, kind, sprite, collision, coord, invert):
         AbstractPlatform.__init__(self, level, sprite, collision, pygame.Rect(coord, (0,0)), invert)
         self.log = Clog(__name__)
@@ -23,7 +24,7 @@ class Object(AbstractPlatform):
         self._player = player
 
     def collect(self):
-        if self._kind==Object.MASK:
+        if self._kind == Object.MASK:
             self.log.debug("Collected mask")
-            self._player.picked_item(Object.MASK)
+            self._player._picked_item(Object.MASK)
         self.remove()
