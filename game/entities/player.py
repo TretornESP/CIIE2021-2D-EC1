@@ -71,7 +71,7 @@ class Player(Character):
             x = Character.RIGHT
         else:
             x = Character.STILL
-        Character.move(self, (x,y))
+        Character.move(self, (x, y))
 
         if keys_pressed[parry]:
             self._do_parry()
