@@ -25,7 +25,6 @@ class AbstractPlatform(AbstractSprite):
                 y_size = int(float(y_size * scale))
                 self.image = pygame.transform.scale(self.image, (x_size, y_size))
             self.rect = self.image.get_rect()
-            print(f"rect={self.rect}")
 
         if invert:
             self.image = pygame.transform.flip(self.image, True, False)
