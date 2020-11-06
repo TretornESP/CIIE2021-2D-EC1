@@ -46,7 +46,7 @@ class ResourceManager(object):
         return cls._resources[(level+folder+name)]
 
     @classmethod
-    def load_sprite(cls, level, name, colorkey=None):
+    def load_sprite(cls, level, name, colorkey=None, scale=1):
         if not (level+name) in cls._resources:
             path = os.path.abspath(__package__)
             fullname = os.path.join(path, "levels", level, "sprites", name)
@@ -113,10 +113,6 @@ class ResourceManager(object):
                 print("Check JSON sanity!!!")
                 raise SystemExit
         return cls._resources[(level+folder+name)]
-
-    @classmethod
-    def get_hud_sprite(cls):
-        pass
 
     @classmethod
     def get_player_repository(cls):

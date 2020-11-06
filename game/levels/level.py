@@ -51,6 +51,7 @@ class Level():
     def parse_platform(self, json):
         sprite = json['sprite']
         collid = json['collides']
+        #scale  = json['scale']
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         return Platform(self.name, sprite, collid, coords, invert)
