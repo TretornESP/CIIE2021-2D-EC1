@@ -2,17 +2,19 @@ from . import AbstractHorizontalScene
 from .. import Configuration
 from .backgrounds import MainBackground
 from ..entities.hud import Hud
+from .skies import AbstractSky
 import pygame
 
-
 class Scene(AbstractHorizontalScene):
-    def __init__(self, level, director, id, background, size):
+    def __init__(self, level, director, id, background, size, sky):
         AbstractHorizontalScene.__init__(self, director)
         resolution = Configuration().get_resolution()
 
         self._id = id
         self._background = MainBackground(level, background)
         self._scroll_size = size
+
+        self._sky = AbstractSky(level, sky)
 
         self._player = None
 

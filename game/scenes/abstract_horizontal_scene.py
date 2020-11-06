@@ -2,8 +2,9 @@ import pygame
 from .abstract_scene import AbstractScene
 from game.entities import Platform, Player
 from .backgrounds import MainBackground
-from game import Configuration
+from game import Configuration, ResourceManager
 from .pause_menu import PauseMenu
+from .end_menu import EndMenu
 from ..entities.hud import Hud, HudHeart
 from ..entities.hud.hud_elements.hud_mask import HudMask
 from ..player_repository import PlayerRepository
@@ -21,7 +22,9 @@ class AbstractHorizontalScene(AbstractScene):
 
         self._hud = Hud()
         self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0,0), Hud.GROW_RIGHT, 100)
-        self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (80, 0), Hud.GROW_LEFT, 100)
+        self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (0, 5), Hud.GROW_RIGHT, 100)
+
+        self._text_repo = ResourceManager.get_text_repository()
 
     def update(self, elapsed_time):
         for enemy in iter(self._enemies):
@@ -29,11 +32,10 @@ class AbstractHorizontalScene(AbstractScene):
 
         self._static_sprites.update(elapsed_time)
         self._dynamic_sprites.update(elapsed_time)
-        # TODO revisar
+        # TODO
         #self._overlay_sprites.update(elapsed_time)
-
+        self._text_repo.update(elapsed_time)
         self._hud.update()
-
 
         if self._update_scroll():
             self._background.update(self._scroll_x)
@@ -41,6 +43,11 @@ class AbstractHorizontalScene(AbstractScene):
                 sprite.set_position((self._scroll_x, 0))
             for sprite in iter(self._dynamic_sprites):
                 sprite.set_position((self._scroll_x, 0))
+            self._text_repo.set_position((self._scroll_x, 0))
+
+        repo = ResourceManager.get_player_repository()
+        if repo.get_parameter(PlayerRepository.ATTR_HEALTH) <= 0:
+            self._director.change_scene(EndMenu(self._director))
 
     def events(self, events):
         for event in events:
@@ -49,16 +56,17 @@ class AbstractHorizontalScene(AbstractScene):
             elif event.type == KEYDOWN and event.key == K_ESCAPE:
                 self._director.push_scene(PauseMenu(self._director))
         keys_pressed = pygame.key.get_pressed()
-        self._player.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT)
+        self._player.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT, K_a, K_s)
 
     def draw(self):
+        self._sky.draw(self._screen)
         self._background.draw(self._screen)
         self._static_sprites.draw(self._screen)
         self._dynamic_sprites.draw(self._screen)
         # TODO quitamos esto de aquí
         #self._overlay_sprites.draw(self._screen)
-        # llamar al draw() del HUD (?)
 
+        self._text_repo.draw(self._screen)
         self._hud.draw(self._screen)
 
     def _update_scroll(self):

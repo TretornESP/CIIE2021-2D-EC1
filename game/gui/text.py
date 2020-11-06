@@ -12,3 +12,6 @@ class TextGUI(GUIElement):
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+
+    def callback(self):
+        pass

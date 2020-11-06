@@ -4,11 +4,12 @@
    "scenes":[
       {
          "id":"SCN_0",
-         "background":"background.png",
+	 "sky":"sky.png",
+         "background":"background_long.png",
          "scroll":2000,
          "player":{
             "coords":{
-               "pos_x":500,
+               "pos_x":50,
                "pos_y":600,
                "inverted": false
             },

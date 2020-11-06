@@ -40,6 +40,7 @@ class Director:
         pygame.event.clear()
 
         self._end_scene = False
+        scene.start_scene()
         while not self._end_scene:
             elapsed_time = self._clock.tick(60)
             elapsed_time /= 1000
