@@ -60,7 +60,7 @@ class AbstractHorizontalScene(AbstractScene):
         for event in events:
             if event.type == pygame.QUIT:
                 self._director.quit_game()
-            elif event.type == KEYDOWN and event.key == K_ESCAPE:
+            elif event.type == KEYDOWN and (event.key == K_ESCAPE or event.key == K_p):
                 self._director.push_scene(PauseMenu(self._director))
         keys_pressed = pygame.key.get_pressed()
         self._player.move(keys_pressed, K_UP, K_DOWN, K_LEFT, K_RIGHT, K_a, K_s)

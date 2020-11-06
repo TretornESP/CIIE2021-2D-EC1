@@ -15,7 +15,7 @@ class PauseMenu(AbstractMenu):
 
     def events(self, events):
         for event in events:
-            if event.type == KEYDOWN and event.key == K_ESCAPE:
+            if event.type == KEYDOWN and (event.key == K_ESCAPE or event.key == K_p):
                 self.play_game()
                 return
         AbstractMenu.events(self, events)

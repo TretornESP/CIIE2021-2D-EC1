@@ -2,6 +2,7 @@ import pygame
 from .abstract_sprite import AbstractSprite
 from ..resource_manager import ResourceManager
 
+
 class AbstractPlatform(AbstractSprite):
     ACTIVE = (255, 0, 255, 255)
     RESIDE = (0, 255, 0, 255)

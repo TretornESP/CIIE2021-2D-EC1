@@ -3,6 +3,7 @@ import pygame
 from ..abstract_sprite import AbstractSprite
 from ...resource_manager import ResourceManager
 
+
 class HudElement(AbstractSprite):
     def __init__(self, level, sprite, coord, x_size, y_size):
         AbstractSprite.__init__(self)

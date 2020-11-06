@@ -3,6 +3,7 @@ from .abstract_platform import AbstractPlatform
 import pygame
 from ..util.log import Clog
 
+
 class Trigger(AbstractPlatform):
     MUSIC_START = 0x0
     CHECKPOINT  = 0x1
