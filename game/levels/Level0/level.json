@@ -33,7 +33,18 @@
                   "pos_y":600,
                   "inverted": true
                }
-            }
+            },
+            {
+             "kind":"old_man",
+             "sprite":"old_man.png",
+             "collides":false,
+             "scale": 2,
+             "coords":{
+               "pos_x":700,
+               "pos_y":600,
+               "inverted":false
+             }
+           }
          ],
          "objects":[
            {
@@ -42,7 +53,7 @@
              "collides":true,
              "coords":{
                "pos_x":600,
-               "pos_y":600,
+               "pos_y":590,
                "inverted":false
              }
            }

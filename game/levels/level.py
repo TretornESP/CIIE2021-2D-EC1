@@ -53,7 +53,13 @@ class Level():
         collid = json['collides']
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
-        return Platform(self.name, sprite, collid, coords, invert)
+
+        if 'scale' in json:
+            scale = json['scale']
+        else:
+            scale = None
+
+        return Platform(self.name, sprite, collid, coords, invert, scale=scale)
 
     def parse_object(self, json):
         kind   = json['kind']

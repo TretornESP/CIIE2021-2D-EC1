@@ -5,11 +5,12 @@ from .backgrounds import MainBackground
 from game import Configuration, ResourceManager
 from .pause_menu import PauseMenu
 from .end_menu import EndMenu
-from ..entities.hud import Hud, HudHeart
-from ..entities.hud.hud_elements.hud_mask import HudMask
+from ..entities.hud import *
+from ..entities.hud.hud_elements import *
 from ..player_repository import PlayerRepository
 from ..util.log import Clog
 from pygame.locals import *
+
 
 class AbstractHorizontalScene(AbstractScene):
     MIN_X = 100
@@ -21,10 +22,18 @@ class AbstractHorizontalScene(AbstractScene):
         self._scroll_x = 0
 
         self._hud = Hud()
-        self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0,0), Hud.GROW_RIGHT, 100)
-        self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (0, 5), Hud.GROW_RIGHT, 100)
+        self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0, 0), Hud.GROW_RIGHT, 100)
+        self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (0, 6), Hud.GROW_RIGHT, 110)
 
         self._text_repo = ResourceManager.get_text_repository()
+
+        # Init things for autocomplete
+        self._static_sprites = None
+        self._dynamic_sprites = None
+        self._background = None
+        self._sky = None
+        self._enemies = None
+        self._player = None
 
     def update(self, elapsed_time):
         for enemy in iter(self._enemies):
@@ -32,8 +41,6 @@ class AbstractHorizontalScene(AbstractScene):
 
         self._static_sprites.update(elapsed_time)
         self._dynamic_sprites.update(elapsed_time)
-        # TODO
-        #self._overlay_sprites.update(elapsed_time)
         self._text_repo.update(elapsed_time)
         self._hud.update()
 
@@ -63,9 +70,6 @@ class AbstractHorizontalScene(AbstractScene):
         self._background.draw(self._screen)
         self._static_sprites.draw(self._screen)
         self._dynamic_sprites.draw(self._screen)
-        # TODO quitamos esto de aquí
-        #self._overlay_sprites.draw(self._screen)
-
         self._text_repo.draw(self._screen)
         self._hud.draw(self._screen)
 
@@ -91,7 +95,7 @@ class AbstractHorizontalScene(AbstractScene):
             if self._scroll_x == 0 and player.rect.left < 0:
                 player.set_global_position((0, player._position[1]))
                 return False
-
-            return True
-
-        return False
+            else:
+                return True
+        else:
+            return False
