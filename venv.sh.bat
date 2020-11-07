@@ -134,11 +134,12 @@ if [ "$postinstall" -eq "1" ]; then
     fi
 
     # Finally configure venv
+    pip install wheel
     pip install -r requirements.txt
 fi
 
 # bash stuff
-return # Exis script on *NIX
+return # Exit script on *NIX
 
 
 

@@ -1,7 +1,7 @@
 import pygame
 from ..scenes import AbstractHorizontalScene
 from ..scenes.skies import AbstractSky
-from game.entities import Platform, Player, Covid
+from game.entities import Platform, Player, Covid, Torreta, Corredor
 from ..scenes.backgrounds import MainBackground
 from ..scenes import Scene
 from ..util import Clog
@@ -81,13 +81,17 @@ class Level():
 
         collid = j['collides']
         datafn = j['data']
-        speedx = 10 #REPLACE ME
-        speedy = 20 #REPLACE ME
+        speedx = j['speedx']
+        speedy = j['speedy']
         coords = self.parse_coords(j['coords'])
         invert = j['coords']['inverted']
 
         if datafn == 'covid':
             return Covid(self.name, datafn, coords, speedx, speedy, invert)
+        elif datafn == 'torreta':
+            return Torreta(self.name, datafn, coords, speedx, speedy, invert)
+        elif datafn == 'corredor':
+            return Corredor(self.name, datafn, coords, speedx, speedy, invert)
         else:
             raise NotImplemented("No existe este enemigo")
 
