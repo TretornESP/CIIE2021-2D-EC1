@@ -4,7 +4,7 @@ from .enemy import Enemy
 from .character import Character
 
 
-class Covid(Enemy):
+class Torreta(Enemy):
     def __init__(self, level, data, coord, speedx, speedy, invert=False):
         self.log = Clog(__name__)
         Enemy.__init__(self, level, data, coord, speedx, speedy, invert)
@@ -25,13 +25,7 @@ class Covid(Enemy):
             else:
                 direction_x = Character.RIGHT
 
-            if player._position[1] < self._position[1]:
-                direction_y = Character.UP
-            else:
-                direction_y = Character.STILL
-
         else:
             direction_x = Character.STILL
-            direction_y = Character.STILL
 
-        Character.move(self, (direction_x, direction_y))
+        Character.move(self, (direction_x, Character.STILL))
