@@ -44,6 +44,28 @@
             "pos_y":600,
             "inverted":false
           }
+        },
+        {
+          "kind":"spikes",
+          "sprite":"spikes.png",
+          "collides":true,
+          "scale": 3,
+          "coords":{
+            "pos_x":2000,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"spikes",
+          "sprite":"spikes.png",
+          "collides":true,
+          "scale": 3,
+          "coords":{
+            "pos_x":2055,
+            "pos_y":600,
+            "inverted":false
+          }
         }
       ],
       "objects":[
