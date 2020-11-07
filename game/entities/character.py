@@ -14,7 +14,7 @@ class Character(AbstractSprite):
     DASH = 5
 
     STEP_OVER = 3
-    JUMPING_DELAY = 0
+    JUMPING_DELAY = 0.07
 
     def __init__(self, level, data, position, invert, velocity_x = 0, velocity_y = 0):
         AbstractSprite.__init__(self)
