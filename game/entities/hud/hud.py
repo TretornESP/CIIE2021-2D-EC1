@@ -1,6 +1,6 @@
 import pygame
 
-from ... import ResourceManager
+from ... import ResourceManager, Configuration
 from ...util.log import Clog
 
 
@@ -21,8 +21,9 @@ class Hud:
 
     def __init__(self):
         # Get screen res
-        self._X_TOTAL = pygame.display.Info().current_w
-        self._Y_TOTAL = pygame.display.Info().current_h
+        # self._X_TOTAL = pygame.display.Info().current_w
+        # self._Y_TOTAL = pygame.display.Info().current_h
+        (self._X_TOTAL, self._Y_TOTAL) = Configuration().get_resolution()
 
         # Init log and so
         self.log = Clog(__name__)
