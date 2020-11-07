@@ -12,9 +12,8 @@ class Covid(Enemy):
         self._count = 0
 
     def move_cpu(self, player):
-
-        (xleft, xright) = Configuration.get_resolution()
-        if self.rect.left > xleft and self.rect.right < xright:
+        (xright, _) = Configuration().get_resolution()
+        if self.rect.left > 0 and self.rect.right < xright:
 
             distance = player._position[0] - self._position[0]
 

@@ -11,6 +11,6 @@ class Corredor(Enemy):
         self._count = 0
 
     def move_cpu(self, player):
-        (xleft, xright) = Configuration.get_resolution()
-        if self.rect.left > xleft and self.rect.right < xright:
+        (xright, _) = Configuration().get_resolution()
+        if self.rect.left > 0 and self.rect.right < xright:
             Character.move(self, (Character.LEFT, Character.STILL))
