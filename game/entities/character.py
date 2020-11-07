@@ -4,6 +4,7 @@ from game import ResourceManager, Configuration
 from .abstract_sprite import AbstractSprite
 from ..util.log import Clog
 
+
 class Character(AbstractSprite):
     STILL = 0
     LEFT = 1
@@ -164,7 +165,7 @@ class Character(AbstractSprite):
         self.image = pygame.transform.scale(image, target_dims)
 
         if self._left:
-            self.image = pygame.transform.flip(self.image, 1, 0)
+            self.image = pygame.transform.flip(self.image, True, False)
         self.rect = self.image.get_rect()
 
         self._animation_idx = (idx + 1) % len(animations)
