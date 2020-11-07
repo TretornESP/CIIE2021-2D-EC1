@@ -16,24 +16,7 @@
             "data":"player"
          },
          "platforms":[
-            {
-               "sprite":"lamp.png",
-               "collides":true,
-               "coords":{
-                  "pos_x":400,
-                  "pos_y":600,
-                  "inverted": true
-               }
-            },
-            {
-               "sprite":"lamp.png",
-               "collides":true,
-               "coords":{
-                  "pos_x":200,
-                  "pos_y":600,
-                  "inverted": true
-               }
-            },
+
             {
              "kind":"old_man",
              "sprite":"old_man.png",
@@ -61,12 +44,14 @@
          "enemies":[
            {
               "collides":true,
+              "speedx":10,
+              "speedy":20,
               "coords":{
-                "pos_x":320,
+                "pos_x":900 ,
                 "pos_y":500,
                 "inverted":false
               },
-              "data":"covid"
+              "data":"torreta"
             }
          ],
          "triggers":[

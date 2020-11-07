@@ -8,5 +8,5 @@ class Enemy(Character):
         self.log = Clog(__name__)
         Character.__init__(self, level, data, coord, invert, speedx, speedy)
 
-    def move_cpu(self):
+    def move_cpu(self, player):
         pass

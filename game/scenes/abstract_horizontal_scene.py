@@ -37,7 +37,7 @@ class AbstractHorizontalScene(AbstractScene):
 
     def update(self, elapsed_time):
         for enemy in iter(self._enemies):
-            enemy.move_cpu()
+            enemy.move_cpu(self._player)
 
         self._static_sprites.update(elapsed_time)
         self._dynamic_sprites.update(elapsed_time)
