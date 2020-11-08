@@ -16,7 +16,7 @@ class CheckpointRepository:
 
     def set_player(self, player):
         self.set_parameter(CheckpointRepository.PLAYER_REPOSITORY, player.get_repository())
-        self.set_parameter(CheckpointRepository.PLAYER_POSITION, player.get_global_position())
+        self.set_parameter(CheckpointRepository.PLAYER_POSITION, player._position)
 
     def get_player(self):
         if CheckpointRepository.PLAYER_POSITION not in self._data or CheckpointRepository.PLAYER_REPOSITORY not in self._data:
