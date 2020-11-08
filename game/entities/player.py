@@ -56,7 +56,7 @@ class Player(Character):
                     else:
                         enemy.kill()
                         self._parry = Player.PARRY_DUR
-                        self._text.add_sprite(AnimatedText(enemy._position, Player.PARRY_TEXT))
+                        self._text.add_sprite(AnimatedText(enemy._position, Player.PARRY_TEXT, self._scroll))
 
         if (self._items != None):
             item = pygame.sprite.spritecollideany(self, self._items) #TODO
@@ -73,8 +73,8 @@ class Player(Character):
                             self._last_triggered = 0
                             self._pending_trigger = trigger
                     elif self._interact_last_displayed > AnimatedText.get_duration():
-                        pos = (self._position[0]-500, self._position[1] - self.rect.height)
-                        self._text.add_sprite(AnimatedText(pos, Player.INTERACT_TEXT, custom_speed=0.2))
+                        pos = (self._position[0], self._position[1] - self.rect.height)
+                        self._text.add_sprite(AnimatedText(pos, Player.INTERACT_TEXT, self._scroll))
                         self._interact_last_displayed = 0
                     else:
                         self._interact_last_displayed += elapsed_time
@@ -124,7 +124,7 @@ class Player(Character):
     def _picked_item(self, item):
         if item == Object.MASK:
             pos = (self._position[0], self._position[1] - self.rect.height)
-            self._text.add_sprite(AnimatedText(pos, Player.MASK_TEXT))
+            self._text.add_sprite(AnimatedText(pos, Player.MASK_TEXT, self._scroll))
             current_masks = self._repo.get_parameter(PlayerRepository.ATTR_MASKS)
             self._repo.set_parameter(PlayerRepository.ATTR_MASKS, current_masks + 1)
 
