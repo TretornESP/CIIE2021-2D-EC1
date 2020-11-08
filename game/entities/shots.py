@@ -5,9 +5,9 @@ from .abstract_sprite import AbstractSprite
 
 class Shots(AbstractSprite):
 
-    def __init__(self, posx, posy, level):
+    def __init__(self, posx, posy):
         AbstractSprite.__init__(self)
-        self.image = ResourceManager.load_sprite(level, "laserBullet.png")
+        self.image = ResourceManager.load_sprite("laserBullet.png")
         self.rect = self.image.get_rect()
 
         self.velocity = 10
