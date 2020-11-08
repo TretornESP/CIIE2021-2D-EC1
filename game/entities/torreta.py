@@ -34,5 +34,4 @@ class Torreta(Enemy):
 
     def _disparo(self):
         x, y = self.rect.center
-        projectil = Shots(x, y)
-
+        projectile = Shots(x, y)
