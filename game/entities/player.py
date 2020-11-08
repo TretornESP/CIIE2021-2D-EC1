@@ -73,7 +73,7 @@ class Player(Character):
                             self._last_triggered = 0
                             self._pending_trigger = trigger
                     elif self._interact_last_displayed > AnimatedText.get_duration():
-                        pos = (self._position[0], self._position[1] - self.rect.height)
+                        pos = (trigger._position[0], trigger._position[1] - trigger.rect.height)
                         self._text.add_sprite(AnimatedText(pos, Player.INTERACT_TEXT, self._scroll))
                         self._interact_last_displayed = 0
                     else:
