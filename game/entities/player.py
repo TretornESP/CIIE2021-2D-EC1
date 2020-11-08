@@ -17,7 +17,7 @@ class Player(Character):
     INTERACT_TEXT = "Press E to interact!"
 
     INVULNERABILITY_LAPSE = 2
-    TRIGGER_HYST = 0.25
+    TRIGGER_HYST = 0.125
 
     def __init__(self, level, data, coord, speedx=25, speedy=40, invert=False):
         Character.__init__(self, level, data, coord, invert, speedx, speedy)

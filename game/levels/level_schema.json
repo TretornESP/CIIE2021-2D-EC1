@@ -1,6 +1,6 @@
 {
    "$schema":"http://json-schema.org/draft-07/schema#",
-   "$id":"http://covideogame.es/schemas/v0.2.4/level_schema.json",
+   "$id":"http://covideogame.es/schemas/v0.2.5/level_schema.json",
    "definitions":{
       "id":{
          "type":"string",
@@ -25,6 +25,10 @@
       "index":{
         "type":"number",
         "description":"Number used for indexing"
+      },
+      "speed":{
+        "type":"number",
+        "description":"Speed of an object or character"
       },
       "event":{
         "type":"number",
@@ -210,6 +214,12 @@
                       "collides":{
                          "$ref":"#/definitions/collides"
                       },
+                      "speedx":{
+                         "$ref":"#/definitions/speed"
+                      },
+                      "speedy":{
+                         "$ref":"#/definitions/speed"
+                      },
                       "coords":{
                          "$ref":"#/definitions/coords"
                       },
@@ -219,6 +229,8 @@
                    },
                    "required":[
                       "collides",
+                      "speedx",
+                      "speedy",
                       "coords",
                       "data"
                    ]

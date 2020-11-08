@@ -31,6 +31,7 @@ class AbstractHorizontalScene(AbstractScene):
     CONTROL_LEFT_BINDING    = K_LEFT
     CONTROL_PARRY_BINDING   = K_d
     CONTROL_DASH_BINDING    = K_f
+    CONTROL_INTERACT_BINDING = K_e
 
     CONTROL_PAUSE_BINDING   = (K_ESCAPE, K_p)
 
@@ -81,7 +82,7 @@ class AbstractHorizontalScene(AbstractScene):
             elif event.type == KEYDOWN and (event.key in self.CONTROL_PAUSE_BINDING):
                 self._director.push_scene(PauseMenu(self._director, self.CONTROL_PAUSE_BINDING))
         keys_pressed = pygame.key.get_pressed()
-        self._player.move(keys_pressed, up=self.CONTROL_UP_BINDING, down=self.CONTROL_DOWN_BINDING, left=self.CONTROL_LEFT_BINDING, right=self.CONTROL_RIGHT_BINDING, parry=self.CONTROL_PARRY_BINDING, dash=self.CONTROL_DASH_BINDING)
+        self._player.move(keys_pressed, up=self.CONTROL_UP_BINDING, down=self.CONTROL_DOWN_BINDING, left=self.CONTROL_LEFT_BINDING, right=self.CONTROL_RIGHT_BINDING, parry=self.CONTROL_PARRY_BINDING, dash=self.CONTROL_DASH_BINDING, interact=self.CONTROL_INTERACT_BINDING)
 
     def draw(self):
         self._sky.draw(self._screen)
