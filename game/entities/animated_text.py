@@ -8,7 +8,7 @@ class AnimatedText(AbstractSprite):
     _DEFAULT_DUR = 0.3
     _DEFAULT_SPD = 5
 
-    def __init__(self, position, text, custom_duration=None, custom_speed=None):
+    def __init__(self, position, text, scroll=(0, 0), custom_duration=None, custom_speed=None):
         AbstractSprite.__init__(self)
 
         font = ResourceManager.load_font_asset("8bit.ttf", 16)
@@ -26,8 +26,10 @@ class AnimatedText(AbstractSprite):
             self.speed = custom_speed
 
         self._dur = 0
+        self._scroll = scroll
 
         self.set_global_position(position)
+        self.set_position(self._scroll)
 
     def update(self, elapsed_time):
         self._dur += elapsed_time
