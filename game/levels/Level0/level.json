@@ -90,15 +90,27 @@
               "event":2,
               "id":0,
               "indicator":true,
-              "once":false,
               "coords":{
                 "pos_x":700,
-                "pos_y":670,
+                "pos_y":600,
                 "inverted": false
               },
               "size":{
                   "width":40,
                   "height":90
+              }
+            },
+            {
+              "event":1,
+              "indicator":true,
+              "coords":{
+                "pos_x":1550,
+                "pos_y":600,
+                "inverted": false
+              },
+              "size":{
+                  "width":10,
+                  "height":500
               }
             }
          ]

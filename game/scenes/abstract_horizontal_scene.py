@@ -73,7 +73,8 @@ class AbstractHorizontalScene(AbstractScene):
 
         repo = ResourceManager.get_player_repository()
         if repo.get_parameter(PlayerRepository.ATTR_HEALTH) <= 0:
-            self._director.change_scene(EndMenu(self._director))
+            self._director.push_scene(EndMenu(self._director))
+            print("LOST BITCH")
 
     def events(self, events):
         for event in events:

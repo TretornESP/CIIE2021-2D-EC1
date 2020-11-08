@@ -102,7 +102,9 @@ class Level():
         event     = json['event']
         id = json.get('id')
         indica = json['indicator']
-        once = json['once']
+        once = json.get('once')
+        if once == None: #Once by default is true bro
+            once = True
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         size   = self.parse_size(json['size'])

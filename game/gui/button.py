@@ -39,6 +39,13 @@ class OptionButton(Button):
     def callback(self):
         self._screen._menu.choose_option(self._valid)
 
+class RetryButton(Button):
+    def __init__(self, screen, pos):
+        Button.__init__(self, screen, pos)
+
+    def callback(self):
+        self._screen._menu.retry()
+
 class PlayButton(Button):
     def __init__(self, screen, pos):
         Button.__init__(self, screen, pos)

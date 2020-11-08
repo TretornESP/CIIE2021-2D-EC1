@@ -31,6 +31,7 @@ class Trigger(AbstractPlatform):
             self.log.debug("PLAYING SOME SICK SOUNDS")
         if self._id == Trigger.CHECKPOINT:
             self.log.debug("CHECKPOINT REACHED")
+            self._director.set_checkpoint()
         if self._id == Trigger.DIALOG:
             self._director.push_scene(self._action_data)
             self.log.debug("BLABLABLA")

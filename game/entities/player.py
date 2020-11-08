@@ -34,6 +34,12 @@ class Player(Character):
         self._interact_last_displayed = AnimatedText.get_duration()
         self._interact = False
 
+    def get_repository(self):
+        return self._repo
+
+    def set_repository(self, repo):
+        self._repo = repo
+
     def update(self, elapsed_time):
         Character.update(self, elapsed_time)
 
@@ -103,7 +109,13 @@ class Player(Character):
         if keys_pressed[parry]:
             self._do_parry()
 
-        self._interact = keys_pressed[interact]
+        self._interact = keys_pressed[interact] #maybe this belongs inside a function, i dont really care
+
+    def reset_hearts(self):
+        self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, 3)
+
+    def teleport(self, position):
+        self.set_global_position(position) # This doesnt work!
 
     def _hit(self):
         current_health = self._repo.get_parameter(PlayerRepository.ATTR_HEALTH)

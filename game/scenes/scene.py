@@ -1,6 +1,8 @@
 from . import AbstractHorizontalScene
-from .. import Configuration
+from .. import Configuration, ResourceManager
 from .backgrounds import MainBackground
+from ..player_repository import PlayerRepository #This is only for debug and can be deleted
+from ..checkpoint_repository import CheckpointRepository
 from ..entities.hud import Hud
 from .skies import AbstractSky
 import pygame
@@ -27,6 +29,28 @@ class Scene(AbstractHorizontalScene):
         self._static_sprites  = pygame.sprite.Group()
         self._overlay_sprites = pygame.sprite.Group()
 
+        self._checkpoint = ResourceManager.get_checkpoint_repository()
+
+    def set_checkpoint(self):
+        print(f"Im at {self._player.get_global_position()}")
+        self._checkpoint.set_player(self._player)
+
+    def run_checkpoint(self):
+        print(f"Position was: {self._player.get_global_position()}")
+        print(f"i had {self._player.get_repository().get_parameter(PlayerRepository.ATTR_MASKS)} masks")
+        print(f"i had {self._player.get_repository().get_parameter(PlayerRepository.ATTR_HEALTH)} hearths")
+
+        pos, repo = self._checkpoint.get_player()
+        repo.set_parameter(PlayerRepository.ATTR_HEALTH, 3)
+        self._player.get_repository().load_checkpoint_status(repo)
+        self._player.teleport(pos)
+        print(f"Pos is: {pos}")
+
+        print(f"Position is: {self._player.get_global_position()}")
+        print(f"i have {self._player.get_repository().get_parameter(PlayerRepository.ATTR_MASKS)} masks")
+        print(f"i have {self._player.get_repository().get_parameter(PlayerRepository.ATTR_HEALTH)} hearths")
+
+
     def set_player(self, player):
         self._player = player
         self._dynamic_sprites.add(player)
@@ -49,7 +73,7 @@ class Scene(AbstractHorizontalScene):
         self._dynamic_sprites.add(enemy)
         self._player.set_enemy_group(self._enemies)
     def add_trigger(self, trigger):
-        trigger.set_overlay_connector(self._static_sprites)
+        trigger.set_overlay_connector(self._static_sprites) #this is kinda wrong!
         self._triggers.add(trigger)
         self._static_sprites.add(trigger)
         self._player.set_trigger_group(self._triggers)

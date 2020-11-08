@@ -4,12 +4,13 @@ import pygame
 from pygame.locals import *
 from game.player_repository import PlayerRepository
 from game.text_repository import TextRepository
+from game.checkpoint_repository import CheckpointRepository
 
 
 class ResourceManager(object):
     PLAYER_REPOSITORY_NAME = "player.repository"
     TEXT_REPO_NAME = "text.repository"
-
+    CHECKPOINT_REPO_NAME = "checkpoint.repository"
     _resources = {}
 
     @classmethod
@@ -125,3 +126,9 @@ class ResourceManager(object):
         if cls.TEXT_REPO_NAME not in cls._resources:
             cls._resources[cls.TEXT_REPO_NAME] = TextRepository()
         return cls._resources[cls.TEXT_REPO_NAME]
+
+    @classmethod
+    def get_checkpoint_repository(cls):
+        if cls.CHECKPOINT_REPO_NAME not in cls._resources:
+            cls._resources[cls.CHECKPOINT_REPO_NAME] = CheckpointRepository()
+        return cls._resources[cls.CHECKPOINT_REPO_NAME]

@@ -2,13 +2,23 @@ import pygame
 from .configuration import Configuration
 from .resource_manager import ResourceManager
 from .util import Clog
-
+import copy
 class Director:
     def __init__(self):
         self._log = Clog(__name__)
         self._scene_stack = []
         self._end_scene = False
         self._clock = pygame.time.Clock()
+
+
+    def set_checkpoint(self):
+        if (len(self._scene_stack) > 0):
+            self._scene_stack[len(self._scene_stack) - 1].set_checkpoint()
+
+    def run_checkpoint(self):
+        if (len(self._scene_stack) > 1):
+            self._scene_stack[len(self._scene_stack) - 2].run_checkpoint()
+            self.end_scene()
 
     def execute(self):
         pygame.init()
@@ -36,7 +46,7 @@ class Director:
         else:
             self._log.info("Incorrect use of insert_scene")
             self.push_scene(scene)
-            
+
         self._log.debug("You'll all hail hitler")
         self._end_scene = True
 
