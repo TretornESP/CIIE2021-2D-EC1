@@ -4,12 +4,13 @@ import pygame
 from pygame.locals import *
 from game.player_repository import PlayerRepository
 from game.text_repository import TextRepository
+from game.checkpoint_repository import CheckpointRepository
 
 
 class ResourceManager(object):
     PLAYER_REPOSITORY_NAME = "player.repository"
     TEXT_REPO_NAME = "text.repository"
-
+    CHECKPOINT_REPO_NAME = "checkpoint.repository"
     _resources = {}
 
     @classmethod
@@ -31,7 +32,7 @@ class ResourceManager(object):
     def load_sheet(cls, level, folder, name="sheet.png", colorkey=None):
         if not (level+folder+name) in cls._resources:
             path = os.path.abspath(__package__)
-            fullname = os.path.join(path, "levels", level, "data", folder, name)
+            fullname = os.path.join(path, level, "data", folder, name)
             try:
                 image = pygame.image.load(fullname)
             except Exception:
@@ -46,10 +47,10 @@ class ResourceManager(object):
         return cls._resources[(level+folder+name)]
 
     @classmethod
-    def load_sprite(cls, level, name, colorkey=None, scale=1):
+    def load_sprite(cls, name, level="assets", colorkey=None, scale=1):
         if not (level+name) in cls._resources:
             path = os.path.abspath(__package__)
-            fullname = os.path.join(path, "levels", level, "sprites", name)
+            fullname = os.path.join(path, level, "sprites", name)
             try:
                 print(f"loading sprite at {fullname}")
                 image = pygame.image.load(fullname)
@@ -103,7 +104,7 @@ class ResourceManager(object):
     def load_coords(cls, level, folder, name="coords.json"):
         if not (level+folder+name) in cls._resources:
             path = os.path.abspath(__package__)
-            fullname = os.path.join(path, "levels", level, "data", folder, name)
+            fullname = os.path.join(path, level, "data", folder, name)
             try:
                 with open(fullname, "r") as f:
                     coords = json.load(f)
@@ -125,3 +126,9 @@ class ResourceManager(object):
         if cls.TEXT_REPO_NAME not in cls._resources:
             cls._resources[cls.TEXT_REPO_NAME] = TextRepository()
         return cls._resources[cls.TEXT_REPO_NAME]
+
+    @classmethod
+    def get_checkpoint_repository(cls):
+        if cls.CHECKPOINT_REPO_NAME not in cls._resources:
+            cls._resources[cls.CHECKPOINT_REPO_NAME] = CheckpointRepository()
+        return cls._resources[cls.CHECKPOINT_REPO_NAME]

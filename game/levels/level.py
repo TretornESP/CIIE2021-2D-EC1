@@ -7,6 +7,8 @@ from ..scenes import Scene
 from ..util import Clog
 from ..entities import Object
 from ..entities import Trigger
+from ..scenes.dialogs import DialogOption
+from ..scenes.dialogs import DialogMenu
 from game import Configuration
 from pygame.locals import *
 import os
@@ -18,6 +20,7 @@ class Level():
         self.id = None
         self.name = None
         self.scenes = []
+        self.dialogs = []
         self.director = director
 
         self._clog.info("Loading level")
@@ -96,16 +99,36 @@ class Level():
             raise NotImplemented("No existe este enemigo")
 
     def parse_trigger(self, json):
-        id     = json['event']
+        event     = json['event']
+        id = json.get('id')
         indica = json['indicator']
+        once = json.get('once')
+        if once == None: #Once by default is true bro
+            once = True
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         size   = self.parse_size(json['size'])
-        return Trigger(self.name, id, indica, coords, size, invert)
+        if event == 2 and id != None:
+            extra = self.dialogs[id]
+        else:
+            extra = None
+        return Trigger(self.director, self.name, event, indica, once, coords, size, invert, extra)
 
     def parse_json(self, json):
         self.id = json['id']
-        self.name =  json['name']
+        self.name =  os.path.join("levels", json['name'])
+
+        for d in json['dialogs']:
+            index = d['index']
+            title = d['title']
+            text = d['text']
+            data = d['data']
+            options = []
+            for o in d['options']:
+                options.append(DialogOption(o['text'], o['valid']))
+            dia = DialogMenu(self.director, data, title, text, options)
+            self.dialogs.append(dia)
+        self._clog.info("dialog added")
 
         self._clog.info("populating level")
         for scene in json['scenes']:

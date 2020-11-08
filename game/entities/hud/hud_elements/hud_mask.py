@@ -7,4 +7,4 @@ class HudMask(HudElement):
     SPRITE_NAME = "hud_mask.png"
 
     def __init__(self, coords):
-        HudElement.__init__(self, "shared", self.SPRITE_NAME, coords, self.X_SIZE, -1)
+        HudElement.__init__(self, self.SPRITE_NAME, coords, self.X_SIZE, -1)

@@ -16,6 +16,10 @@ class PlayerRepository:
         self.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
         self.set_parameter(PlayerRepository.ATTR_MASKS, PlayerRepository.DEFAULT_MASKS)
 
+    def load_checkpoint_status(self, checkpoint):
+        self.set_parameter(PlayerRepository.ATTR_HEALTH, checkpoint.get_parameter(PlayerRepository.ATTR_HEALTH))
+        self.set_parameter(PlayerRepository.ATTR_MASKS, checkpoint.get_parameter(PlayerRepository.ATTR_MASKS))
+
     def set_parameter(self, param_name, value):
         self.updated.append(param_name)
         self._data[param_name] = value

@@ -7,6 +7,9 @@ class TextRepository:
     def add_sprite(self, sprite):
         self._sprites.add(sprite)
 
+    def has(self, sprite):
+        return self._sprites.has(sprite)
+
     def update(self, elapsed_time):
         for sprite in self._sprites:
             sprite.update(elapsed_time)

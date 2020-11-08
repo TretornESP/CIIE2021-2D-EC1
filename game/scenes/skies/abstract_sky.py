@@ -4,7 +4,7 @@ from game import ResourceManager, Configuration
 class AbstractSky:
     def __init__(self, level, filename):
         res = Configuration().get_resolution()
-        image = ResourceManager.load_sprite(level, filename)
+        image = ResourceManager.load_sprite(filename, level)
 
         self.image = pygame.transform.scale(image, res)
         self.rect = self.image.get_rect()

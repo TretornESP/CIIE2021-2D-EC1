@@ -5,10 +5,10 @@ from ...resource_manager import ResourceManager
 
 
 class HudElement(AbstractSprite):
-    def __init__(self, level, sprite, coord, x_size, y_size):
+    def __init__(self, sprite, coord, x_size, y_size):
         AbstractSprite.__init__(self)
 
-        self.image = ResourceManager.load_sprite(level, sprite)
+        self.image = ResourceManager.load_sprite(sprite)
         curr_res = self.image.get_rect().size
         if x_size != curr_res[0]:
             if y_size <= 0:

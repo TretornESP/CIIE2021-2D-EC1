@@ -7,7 +7,7 @@ class MainBackground(AbstractBackground):
         AbstractBackground.__init__(self, scroll_x)
 
         resolution = Configuration().get_resolution()
-        image = ResourceManager.load_sprite(level, filename)
+        image = ResourceManager.load_sprite(filename, level)
 
         dest_resolution = (image.get_rect().width, resolution[1])
         self.image = pygame.transform.scale(image, dest_resolution)

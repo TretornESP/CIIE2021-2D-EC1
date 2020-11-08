@@ -16,3 +16,6 @@ class EndMenu(AbstractMenu):
 
     def quit_game(self):
         self._director.end_scene()
+
+    def retry(self):
+        self._director.run_checkpoint()
