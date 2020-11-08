@@ -149,13 +149,8 @@ return # Exit script on *NIX
 : # WINDOWS CMD SCRIPT # : [cosas de xabi]
 
 :WINDOWS
-
-@echo off
-
-echo "NOT IMPLEMENTED" || goto :EOF
-
-python -m venv "%~dp0" || goto :error
-:: ni idea de como se continua lol
-
-:error
-exit /b %errorlevel%
+virtualenv test
+call .\test\Scripts\activate
+pip install pygame
+pip install -r requirements.txt
+python main.py

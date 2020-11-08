@@ -19,7 +19,7 @@ class AbstractPlatform(AbstractSprite):
                 self.image.fill(self.ACTIVE)
             self.rect = coord
         else:
-            self.image = ResourceManager.load_sprite(level, sprite)
+            self.image = ResourceManager.load_sprite(sprite, level)
             if scale is not None:
                 (_, _, x_size, y_size) = self.image.get_rect()
                 x_size = int(float(x_size * scale))
@@ -37,3 +37,7 @@ class AbstractPlatform(AbstractSprite):
         self._active = AbstractPlatform.RESIDE
         if not self._invisible:
             self.image.fill(self.RESIDE)
+    def event_activate(self):
+        self._active = AbstractPlatform.ACTIVE
+        if not self._invisible:
+            self.image.fill(self.ACTIVE)

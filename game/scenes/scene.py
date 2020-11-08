@@ -49,7 +49,7 @@ class Scene(AbstractHorizontalScene):
         self._dynamic_sprites.add(enemy)
         self._player.set_enemy_group(self._enemies)
     def add_trigger(self, trigger):
-        trigger.set_overlay_connector(self._overlay_sprites)
+        trigger.set_overlay_connector(self._static_sprites)
         self._triggers.add(trigger)
         self._static_sprites.add(trigger)
         self._player.set_trigger_group(self._triggers)
@@ -60,4 +60,3 @@ class Scene(AbstractHorizontalScene):
     #
     # def del_overlay_sprite(self, sprite):
     #     self._overlay_sprites.remove(sprite)
-

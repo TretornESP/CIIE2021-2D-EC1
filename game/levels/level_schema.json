@@ -1,6 +1,6 @@
 {
    "$schema":"http://json-schema.org/draft-07/schema#",
-   "$id":"http://covideogame.es/schemas/v0.1.2/level_schema.json",
+   "$id":"http://covideogame.es/schemas/v0.2.4/level_schema.json",
    "definitions":{
       "id":{
          "type":"string",
@@ -10,13 +10,29 @@
          "type":"string",
          "description":"data FOLDER name for entity"
       },
+      "once":{
+        "type":"boolean",
+        "description":"The event can only trigger once"
+      },
       "kind":{
          "type":"string",
          "description":"kind of item"
       },
+      "name":{
+        "type":"string",
+        "description":"Display name of the level for the menu"
+      },
+      "index":{
+        "type":"number",
+        "description":"Number used for indexing"
+      },
       "event":{
         "type":"number",
         "description":"event identifier"
+      },
+      "title":{
+        "type":"string",
+        "description":"Title of dialog"
       },
       "sprite":{
          "type":"string",
@@ -29,6 +45,24 @@
       "indicator":{
          "type":"boolean",
          "description":"Show a rect over the trigger for debuggin purposes"
+      },
+      "options":{
+        "type":"array",
+        "description":"Array of dialog result options",
+        "items":{
+          "type":"object",
+          "description":"dialog result option",
+          "properties":{
+            "text":{
+              "type":"string",
+              "description":"text of dialog option"
+            },
+            "valid":{
+              "type":"boolean",
+              "description":"Check if its a valid (positive) answer"
+            }
+          }
+        }
       },
       "size":{
           "type":"object",
@@ -79,8 +113,7 @@
          "$ref":"#/definitions/id"
       },
       "name":{
-         "type":"string",
-         "description":"Display name of the level for the menu"
+         "$ref":"#/definitions/name"
       },
       "scenes":{
          "type":"array",
@@ -140,7 +173,7 @@
                     ]
                  }
               },
-             "objects":{
+              "objects":{
                 "type":"array",
                 "description":"foreground items",
                 "items":{
@@ -167,7 +200,7 @@
                    ]
                 }
              },
-             "enemies":{
+              "enemies":{
                 "type":"array",
                 "description":"enemy list",
                 "items":{
@@ -191,7 +224,7 @@
                    ]
                 }
              },
-             "triggers":{
+              "triggers":{
                 "type":"array",
                 "description":"trigger list",
                 "items":{
@@ -200,6 +233,12 @@
                    "properties":{
                       "event":{
                          "$ref":"#/definitions/event"
+                      },
+                      "index":{
+                         "$ref":"#/definitions/index"
+                      },
+                      "once":{
+                         "$ref":"#/definitions/once"
                       },
                       "indicator":{
                          "$ref":"#/definitions/indicator"
@@ -214,25 +253,52 @@
                    "required":[
                       "event",
                       "coords",
+                      "once",
                       "size"
                    ]
                 }
              }
-          },
+           },
            "required":[
               "id",
               "background",
-              "player",
-              "enemies",
-              "platforms",
-              "objects"
-           ]
+              "scroll",
+              "player"
+            ]
          }
+      },
+      "dialogs":{
+        "type":"array",
+        "description":"array of dialog options",
+        "items":{
+          "type":"object",
+          "description":"text dialog",
+          "properties":{
+            "index":{
+              "$ref":"#/definitions/index"
+            },
+            "title":{
+              "$ref":"#/definitions/title"
+            },
+            "data":{
+              "$ref":"#/definitions/data"
+            },
+            "options":{
+              "$ref":"#/definitions/options"
+            }
+          },
+          "required":[
+            "index",
+            "title",
+            "options"
+          ]
+        }
       }
     },
    "required":[
-        "id",
-        "name",
-        "scenes"
-     ]
+      "id",
+      "name",
+      "scenes",
+      "dialogs"
+    ]
 }

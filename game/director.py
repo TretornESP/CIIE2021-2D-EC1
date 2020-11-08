@@ -1,9 +1,11 @@
 import pygame
 from .configuration import Configuration
 from .resource_manager import ResourceManager
+from .util import Clog
 
 class Director:
     def __init__(self):
+        self._log = Clog(__name__)
         self._scene_stack = []
         self._end_scene = False
         self._clock = pygame.time.Clock()
@@ -15,7 +17,6 @@ class Director:
         while (len(self._scene_stack) > 0):
             scene = self._scene_stack[len(self._scene_stack) - 1]
             self._game_loop(scene)
-
         pygame.quit()
 
     def end_scene(self):
@@ -23,6 +24,26 @@ class Director:
 
         if (len(self._scene_stack) > 0):
             self._scene_stack.pop()
+
+    def insert_scene(self, scene):
+        if (len(self._scene_stack) > 0):
+            context = self._scene_stack[len(self._scene_stack) - 1]
+            self._scene_stack[len(self._scene_stack) - 1] = scene
+            self.push_scene(context)
+
+            self._log.debug(f"Size is {len(self._scene_stack)}")
+
+        else:
+            self._log.info("Incorrect use of insert_scene")
+            self.push_scene(scene)
+            
+        self._log.debug("You'll all hail hitler")
+        self._end_scene = True
+
+    def pop_scene(self):
+        if (len(self._scene_stack) > 0):
+            return self._scene_stack.pop()
+        return None
 
     def change_scene(self, scene):
         self.end_scene()

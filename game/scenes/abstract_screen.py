@@ -10,6 +10,7 @@ class AbstractScreen:
 
         self.image = ResourceManager.load_image_asset(image)
         if transform:
+            print("Transformate ")
             self.image = pygame.transform.scale(self.image, res)
 
         self.rect = self.image.get_rect()

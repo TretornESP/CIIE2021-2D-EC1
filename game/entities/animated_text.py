@@ -8,14 +8,14 @@ class AnimatedText(AbstractSprite):
     _DEFAULT_DUR = 0.3
     _DEFAULT_SPD = 5
 
-    def __init__(self, position, text, custom_duration=None, custom_speed=None):
+    def __init__(self, position=(0,0), text="dummy", custom_duration=None, custom_speed=None):
         AbstractSprite.__init__(self)
 
         font = ResourceManager.load_font_asset("8bit.ttf", 16)
 
         self.image = font.render(text, True, (255, 255, 255))
         self.rect = self.image.get_rect()
-
+        self._text = text
         self.duration = self._DEFAULT_DUR
         self.speed = self._DEFAULT_SPD
 
@@ -27,6 +27,13 @@ class AnimatedText(AbstractSprite):
 
         self._dur = 0
 
+        self.set_global_position(position)
+
+    @classmethod
+    def get_duration(self):
+        return AnimatedText._DEFAULT_DUR
+
+    def set_pos(self, position):
         self.set_global_position(position)
 
     def update(self, elapsed_time):
