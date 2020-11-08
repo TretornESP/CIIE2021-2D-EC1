@@ -91,7 +91,7 @@ class Player(Character):
                     self._last_triggered += elapsed_time
 
     def move(self, keys_pressed, up, down, left, right, parry, dash, interact):
-        if keys_pressed[up]:
+        if keys_pressed[up[0]] or keys_pressed[up[1]]:
             y = Character.UP
         elif keys_pressed[down]:
             y = Character.DOWN
