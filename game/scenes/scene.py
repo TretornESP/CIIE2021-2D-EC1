@@ -30,7 +30,7 @@ class Scene(AbstractHorizontalScene):
         if self._checkpoint.get_player() == None:
             return False
         pos, repo = self._checkpoint.get_player()
-        repo.set_parameter(PlayerRepository.ATTR_HEALTH, 3)
+        repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
         Farm.get_player().get_repository().load_checkpoint_status(repo)
         Farm.get_player().teleport(pos)
         return True
