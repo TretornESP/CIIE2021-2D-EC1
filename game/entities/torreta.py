@@ -1,7 +1,5 @@
-from .animated_text import AnimatedText
+from .. import Configuration
 from .shots import Shots
-from .. import Configuration, ResourceManager
-from ..util.log import Clog
 from .enemy import Enemy
 from .character import Character
 from .shot import Shot
@@ -10,47 +8,42 @@ from ..resource_manager import ResourceManager
 from ..player_repository import PlayerRepository
 
 class Torreta(Enemy):
-    SHOT_RATIO = 1 #Shots per sec
+    DELAY = 0.15
+    SHOOT_RATIO = 0.75
 
     def __init__(self, level, data, shot, coord, speedx, speedy, invert=False):
-        self.log = Clog(__name__)
         Enemy.__init__(self, level, data, coord, speedx, speedy, invert)
-        self._count = 0
+
         self._shot = shot
-        self._last_shot = 1
-        self._player = ResourceManager.get_player_repository()
 
-    def move_cpu(self, elapsed_time):
-        xpos, ypos = self._player.get_parameter(PlayerRepository.ATTR_POS)
-        (xright, _) = Configuration().get_resolution()
-        if self.rect.left > 0 and self.rect.right < xright:
+        self._delay = Torreta.DELAY
+        self._last_shot = Torreta.SHOOT_RATIO
 
-            distance = xpos - self._position[0]
+        self._last_x = Character.STILL
 
-            # if self._last_shot > Torreta.SHOT_RATIO:
-            #     Farm.add_enemy(Shot(self._level, self._shot, self.get_absolute_position(), (distance < 0)))
-            #     self._last_shot = 0
-            # else:
-            #     self._last_shot += elapsed_time
+    def move_cpu(self):
+        width, _ = Configuration().get_resolution()
+        x_pos, y_pos = Farm.get_player()._position
 
-            self._last_shot += elapsed_time
-            if self._last_shot >= self.SHOT_RATIO:
-                print(f"I'ma firin' da laza {self._last_shot}")
-                Farm.add_enemy(Shot(self._level, self._shot, self.get_absolute_position(), (distance < 0)))
-                self._last_shot = 0
+        if self._delay >= Torreta.DELAY:
+            self._delay = 0
+            if self.rect.left >= -150 and self.rect.right <= width + 150:
+                dist_x = x_pos - self._position[0]
 
-            if distance < -5:
-                direction_x = Character.LEFT
-            elif -5 < distance < 5:
-                direction_x = Character.STILL
+                if self._last_shot >= Torreta.SHOOT_RATIO:
+                    self._last_shot = 0
+                    Farm.add_enemy(Shot(self._level, self._shot, self._position, dist_x < 0, self._scroll))
+
+                if dist_x <= 0:
+                    direction_x = Character.LEFT
+                else:
+                    direction_x = Character.RIGHT
             else:
-                direction_x = Character.RIGHT
-
-        else:
-            direction_x = Character.STILL
-
-        Character.move(self, (direction_x, Character.STILL))
+                direction_x = Character.STILL
+            self._last_x = direction_x
+        Character.move(self, (self._last_x, Character.STILL))
 
     def update(self, elapsed_time):
         Enemy.update(self, elapsed_time)
-        self.move_cpu(elapsed_time)
+        self._delay += elapsed_time
+        self._last_shot += elapsed_time
