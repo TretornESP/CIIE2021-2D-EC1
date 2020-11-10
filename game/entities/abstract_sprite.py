@@ -1,6 +1,6 @@
 import pygame
+import uuid
 from game import Configuration
-
 
 class AbstractSprite(pygame.sprite.Sprite):
     def __init__(self):
@@ -11,6 +11,7 @@ class AbstractSprite(pygame.sprite.Sprite):
         self._scroll = (0, 0)
 
         self._collides = True
+        self._uuid = uuid.uuid1()
 
     def set_global_position(self, position):
         self._position = position
@@ -19,6 +20,9 @@ class AbstractSprite(pygame.sprite.Sprite):
 
     def get_global_position(self):
         return self.rect
+
+    def get_absolute_position(self):
+        return self._position
 
     def set_position(self, scroll):
         (scroll_x, scroll_y) = scroll
@@ -42,3 +46,9 @@ class AbstractSprite(pygame.sprite.Sprite):
         new_x = self._position[0] + increment[0]
         new_y = self._position[1] + increment[1]
         self.set_global_position((new_x, new_y))
+
+    def get_uuid(self):
+        return self._uuid
+
+    def is_same(self, other):
+        return (self._uuid == other.get_uuid)

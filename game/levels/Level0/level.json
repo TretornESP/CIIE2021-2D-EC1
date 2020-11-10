@@ -101,7 +101,8 @@
             "pos_y":500,
             "inverted":false
           },
-          "data":"torreta"
+          "data":"torreta",
+          "shot":"shot"
         }
       ],
       "triggers":[

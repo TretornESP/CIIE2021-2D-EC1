@@ -7,6 +7,7 @@ from ..scenes import Scene
 from ..util import Clog
 from ..entities import Object
 from ..entities import Trigger
+from ..farm_factory import FarmFactory
 from ..scenes.dialogs import DialogOption
 from ..scenes.dialogs import DialogMenu
 from game import Configuration
@@ -88,11 +89,14 @@ class Level():
         speedy = j['speedy']
         coords = self.parse_coords(j['coords'])
         invert = j['coords']['inverted']
+        shot = j.get('shot')
 
         if datafn == 'covid':
             return Covid(self.name, datafn, coords, speedx, speedy, invert)
         elif datafn == 'torreta':
-            return Torreta(self.name, datafn, coords, speedx, speedy, invert)
+            if shot == None:
+                raise NotImplemented("You must specify shot data folder!")
+            return Torreta(self.name, datafn, shot, coords, speedx, speedy, invert)
         elif datafn == 'corredor':
             return Corredor(self.name, datafn, coords, speedx, speedy, invert)
         else:
@@ -104,7 +108,7 @@ class Level():
         indica = json['indicator']
         once = json.get('once')
         if once == None: #Once by default is true bro
-            once = True
+            once = True  #Once by default aint shit as it is not required by json schema!
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         size   = self.parse_size(json['size'])
@@ -132,16 +136,17 @@ class Level():
 
         self._clog.info("populating level")
         for scene in json['scenes']:
-            s = Scene(self.name, self.director, scene['id'], scene['background'], scene['scroll'], scene['sky'])
-            s.set_player(self.parse_player(scene['player']))
-        for object in scene['objects']:
-            s.add_object(self.parse_object(object))
-        for enemy in scene['enemies']:
-            s.add_enemy(self.parse_enemy(enemy))
-        for trigger in scene['triggers']:
-            s.add_trigger(self.parse_trigger(trigger))
-        for platform in scene['platforms']:   ###### CAREFUL ###### THIS ###### MUST ####### BE ###### THE #######
-            s.add_platform(self.parse_platform(platform)) ###### LAST ###### ADDED ###### ELEMENT
-                                                        ###### scene needs to know the enemies/players before this
-        self.scenes.append(s)
-        self._clog.info("scene added")
+            f = FarmFactory()
+            f.set_player(self.parse_player(scene['player']))
+            for object in scene['objects']:
+                f.add_object(self.parse_object(object))
+            for enemy in scene['enemies']:
+                f.add_enemy(self.parse_enemy(enemy))
+            for trigger in scene['triggers']:
+                f.add_trigger(self.parse_trigger(trigger))
+            for platform in scene['platforms']:
+                f.add_platform(self.parse_platform(platform))
+            s = Scene(self.name, self.director, f, scene['id'], scene['background'], scene['scroll'], scene['sky'])
+
+            self.scenes.append(s)
+            self._clog.info("scene added")

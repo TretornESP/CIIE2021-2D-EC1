@@ -1,6 +1,7 @@
 import pygame
 from .configuration import Configuration
 from .resource_manager import ResourceManager
+from .memory_manager import MemoryManager
 from .util import Clog
 import copy
 class Director:
@@ -17,16 +18,18 @@ class Director:
 
     def run_checkpoint(self):
         if (len(self._scene_stack) > 1):
-            self._scene_stack[len(self._scene_stack) - 2].run_checkpoint()
-            self.end_scene()
+            if self._scene_stack[len(self._scene_stack) - 2].run_checkpoint():
+                self.end_scene()
 
     def execute(self):
         pygame.init()
         pygame.mixer.init()
-
+        mm = MemoryManager(10)
+        mm.start()
         while (len(self._scene_stack) > 0):
             scene = self._scene_stack[len(self._scene_stack) - 1]
             self._game_loop(scene)
+        mm.stop()
         pygame.quit()
 
     def end_scene(self):
@@ -66,6 +69,11 @@ class Director:
     def quit_game(self):
         self._end_scene = True
         self._scene_stack = []
+
+    def flush_scene(self):
+        while (len(self._scene_stack) > 1):
+            self._scene_stack.pop()
+        self._end_scene = True
 
     def _game_loop(self, scene):
         pygame.event.clear()

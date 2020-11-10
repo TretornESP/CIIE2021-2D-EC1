@@ -9,6 +9,7 @@ from ..entities.hud import *
 from ..entities.hud.hud_elements import *
 from ..player_repository import PlayerRepository
 from ..util.log import Clog
+from ..farm import Farm
 from pygame.locals import *
 
 
@@ -47,28 +48,20 @@ class AbstractHorizontalScene(AbstractScene):
         self._text_repo = ResourceManager.get_text_repository()
 
         # Init things for autocomplete
-        self._static_sprites = None
-        self._dynamic_sprites = None
+
         self._background = None
         self._sky = None
-        self._enemies = None
-        self._player = None
 
     def update(self, elapsed_time):
-        for enemy in iter(self._enemies):
-            enemy.move_cpu(self._player)
+        #print(f"count of dynspr: {len(self._dynamic_sprites)}")
+        Farm.update_ponds(elapsed_time)
 
-        self._static_sprites.update(elapsed_time)
-        self._dynamic_sprites.update(elapsed_time)
         self._text_repo.update(elapsed_time)
         self._hud.update()
 
         if self._update_scroll():
             self._background.update(self._scroll_x)
-            for sprite in iter(self._static_sprites):
-                sprite.set_position((self._scroll_x, 0))
-            for sprite in iter(self._dynamic_sprites):
-                sprite.set_position((self._scroll_x, 0))
+            Farm.set_pond_position(self._scroll_x, 0)
             self._text_repo.set_position((self._scroll_x, 0))
 
         repo = ResourceManager.get_player_repository()
@@ -83,19 +76,18 @@ class AbstractHorizontalScene(AbstractScene):
             elif event.type == KEYDOWN and (event.key in self.CONTROL_PAUSE_BINDING):
                 self._director.push_scene(PauseMenu(self._director, self.CONTROL_PAUSE_BINDING))
         keys_pressed = pygame.key.get_pressed()
-        
-        self._player.move(keys_pressed, up=self.CONTROL_JUMP_BINDING, down=self.CONTROL_DOWN_BINDING, left=self.CONTROL_LEFT_BINDING, right=self.CONTROL_RIGHT_BINDING, parry=self.CONTROL_PARRY_BINDING, dash=self.CONTROL_DASH_BINDING, interact=self.CONTROL_INTERACT_BINDING)
 
-    def draw(self):
+        Farm.get_player().move(keys_pressed, up=self.CONTROL_JUMP_BINDING, down=self.CONTROL_DOWN_BINDING, left=self.CONTROL_LEFT_BINDING, right=self.CONTROL_RIGHT_BINDING, parry=self.CONTROL_PARRY_BINDING, dash=self.CONTROL_DASH_BINDING, interact=self.CONTROL_INTERACT_BINDING)
+
+    def draw(self): #The order matters!
         self._sky.draw(self._screen)
         self._background.draw(self._screen)
-        self._static_sprites.draw(self._screen)
-        self._dynamic_sprites.draw(self._screen)
+        Farm.draw_pond(self._screen)
         self._text_repo.draw(self._screen)
         self._hud.draw(self._screen)
 
     def _update_scroll(self):
-        player = self._player
+        player = Farm.get_player()
         resolution = Configuration().get_resolution()
 
         if player.rect.right > AbstractHorizontalScene.MAX_X:
