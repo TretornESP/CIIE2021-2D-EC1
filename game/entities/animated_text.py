@@ -5,8 +5,8 @@ from .abstract_sprite import AbstractSprite
 
 class AnimatedText(AbstractSprite):
 
-    _DEFAULT_DUR = 0.3
-    _DEFAULT_SPD = 5
+    _DEFAULT_DUR = 0.75
+    _DEFAULT_SPD = 3
 
     def __init__(self, position=(0, 0), text="dummy", scroll=(0, 0), custom_duration=None, custom_speed=None):
         AbstractSprite.__init__(self)
