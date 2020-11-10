@@ -15,8 +15,9 @@ class DialogMenu(AbstractMenu):
         self._show_first_screen()
 
     def choose_option(self, valid):
-        print(f"pressed a {valid} button")
+        print("option")
         self._director.end_scene()
+
     def update(self, *args):
         pass
 

@@ -12,7 +12,6 @@ from ..util.log import Clog
 from ..farm import Farm
 from pygame.locals import *
 
-
 class AbstractHorizontalScene(AbstractScene):
     MIN_X = 100
     MAX_X = 300
@@ -47,13 +46,10 @@ class AbstractHorizontalScene(AbstractScene):
 
         self._text_repo = ResourceManager.get_text_repository()
 
-        # Init things for autocomplete
-
         self._background = None
         self._sky = None
 
     def update(self, elapsed_time):
-        #print(f"count of dynspr: {len(self._dynamic_sprites)}")
         Farm.update_ponds(elapsed_time)
 
         self._text_repo.update(elapsed_time)
@@ -77,9 +73,12 @@ class AbstractHorizontalScene(AbstractScene):
                 self._director.push_scene(PauseMenu(self._director, self.CONTROL_PAUSE_BINDING))
         keys_pressed = pygame.key.get_pressed()
 
-        Farm.get_player().move(keys_pressed, up=self.CONTROL_JUMP_BINDING, down=self.CONTROL_DOWN_BINDING, left=self.CONTROL_LEFT_BINDING, right=self.CONTROL_RIGHT_BINDING, parry=self.CONTROL_PARRY_BINDING, dash=self.CONTROL_DASH_BINDING, interact=self.CONTROL_INTERACT_BINDING)
+        Farm.get_player().move(keys_pressed, up=self.CONTROL_JUMP_BINDING,
+                down=self.CONTROL_DOWN_BINDING, left=self.CONTROL_LEFT_BINDING,
+                right=self.CONTROL_RIGHT_BINDING, parry=self.CONTROL_PARRY_BINDING,
+                dash=self.CONTROL_DASH_BINDING, interact=self.CONTROL_INTERACT_BINDING)
 
-    def draw(self): #The order matters!
+    def draw(self):
         self._sky.draw(self._screen)
         self._background.draw(self._screen)
         Farm.draw_pond(self._screen)

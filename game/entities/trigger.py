@@ -16,7 +16,7 @@ class Trigger(AbstractPlatform):
         self._id = id
         self._once = once
         self._active = True
-        self._action_data=action_data
+        self._action_data = action_data
         self._director = director
 
     def get_pos(self):

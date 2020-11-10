@@ -104,7 +104,7 @@ class Player(Character):
         Character.move(self, (x, y))
 
         if keys_pressed[parry]:
-            self._do_parry()
+            self.do_parry()
 
         self._interact = keys_pressed[interact] #maybe this belongs inside a function, i dont really care
 

@@ -21,6 +21,7 @@ class Scene(AbstractHorizontalScene):
         self._checkpoint = ResourceManager.get_checkpoint_repository()
 
         self._farm_factory = farm_factory
+        self._farm_factory.push_to_charge()
 
     def set_checkpoint(self):
         self._checkpoint.set_player(Farm.get_player())
@@ -33,7 +34,3 @@ class Scene(AbstractHorizontalScene):
         Farm.get_player().get_repository().load_checkpoint_status(repo)
         Farm.get_player().teleport(pos)
         return True
-
-    def start_scene(self):
-        AbstractHorizontalScene.start_scene(self)
-        self._farm_factory.push_to_charge()

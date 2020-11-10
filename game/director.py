@@ -24,12 +24,12 @@ class Director:
     def execute(self):
         pygame.init()
         pygame.mixer.init()
-        mm = MemoryManager(10)
-        mm.start()
+        #mm = MemoryManager(10)
+        #mm.start()
         while (len(self._scene_stack) > 0):
             scene = self._scene_stack[len(self._scene_stack) - 1]
             self._game_loop(scene)
-        mm.stop()
+        #mm.stop()
         pygame.quit()
 
     def end_scene(self):

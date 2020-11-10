@@ -1,7 +1,6 @@
 import pygame
 
-class Farm:
-
+class Farm(object):
     _object_pond   = pygame.sprite.Group()
     _enemy_pond    = pygame.sprite.Group()
     _platform_pond = pygame.sprite.Group()
@@ -96,9 +95,9 @@ class Farm:
         cls._static_pond.add(platform)
 
     @classmethod
-    def add_object(cls, object):
-        cls._object_pond.add(object)
-        cls._static_pond.add(object)
+    def add_object(cls, obj):
+        cls._object_pond.add(obj)
+        cls._static_pond.add(obj)
 
     @classmethod
     def add_trigger(cls, trigger):
