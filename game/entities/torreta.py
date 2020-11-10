@@ -1,11 +1,8 @@
-from .. import Configuration
-from .shots import Shots
-from .enemy import Enemy
 from .character import Character
-from .shot import Shot
+from .. import Configuration
+from .enemy import Enemy
 from ..farm import Farm
-from ..resource_manager import ResourceManager
-from ..player_repository import PlayerRepository
+from .shot import Shot
 
 class Torreta(Enemy):
     DELAY = 0.15
