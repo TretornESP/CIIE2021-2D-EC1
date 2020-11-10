@@ -49,13 +49,16 @@ class AbstractHorizontalScene(AbstractScene):
         self._background = None
         self._sky = None
 
+        self._last_scroll = self._scroll_x
+
     def update(self, elapsed_time):
         Farm.update_ponds(elapsed_time)
 
         self._text_repo.update(elapsed_time)
         self._hud.update()
 
-        if self._update_scroll():
+        if self._update_scroll() or (self._last_scroll != self._scroll_x):
+            self._last_scroll = self._scroll_x
             self._background.update(self._scroll_x)
             Farm.set_pond_position(self._scroll_x, 0)
             self._text_repo.set_position((self._scroll_x, 0))
@@ -100,14 +103,17 @@ class AbstractHorizontalScene(AbstractScene):
             self._scroll_x = min(self._scroll_x + displ, self._background.rect.right - resolution[0])
             return True
 
-        if player.rect.left < AbstractHorizontalScene.MIN_X:
-            displ = AbstractHorizontalScene.MIN_X - player.rect.left
-            self._scroll_x = max(self._scroll_x - displ, 0)
+        # if player.rect.left < AbstractHorizontalScene.MIN_X:
+        #     displ = AbstractHorizontalScene.MIN_X - player.rect.left
+        #     self._scroll_x = max(self._scroll_x - displ, 0)
+        #
+        #     if self._scroll_x == 0 and player.rect.left < 0:
+        #         player.set_global_position((0, player._position[1]))
+        #         return False
+        #     else:
+        #         return True
 
-            if self._scroll_x == 0 and player.rect.left < 0:
-                player.set_global_position((0, player._position[1]))
-                return False
-            else:
-                return True
-        else:
-            return False
+        if player.rect.left < 0:
+            player.set_global_position((self._scroll_x, player._position[1]))
+
+        return False

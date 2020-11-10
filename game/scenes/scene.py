@@ -25,6 +25,7 @@ class Scene(AbstractHorizontalScene):
 
     def set_checkpoint(self):
         self._checkpoint.set_player(Farm.get_player())
+        self._checkpoint.set_scroll(self._scroll_x)
 
     def run_checkpoint(self):
         if self._checkpoint.get_player() == None:
@@ -33,4 +34,5 @@ class Scene(AbstractHorizontalScene):
         repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
         Farm.get_player().get_repository().load_checkpoint_status(repo)
         Farm.get_player().teleport(pos)
+        self._scroll_x = self._checkpoint.get_scroll()
         return True

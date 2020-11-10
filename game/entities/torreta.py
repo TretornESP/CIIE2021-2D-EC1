@@ -27,11 +27,17 @@ class Torreta(Enemy):
 
             distance = xpos - self._position[0]
 
-            if self._last_shot > Torreta.SHOT_RATIO:
+            # if self._last_shot > Torreta.SHOT_RATIO:
+            #     Farm.add_enemy(Shot(self._level, self._shot, self.get_absolute_position(), (distance < 0)))
+            #     self._last_shot = 0
+            # else:
+            #     self._last_shot += elapsed_time
+
+            self._last_shot += elapsed_time
+            if self._last_shot >= self.SHOT_RATIO:
+                print(f"I'ma firin' da laza {self._last_shot}")
                 Farm.add_enemy(Shot(self._level, self._shot, self.get_absolute_position(), (distance < 0)))
                 self._last_shot = 0
-            else:
-                self._last_shot += elapsed_time
 
             if distance < -5:
                 direction_x = Character.LEFT
