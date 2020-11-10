@@ -108,7 +108,7 @@ class Player(Character):
         self._interact = keys_pressed[interact] #maybe this belongs inside a function, i dont really care
 
     def reset_hearts(self):
-        self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, 3)
+        self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
 
     def teleport(self, position):
         self.set_global_position(position) # This doesnt work!
