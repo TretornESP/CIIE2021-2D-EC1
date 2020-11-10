@@ -7,6 +7,7 @@ class PlayerRepository:
 
     ATTR_HEALTH = "attr_health"
     ATTR_MASKS = "attr_masks"
+    ATTR_POS = "attr_position" #TODO, los checkpoints deberían sacar de aqui la posicion!
 
     def __init__(self):
         self._data = {}
@@ -20,8 +21,9 @@ class PlayerRepository:
         self.set_parameter(PlayerRepository.ATTR_HEALTH, checkpoint.get_parameter(PlayerRepository.ATTR_HEALTH))
         self.set_parameter(PlayerRepository.ATTR_MASKS, checkpoint.get_parameter(PlayerRepository.ATTR_MASKS))
 
-    def set_parameter(self, param_name, value):
-        self.updated.append(param_name)
+    def set_parameter(self, param_name, value, accounted = True):
+        if accounted:
+            self.updated.append(param_name)
         self._data[param_name] = value
 
     def get_parameter(self, param_name):

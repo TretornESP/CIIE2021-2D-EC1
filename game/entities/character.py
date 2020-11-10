@@ -3,7 +3,7 @@ import math
 from game import ResourceManager, Configuration
 from .abstract_sprite import AbstractSprite
 from ..util.log import Clog
-
+from ..farm import Farm
 
 class Character(AbstractSprite):
     STILL = 0
@@ -19,11 +19,12 @@ class Character(AbstractSprite):
     def __init__(self, level, data, position, invert, velocity_x = 0, velocity_y = 0):
         AbstractSprite.__init__(self)
         self._log = Clog(__name__)
-        self._log.info("loading character "+data)
+        if data != "shot":
+            self._log.info("loading character "+data)
         self._coords = ResourceManager.load_coords(level, data)
         self._sheet = ResourceManager.load_sheet(level, data, colorkey=-1)
         self._level = level
-
+        self._data = data
         if (invert):
             self._sheet = pygame.transform.flip(self._sheet, 1, 0)
 
@@ -46,11 +47,6 @@ class Character(AbstractSprite):
         self._movement_y = Character.STILL
 
         self._orientation = Character.RIGHT
-
-        self._platforms = None
-        self._enemies = None
-        self._items = None
-        self._triggers = None
 
     def update(self, elapsed_time):
         step_over = False
@@ -75,7 +71,7 @@ class Character(AbstractSprite):
 
         # check horizontal collisions
         self._increase_position((self._velocity[0], 0))
-        platform = pygame.sprite.spritecollideany(self, self._platforms)
+        platform = Farm.platform_collision(self)
         if platform != None and platform._collides and self.rect.bottom > platform.rect.top + 1:
             dist_l = abs(platform.rect.centerx - self.rect.left)
             dist_r = abs(platform.rect.centerx - self.rect.right)
@@ -89,7 +85,7 @@ class Character(AbstractSprite):
 
         # check vertical collisions
         self._increase_position((0, self._velocity[1]))
-        platform = pygame.sprite.spritecollideany(self, self._platforms)
+        platform = Farm.platform_collision(self)
         if platform != None and platform._collides:
             if self._velocity[1] > 0 or step_over:
                 self._is_jumping = False
@@ -125,18 +121,6 @@ class Character(AbstractSprite):
     def move(self, direction):
         self._movement_x = direction[0]
         self._movement_y = direction[1]
-
-    def set_platform_group(self, platforms):
-        self._platforms = platforms
-
-    def set_enemy_group(self, enemies):
-        self._enemies = enemies
-
-    def set_item_group(self, items):
-        self._items = items
-
-    def set_trigger_group(self, trigger):
-        self._triggers = trigger
 
     def _set_sprite(self, posture):
         idx = self._animation_idx

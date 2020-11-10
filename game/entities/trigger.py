@@ -16,8 +16,7 @@ class Trigger(AbstractPlatform):
         self._id = id
         self._once = once
         self._active = True
-        self._overlay_connector = []
-        self._action_data=action_data
+        self._action_data = action_data
         self._director = director
 
     def get_pos(self):
@@ -49,6 +48,3 @@ class Trigger(AbstractPlatform):
     def revive(self):
         self.event_activate()
         self._active = True
-
-    def set_overlay_connector(self, connector):
-        self._overlay_connector = connector

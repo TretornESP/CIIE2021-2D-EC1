@@ -15,7 +15,7 @@ class EndMenu(AbstractMenu):
         AbstractMenu.events(self, events)
 
     def quit_game(self):
-        self._director.end_scene()
+        self._director.flush_scene()
 
     def retry(self):
         self._director.run_checkpoint()

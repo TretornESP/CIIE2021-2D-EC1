@@ -112,6 +112,7 @@ class ResourceManager(object):
             except Exception as e:
                 print(f"Cannot load coords resource with name {name} at folder: {fullname}")
                 print("Check JSON sanity!!!")
+                print(e)
                 raise SystemExit
         return cls._resources[(level+folder+name)]
 
