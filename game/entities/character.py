@@ -146,7 +146,10 @@ class Character(AbstractSprite):
         except Exception:
             print(f"Coords JSON is invalid! (X,Y)(H,W) are bigger than image: ! {self._sheet.get_width()}, {self._sheet.get_height()}")
             raise SystemExit
-        self.image = pygame.transform.scale(image, target_dims)
+        if scale[0] > -1:
+            self.image = pygame.transform.scale(image, target_dims)
+        else:
+            self.image = pygame.transform.scale(image, (self._coords["DEST_W"], self._coords["DEST_H"]))
 
         if self._left:
             self.image = pygame.transform.flip(self.image, True, False)
