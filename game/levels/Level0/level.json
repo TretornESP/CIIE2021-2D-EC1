@@ -103,7 +103,18 @@
           },
           "data":"torreta",
           "shot":"shot"
-        }
+        },
+	{
+	  "collides":true,
+	  "speedx":20,
+	  "speedy":0,
+	  "coords":{
+            "pos_x":2400,
+	    "pos_y":600,
+	    "inverted":false
+	  },
+	  "data":"corredor"
+	}
       ],
       "triggers":[
         {
