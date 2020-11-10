@@ -1,45 +1,27 @@
-import pygame
-from game import ResourceManager, Configuration
-from .enemy import Enemy
 from .character import Character
-from ..farm import Farm
-from ..util.log import Clog
-from ..player_repository import PlayerRepository
+from .. import Configuration
+from .enemy import Enemy
+from .. import Farm
 
 class Shot(Enemy):
-    SPEEDX = 5
+    SPEEDX = 10
     SPEEDY = 0
 
-    def __init__(self, level, data, coord, left):
-        self.log = Clog(__name__)
+    def __init__(self, level, data, coord, left, scroll):
         Enemy.__init__(self, level, data, coord, Shot.SPEEDX, Shot.SPEEDY, False)
 
+        self._scroll = scroll
         self._left = left
-        self._count = 0
-        self._player = ResourceManager.get_player_repository()
 
-    def move_cpu(self, elapsed_time):
-        (xright, _) = Configuration().get_resolution()
-        xpos, ypos = self._player.get_parameter(PlayerRepository.ATTR_POS)
-        if self.rect.left > 0 and self.rect.right < xright:
-
-            distance = xpos - self._position[0]
-
-            if self._left:
-                direction_x = Character.LEFT
-            else:
-                direction_x = Character.RIGHT
-
-        else:
-            self.kill()
-            direction_x = Character.STILL
-
-        direction_y = Character.STILL
-
-        Character.move(self, (direction_x, direction_y))
+    def move_cpu(self):
+        direction_x = Character.LEFT if self._left else Character.RIGHT
+        Character.move(self, (direction_x, Character.STILL))
 
     def update(self, elapsed_time):
+        vel_px, _ = Configuration().get_pixels((Shot.SPEEDX, Shot.SPEEDY))
+
+        self._velocity = vel_px * elapsed_time * (-1 if self._movement_x == Character.LEFT else 1), 0
+        self._increase_position(self._velocity)
+
         if Farm.touches_anything_visible(self):
             self.kill()
-        Enemy.update(self, elapsed_time)
-        self.move_cpu(elapsed_time)

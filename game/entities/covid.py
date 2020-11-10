@@ -1,43 +1,44 @@
-from .. import Configuration
-from ..util.log import Clog
-from .enemy import Enemy
 from .character import Character
-from ..resource_manager import ResourceManager
-from ..player_repository import PlayerRepository
+from .. import Configuration
+from .enemy import Enemy
+from .. import Farm
+
 class Covid(Enemy):
+    DELAY = 0.15
+
     def __init__(self, level, data, coord, speedx, speedy, invert=False):
-        self.log = Clog(__name__)
         Enemy.__init__(self, level, data, coord, speedx, speedy, invert)
-        self._player = ResourceManager.get_player_repository()
 
-        self._count = 0
+        self._last_x = Character.STILL
+        self._last_y = Character.STILL
 
-    def move_cpu(self, elapsed_time):
-        (xright, _) = Configuration().get_resolution()
-        xpos, ypos = self._player.get_parameter(PlayerRepository.ATTR_POS)
+        self._delay = Covid.DELAY
 
-        if self.rect.left > 0 and self.rect.right < xright:
+    def move_cpu(self):
+        width, _ = Configuration().get_resolution()
+        x_pos, y_pos = Farm.get_player()._position
 
-            distance = xpos - self._position[0]
+        if self._delay >= Covid.DELAY:
+            self._delay = 0
+            if self.rect.left >= -150 and self.rect.right <= width + 150:
+                dist_x = x_pos - self._position[0]
 
-            if distance < -5:
-                direction_x = Character.LEFT
-            elif -5 < distance < 5:
+                if dist_x <= 0:
+                    direction_x = Character.LEFT
+                else:
+                    direction_x = Character.RIGHT
+
+                if y_pos < self._position[1]:
+                    direction_y = Character.UP
+                else:
+                    direction_y = Character.STILL
+            else:
                 direction_x = Character.STILL
-            else:
-                direction_x = Character.RIGHT
-
-            if ypos < self._position[1]:
-                direction_y = Character.UP
-            else:
                 direction_y = Character.STILL
-
-        else:
-            direction_x = Character.STILL
-            direction_y = Character.STILL
-
-        Character.move(self, (direction_x, direction_y))
+            self._last_x = direction_x
+            self._last_y = direction_y
+        Character.move(self, (self._last_x, self._last_y))
 
     def update(self, elapsed_time):
-        Enemy.update(self, elapsed_time)
-        self.move_cpu(elapsed_time)
+        Character.update(self, elapsed_time)
+        self._delay += elapsed_time
