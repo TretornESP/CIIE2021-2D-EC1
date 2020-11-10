@@ -11,6 +11,8 @@ import pygame
 class Player(Character):
     PARRY_CD = 2
     PARRY_DUR = 0.5
+    PARRY_ON = "Parry ON!"
+    PARRY_OFF = "Parry OFF!"
 
     PARRY_TEXT = "Parry!"
     MASK_TEXT = "Mask!"
@@ -18,6 +20,7 @@ class Player(Character):
     INTERACT_TEXT = "Press E to interact!"
 
     INVULNERABILITY_LAPSE = 2
+
     TRIGGER_HYST = 0.125
 
     def __init__(self, level, data, coord, speedx=25, speedy=40, invert=False):
@@ -29,6 +32,8 @@ class Player(Character):
 
         self._last_hit = Player.INVULNERABILITY_LAPSE
         self._parry = Player.PARRY_CD
+
+        self._end_parry = True
 
         self._pending_trigger = None
         self._last_triggered = Player.TRIGGER_HYST
@@ -47,12 +52,19 @@ class Player(Character):
         self._last_hit += elapsed_time
         self._parry += elapsed_time
 
+        if self._parry >= Player.PARRY_DUR and not self._end_parry:
+            self._end_parry = True
+            pos = self._position[0], self._position[1] - self.rect.height
+            self._text.add_sprite(AnimatedText(pos, Player.PARRY_OFF, self._scroll))
+
         enemy = Farm.enemy_collision(self)
         if (enemy != None):
             if self._parry < Player.PARRY_DUR:
                 enemy.kill()
                 self._parry = Player.PARRY_DUR
-                self._text.add_sprite(AnimatedText(enemy._position, Player.PARRY_TEXT, self._scroll))
+                self._end_parry = True
+                pos = self._position[0], self._position[1] - self.rect.height
+                self._text.add_sprite(AnimatedText(pos, Player.PARRY_TEXT, self._scroll))
             elif self._last_hit > Player.INVULNERABILITY_LAPSE:
                 self.hit()
                 self._last_hit = 0
@@ -105,6 +117,9 @@ class Player(Character):
         if keys_pressed[parry]:
             self.do_parry()
 
+        if keys_pressed[dash]:
+            Character.do_dash(self)
+
         self._interact = keys_pressed[interact] #maybe this belongs inside a function, i dont really care
 
     def reset_hearts(self):
@@ -127,5 +142,8 @@ class Player(Character):
     def do_parry(self):
         current_masks = self._repo.get_parameter(PlayerRepository.ATTR_MASKS)
         if self._parry >= Player.PARRY_CD and current_masks > 0:
+            pos = self._position[0], self._position[1] - self.rect.height
+            self._text.add_sprite(AnimatedText(pos, Player.PARRY_ON, self._scroll))
             self._parry = 0
+            self._end_parry = False
             self._repo.set_parameter(PlayerRepository.ATTR_MASKS, current_masks - 1)

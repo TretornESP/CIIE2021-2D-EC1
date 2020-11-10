@@ -4,6 +4,7 @@ from game import ResourceManager, Configuration
 from .abstract_sprite import AbstractSprite
 from ..util.log import Clog
 from ..farm import Farm
+from .animated_text import AnimatedText
 
 class Character(AbstractSprite):
     STILL = 0
@@ -15,6 +16,11 @@ class Character(AbstractSprite):
 
     STEP_OVER = 3
     JUMPING_DELAY = 0.07
+
+    DASH_CD = 2
+    DASH_DUR = 0.15
+    DASH_ON = "Dash ON!"
+    DASH_OFF = "Dash OFF!"
 
     def __init__(self, level, data, position, invert, velocity_x = 0, velocity_y = 0):
         AbstractSprite.__init__(self)
@@ -32,6 +38,8 @@ class Character(AbstractSprite):
         self._animation_idx = 0
         self._animation_dur = -1
 
+        self._text = ResourceManager.get_text_repository()
+
         self._set_sprite("STILL")
         self.rect = self.image.get_rect()
 
@@ -43,6 +51,9 @@ class Character(AbstractSprite):
         self._velocity_x = velocity_x
         self._velocity_y = velocity_y
 
+        self._dash = Character.DASH_CD
+        self._end_dash = True
+
         self._movement_x = Character.STILL
         self._movement_y = Character.STILL
 
@@ -51,10 +62,16 @@ class Character(AbstractSprite):
     def update(self, elapsed_time):
         step_over = False
         self._jump += elapsed_time
+        self._dash += elapsed_time
 
         res = Configuration().get_resolution()
         vel_x, vel_y = self._velocity_x, self._velocity_y
         vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
+
+        if self._dash > Character.DASH_DUR and not self._end_dash:
+            self._end_dash = True
+            pos = self._position[0], self._position[1] - self.rect.height
+            self._text.add_sprite(AnimatedText(pos, Character.DASH_OFF, self._scroll))
 
         # update horizontal movement
         if self._movement_x == Character.LEFT:
@@ -67,7 +84,10 @@ class Character(AbstractSprite):
             self._jump = 0
             self._is_jumping = True
             self._velocity = (self._velocity[0], -vel_py * 0.018)
-        self._update_sprite()
+        if self._dash < Character.DASH_DUR:
+            direction = -1 if self._left else 1
+            self._velocity = ((vel_px + 350) * elapsed_time * direction, 0)
+        self._update_sprite() 
 
         # check horizontal collisions
         self._increase_position((self._velocity[0], 0))
@@ -121,6 +141,13 @@ class Character(AbstractSprite):
     def move(self, direction):
         self._movement_x = direction[0]
         self._movement_y = direction[1]
+
+    def do_dash(self):
+        if self._dash > Character.DASH_CD:
+            self._dash = 0
+            self._end_dash = False
+            pos = self._position[0], self._position[1] - self.rect.height
+            self._text.add_sprite(AnimatedText(pos, Character.DASH_ON, self._scroll))
 
     def _set_sprite(self, posture):
         idx = self._animation_idx
