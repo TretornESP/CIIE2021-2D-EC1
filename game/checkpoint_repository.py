@@ -10,6 +10,7 @@ class CheckpointRepository:
         self.updated = []
         self._player_pos = None
         self._player_repo = None
+        self._scroll = 0
 
     def reset_attr(self):
         pass
@@ -34,3 +35,9 @@ class CheckpointRepository:
             return None
         else:
             return self._data[param_name]
+
+    def set_scroll(self, scroll):
+        self._scroll = scroll
+
+    def get_scroll(self):
+        return self._scroll
