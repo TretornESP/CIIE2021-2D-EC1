@@ -49,14 +49,13 @@ class Player(Character):
 
         enemy = Farm.enemy_collision(self)
         if (enemy != None):
-            if self._last_hit > Player.INVULNERABILITY_LAPSE:
-                if self._parry >= Player.PARRY_DUR:
-                    self.hit()
-                    self._last_hit = 0
-                else:
-                    enemy.kill()
-                    self._parry = Player.PARRY_DUR
-                    self._text.add_sprite(AnimatedText(enemy._position, Player.PARRY_TEXT, self._scroll))
+            if self._parry < Player.PARRY_DUR:
+                enemy.kill()
+                self._parry = Player.PARRY_DUR
+                self._text.add_sprite(AnimatedText(enemy._position, Player.PARRY_TEXT, self._scroll))
+            elif self._last_hit > Player.INVULNERABILITY_LAPSE:
+                self.hit()
+                self._last_hit = 0
 
         item = Farm.item_collision(self)
         if (item != None):
