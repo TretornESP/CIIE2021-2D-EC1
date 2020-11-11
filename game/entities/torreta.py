@@ -41,8 +41,6 @@ class Torreta(Enemy):
             else:
                 direction_x = Character.STILL
 
-
-
             self._last_x = direction_x
         Character.move(self, (self._last_x, Character.STILL))
 
