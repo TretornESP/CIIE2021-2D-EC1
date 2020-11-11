@@ -17,19 +17,20 @@
       },
       "platforms":[
         {
-          "sprite":"lamp.png",
-          "collides":true,
-          "coords":{
-            "pos_x":400,
+          "sprite":"grandma.png",
+          "collides":false,
+          "coords": {
+            "pos_x":750,
             "pos_y":600,
-            "inverted": true
-          }
+            "inverted": false
+          },
+          "scale": 5
         },
         {
           "sprite":"lamp.png",
           "collides":true,
           "coords":{
-            "pos_x":200,
+            "pos_x":1000,
             "pos_y":600,
             "inverted": true
           }
@@ -38,9 +39,20 @@
           "kind":"old_man",
           "sprite":"old_man.png",
           "collides":false,
-          "scale": 2,
           "coords":{
-            "pos_x":700,
+            "pos_x":1900,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale": 2
+        },
+        {
+          "kind":"spikes",
+          "sprite":"spikes.png",
+          "collides":true,
+          "scale": 3,
+          "coords":{
+            "pos_x":2100,
             "pos_y":600,
             "inverted":false
           }
@@ -51,18 +63,7 @@
           "collides":true,
           "scale": 3,
           "coords":{
-            "pos_x":2000,
-            "pos_y":600,
-            "inverted":false
-          }
-        },
-        {
-          "kind":"spikes",
-          "sprite":"spikes.png",
-          "collides":true,
-          "scale": 3,
-          "coords":{
-            "pos_x":2054,
+            "pos_x":2154,
             "pos_y":600,
             "inverted":false
           }
