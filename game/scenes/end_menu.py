@@ -2,8 +2,8 @@ from .abstract_menu import AbstractMenu
 from .end_screen import EndScreen
 
 class EndMenu(AbstractMenu):
-    def __init__(self, director):
-        AbstractMenu.__init__(self, director)
+    def __init__(self):
+        AbstractMenu.__init__(self)
 
         self._screen_list.append(EndScreen(self))
         self._show_first_screen()

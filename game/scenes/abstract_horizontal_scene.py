@@ -2,7 +2,7 @@ import pygame
 from .abstract_scene import AbstractScene
 from game.entities import Platform, Player
 from .backgrounds import MainBackground
-from game import Configuration, ResourceManager
+from game import ResourceManager
 from .pause_menu import PauseMenu
 from .end_menu import EndMenu
 from ..entities.hud import *
@@ -35,9 +35,8 @@ class AbstractHorizontalScene(AbstractScene):
 
     CONTROL_PAUSE_BINDING   = (K_ESCAPE, K_p)
 
-    def __init__(self, director):
-        AbstractScene.__init__(self, director)
-        self.log = Clog(__name__)
+    def __init__(self):
+        AbstractScene.__init__(self)
         self._scroll_x = 0
 
         self._hud = Hud()
@@ -65,7 +64,7 @@ class AbstractHorizontalScene(AbstractScene):
 
         repo = ResourceManager.get_player_repository()
         if repo.get_parameter(PlayerRepository.ATTR_HEALTH) <= 0:
-            self._director.push_scene(EndMenu(self._director))
+            self._director.push_scene(EndMenu())
             print("LOST BITCH")
 
     def events(self, events):
@@ -73,7 +72,7 @@ class AbstractHorizontalScene(AbstractScene):
             if event.type == pygame.QUIT:
                 self._director.quit_game()
             elif event.type == KEYDOWN and (event.key in self.CONTROL_PAUSE_BINDING):
-                self._director.push_scene(PauseMenu(self._director, self.CONTROL_PAUSE_BINDING))
+                self._director.push_scene(PauseMenu(self.CONTROL_PAUSE_BINDING))
         keys_pressed = pygame.key.get_pressed()
 
         Farm.get_player().move(keys_pressed, up=self.CONTROL_JUMP_BINDING,
@@ -90,7 +89,7 @@ class AbstractHorizontalScene(AbstractScene):
 
     def _update_scroll(self):
         player = Farm.get_player()
-        resolution = Configuration().get_resolution()
+        resolution = ResourceManager.load_config().get_resolution()
 
         if player.rect.right > AbstractHorizontalScene.MAX_X:
             displ = player.rect.right - AbstractHorizontalScene.MAX_X

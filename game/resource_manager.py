@@ -1,27 +1,38 @@
 import os
 import json
 import pygame
+from .checkpoint_repository import CheckpointRepository
+from .player_repository import PlayerRepository
+from .text_repository import TextRepository
+from .configuration import Configuration
+from .director import Director
 from pygame.locals import *
-from game.player_repository import PlayerRepository
-from game.text_repository import TextRepository
-from game.checkpoint_repository import CheckpointRepository
-
 
 class ResourceManager(object):
-    PLAYER_REPOSITORY_NAME = "player.repository"
+    CONFIGURATION_NAME = "config.json"
     TEXT_REPO_NAME = "text.repository"
+    DIRECTOR_NAME = "director.director"
+    PLAYER_REPOSITORY_NAME = "player.repository"
     CHECKPOINT_REPO_NAME = "checkpoint.repository"
+
     _resources = {}
 
     @classmethod
-    def load_config(cls, name="config.json"):
+    def load_director(cls):
+        if not ResourceManager.DIRECTOR_NAME in cls._resources:
+            cls._resources[ResourceManager.DIRECTOR_NAME] = Director()
+        return cls._resources[ResourceManager.DIRECTOR_NAME]
+
+    @classmethod
+    def load_config(cls):
+        name = ResourceManager.CONFIGURATION_NAME
         if not name in cls._resources:
             path = os.path.abspath(__package__)
             fullname = os.path.join(path, name)
             try:
                 with open(fullname, "r") as f:
                     config = json.load(f)
-                    cls._resources[name] = config
+                    cls._resources[name] = Configuration(config)
             except Exception:
                 print(f"Cannot load config resource with name {name} at {fullname}")
                 raise SystemExit

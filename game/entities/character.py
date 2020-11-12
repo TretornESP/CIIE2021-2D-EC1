@@ -1,6 +1,6 @@
 import pygame
 import math
-from game import ResourceManager, Configuration
+from game import ResourceManager
 from .abstract_sprite import AbstractSprite
 from ..util.log import Clog
 from ..farm import Farm
@@ -64,9 +64,9 @@ class Character(AbstractSprite):
         self._jump += elapsed_time
         self._dash += elapsed_time
 
-        res = Configuration().get_resolution()
+        res = ResourceManager.load_config().get_resolution()
         vel_x, vel_y = self._velocity_x, self._velocity_y
-        vel_px, vel_py = Configuration().get_pixels((vel_x, vel_y))
+        vel_px, vel_py = ResourceManager.load_config().get_pixels((vel_x, vel_y))
 
         if self._dash > Character.DASH_DUR and not self._end_dash:
             self._end_dash = True

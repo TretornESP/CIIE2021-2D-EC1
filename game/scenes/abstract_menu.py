@@ -2,8 +2,8 @@ import pygame
 from .abstract_scene import AbstractScene
 
 class AbstractMenu(AbstractScene):
-    def __init__(self, director):
-        AbstractScene.__init__(self, director)
+    def __init__(self):
+        AbstractScene.__init__(self)
         self._screen_list = [] 
 
     def update(self, *args):

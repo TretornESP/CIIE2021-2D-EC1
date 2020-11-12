@@ -5,8 +5,8 @@ from .menu_screen import MenuScreen
 from .abstract_menu import AbstractMenu
 
 class MainMenu(AbstractMenu):
-    def __init__(self, director):
-        AbstractMenu.__init__(self, director)
+    def __init__(self):
+        AbstractMenu.__init__(self)
 
         self._screen_list.append(MenuScreen(self))
         self._show_first_screen()
@@ -22,7 +22,7 @@ class MainMenu(AbstractMenu):
         repo = ResourceManager.get_player_repository()
         repo.reset_attr()
 
-        level = Level("Level0", self._director)
+        level = Level("Level0")
         for scene in level.get_scenes():
             self._director.push_scene(scene)
 

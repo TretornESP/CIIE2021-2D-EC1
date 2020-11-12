@@ -1,5 +1,5 @@
 from .character import Character
-from .. import Configuration
+from game import ResourceManager
 from .enemy import Enemy
 from .. import Farm
 
@@ -15,7 +15,7 @@ class Covid(Enemy):
         self._delay = Covid.DELAY
 
     def move_cpu(self):
-        width, _ = Configuration().get_resolution()
+        width, _ = ResourceManager.load_config().get_resolution()
         x_pos, y_pos = Farm.get_player()._position
 
         if self._delay >= Covid.DELAY:
@@ -40,5 +40,5 @@ class Covid(Enemy):
         Character.move(self, (self._last_x, self._last_y))
 
     def update(self, elapsed_time):
-        Character.update(self, elapsed_time)
+        Enemy.update(self, elapsed_time)
         self._delay += elapsed_time

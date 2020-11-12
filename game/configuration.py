@@ -1,19 +1,7 @@
-from game import ResourceManager
-
-class Singleton(type):
-    _instances = {}
-
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            instance = super(Singleton, cls).__call__(*args, **kwargs)
-            cls._instances[cls] = instance
-        return cls._instances[cls]
-
-class Configuration(metaclass=Singleton):
+class Configuration():
     METERS_PER_PIXEL = 0.03837
 
-    def __init__(self):
-        config = ResourceManager.load_config()
+    def __init__(self, config):
         self._resolution = config["resolution"]
         self._name = config["name"]
 

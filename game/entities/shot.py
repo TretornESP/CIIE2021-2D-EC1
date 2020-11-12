@@ -1,7 +1,7 @@
+from game import ResourceManager
 from .character import Character
-from .. import Configuration
 from .enemy import Enemy
-from .. import Farm
+from ..farm import Farm
 
 class Shot(Enemy):
     SPEEDX = 10
@@ -18,10 +18,8 @@ class Shot(Enemy):
         Character.move(self, (direction_x, Character.STILL))
 
     def update(self, elapsed_time):
-        vel_px, _ = Configuration().get_pixels((Shot.SPEEDX, Shot.SPEEDY))
+        Enemy.update(self, elapsed_time)
+        width, _ = ResourceManager.load_config().get_resolution()
 
-        self._velocity = vel_px * elapsed_time * (-1 if self._movement_x == Character.LEFT else 1), 0
-        self._increase_position(self._velocity)
-
-        if Farm.touches_anything_visible(self):
+        if Farm.touches_anything_visible(self) or self.rect.left < -50 or self.rect.right > width + 50:
             self.kill()

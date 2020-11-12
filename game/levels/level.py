@@ -1,4 +1,5 @@
 import pygame
+from game import ResourceManager
 from ..scenes import AbstractHorizontalScene
 from ..scenes.skies import AbstractSky
 from game.entities import Platform, Player, Covid, Torreta, Corredor
@@ -10,19 +11,17 @@ from ..entities import Trigger
 from ..farm_factory import FarmFactory
 from ..scenes.dialogs import DialogOption
 from ..scenes.dialogs import DialogMenu
-from game import Configuration
 from pygame.locals import *
 import os
 import json
 
 class Level():
-    def __init__(self, filename, director):
+    def __init__(self, filename):
         self._clog = Clog(__name__)
         self.id = None
         self.name = None
         self.scenes = []
         self.dialogs = []
-        self.director = director
 
         self._clog.info("Loading level")
         self.construct_file_path(filename)
@@ -116,7 +115,7 @@ class Level():
             extra = self.dialogs[id]
         else:
             extra = None
-        return Trigger(self.director, self.name, event, indica, once, coords, size, invert, extra)
+        return Trigger(self.name, event, indica, once, coords, size, invert, extra)
 
     def parse_json(self, json):
         self.id = json['id']
@@ -130,7 +129,7 @@ class Level():
             options = []
             for o in d['options']:
                 options.append(DialogOption(o['text'], o['valid']))
-            dia = DialogMenu(self.director, data, title, text, options)
+            dia = DialogMenu(data, title, text, options)
             self.dialogs.append(dia)
         self._clog.info("dialog added")
 
@@ -146,7 +145,7 @@ class Level():
                 f.add_trigger(self.parse_trigger(trigger))
             for platform in scene['platforms']:
                 f.add_platform(self.parse_platform(platform))
-            s = Scene(self.name, self.director, f, scene['id'], scene['background'], scene['scroll'], scene['sky'])
+            s = Scene(self.name, f, scene['id'], scene['background'], scene['scroll'], scene['sky'])
 
             self.scenes.append(s)
             self._clog.info("scene added")

@@ -135,6 +135,7 @@
         {
           "event":2,
           "id":0,
+          "once": false,
           "indicator":true,
           "coords":{
             "pos_x":700,

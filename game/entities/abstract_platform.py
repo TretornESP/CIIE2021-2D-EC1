@@ -35,12 +35,3 @@ class AbstractPlatform(AbstractSprite):
 
         self.set_global_position(pos)
         self.set_collision(collision)
-
-    def event_deactivate(self):
-        self._active = AbstractPlatform.RESIDE
-        if not self._invisible:
-            self.image.fill(self.RESIDE)
-    def event_activate(self):
-        self._active = AbstractPlatform.ACTIVE
-        if not self._invisible:
-            self.image.fill(self.ACTIVE)

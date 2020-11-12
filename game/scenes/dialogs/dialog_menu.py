@@ -4,8 +4,8 @@ from .dialog_screen import DialogScreen
 from ..abstract_menu import AbstractMenu
 
 class DialogMenu(AbstractMenu):
-    def __init__(self, director, background, title, text, options):
-        AbstractMenu.__init__(self, director)
+    def __init__(self, background, title, text, options):
+        AbstractMenu.__init__(self)
 
         self._title = title
         self._text = text

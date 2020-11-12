@@ -1,13 +1,8 @@
 import pygame
-
-from ... import ResourceManager, Configuration
-from ...util.log import Clog
-
+from game import ResourceManager
 
 class Hud:
-
-    # Alignments (it is important not changing these values)
-    # REALLY, DO *NOT* CHANGE THESE
+    # Alignments
     GROW_LEFT = -1
     GROW_RIGHT = 1
     GROW_UP = -2
@@ -20,13 +15,7 @@ class Hud:
     Y_RELATIVE_BOTTOM_OFFSET = 0 # TBC
 
     def __init__(self):
-        # Get screen res
-        # self._X_TOTAL = pygame.display.Info().current_w
-        # self._Y_TOTAL = pygame.display.Info().current_h
-        (self._X_TOTAL, self._Y_TOTAL) = Configuration().get_resolution()
-
-        # Init log and so
-        self.log = Clog(__name__)
+        (self._X_TOTAL, self._Y_TOTAL) = ResourceManager.load_config().get_resolution()
 
         # We store here the sprite groups
         self._sprite_groups = {}

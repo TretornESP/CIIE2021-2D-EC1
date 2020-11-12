@@ -1,6 +1,6 @@
-import pygame
 import uuid
-from game import Configuration
+import pygame
+from game import ResourceManager
 
 class AbstractSprite(pygame.sprite.Sprite):
     def __init__(self):
@@ -37,7 +37,7 @@ class AbstractSprite(pygame.sprite.Sprite):
         self._collides = coll
 
     def update(self, elapsed_time):
-        increment = Configuration().get_pixels(self._velocity)
+        increment = ResourceManager.load_config().get_pixels(self._velocity)
         new_x = increment[0] * elapsed_time
         new_y = increment[1] * elapsed_time
         self._increase_position((new_x, new_y))
