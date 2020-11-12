@@ -1,10 +1,9 @@
 import pygame
 import math
-from game import ResourceManager
 from .abstract_sprite import AbstractSprite
-from ..util.log import Clog
-from ..farm import Farm
 from .animated_text import AnimatedText
+from game import ResourceManager
+from ..farm import Farm
 
 class Character(AbstractSprite):
     STILL = 0
@@ -21,12 +20,10 @@ class Character(AbstractSprite):
     DASH_DUR = 0.15
     DASH_ON = "Dash ON!"
     DASH_OFF = "Dash OFF!"
+    DASH_COLOR = (138, 43, 226)
 
     def __init__(self, level, data, position, invert, velocity_x = 0, velocity_y = 0):
         AbstractSprite.__init__(self)
-        self._log = Clog(__name__)
-        if data != "shot":
-            self._log.info("loading character "+data)
         self._coords = ResourceManager.load_coords(level, data)
         self._sheet = ResourceManager.load_sheet(level, data, colorkey=-1)
         self._level = level
@@ -71,7 +68,7 @@ class Character(AbstractSprite):
         if self._dash > Character.DASH_DUR and not self._end_dash:
             self._end_dash = True
             pos = self._position[0], self._position[1] - self.rect.height
-            self._text.add_sprite(AnimatedText(pos, Character.DASH_OFF, self._scroll))
+            self._text.add_sprite(AnimatedText(pos, Character.DASH_OFF, self._scroll, Character.DASH_COLOR))
 
         # update horizontal movement
         if self._movement_x == Character.LEFT:
@@ -147,7 +144,7 @@ class Character(AbstractSprite):
             self._dash = 0
             self._end_dash = False
             pos = self._position[0], self._position[1] - self.rect.height
-            self._text.add_sprite(AnimatedText(pos, Character.DASH_ON, self._scroll))
+            self._text.add_sprite(AnimatedText(pos, Character.DASH_ON, self._scroll, Character.DASH_COLOR))
 
     def _set_sprite(self, posture):
         idx = self._animation_idx

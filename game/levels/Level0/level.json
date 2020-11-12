@@ -84,8 +84,8 @@
       "enemies":[
         {
           "collides":true,
-          "speedx":10,
-          "speedy":20,
+          "speedx":12,
+          "speedy":25,
           "coords":{
             "pos_x":320,
             "pos_y":500,
