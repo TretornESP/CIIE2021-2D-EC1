@@ -5,6 +5,7 @@ from ..util.log import Clog
 from .object import Object
 from .animated_text import AnimatedText
 from ..farm import Farm
+from .shot import Shot
 import pygame
 
 
@@ -66,6 +67,8 @@ class Player(Character):
                 pos = self._position[0], self._position[1] - self.rect.height
                 self._text.add_sprite(AnimatedText(pos, Player.PARRY_TEXT, self._scroll))
             elif self._last_hit > Player.INVULNERABILITY_LAPSE:
+                if isinstance(enemy, Shot):
+                    enemy.kill()
                 self.hit()
                 self._last_hit = 0
 
