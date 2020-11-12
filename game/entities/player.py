@@ -10,12 +10,17 @@ import pygame
 class Player(Character):
     PARRY_CD = 2
     PARRY_DUR = 0.5
+
     PARRY_ON = "Parry ON!"
     PARRY_OFF = "Parry OFF!"
-
     PARRY_TEXT = "Parry!"
     MASK_TEXT = "Mask!"
     HEART_TEXT = "Heart!"
+    HIT_TEXT = "Damage!"
+
+    MASK_COLOR = (0, 206, 209)
+    PARRY_COLOR = (255, 165, 0)
+    HIT_COLOR = (255, 0, 0)
 
     INVULNERABILITY_LAPSE = 2
 
@@ -52,7 +57,7 @@ class Player(Character):
         if self._parry >= Player.PARRY_DUR and not self._end_parry:
             self._end_parry = True
             pos = self._position[0], self._position[1] - self.rect.height
-            self._text.add_sprite(AnimatedText(pos, Player.PARRY_OFF, self._scroll))
+            self._text.add_sprite(AnimatedText(pos, Player.PARRY_OFF, self._scroll, Player.PARRY_COLOR))
 
     def move(self, keys_pressed, up, down, left, right, parry, dash, interact):
         if keys_pressed[up[0]] or keys_pressed[up[1]]:
@@ -90,6 +95,9 @@ class Player(Character):
         current_health = self._repo.get_parameter(PlayerRepository.ATTR_HEALTH)
         self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, current_health - 1)
 
+        pos = self._position[0], self._position[1] - self.rect.height
+        self._text.add_sprite(AnimatedText(pos, Player.HIT_TEXT, self._scroll, Player.HIT_COLOR))
+
     def is_interacting(self):
         return self._interact
 
@@ -103,11 +111,11 @@ class Player(Character):
         self._parry = Player.PARRY_DUR
         self._end_parry = True
         pos = self._position[0], self._position[1] - self.rect.height
-        self._text.add_sprite(AnimatedText(pos, Player.PARRY_TEXT, self._scroll))
+        self._text.add_sprite(AnimatedText(pos, Player.PARRY_TEXT, self._scroll, Player.PARRY_COLOR))
 
     def pick_mask(self):
         pos = (self._position[0], self._position[1] - self.rect.height)
-        self._text.add_sprite(AnimatedText(pos, Player.MASK_TEXT, self._scroll))
+        self._text.add_sprite(AnimatedText(pos, Player.MASK_TEXT, self._scroll, Player.MASK_COLOR))
         current_masks = self._repo.get_parameter(PlayerRepository.ATTR_MASKS)
         self._repo.set_parameter(PlayerRepository.ATTR_MASKS, current_masks + 1)
 
@@ -115,7 +123,7 @@ class Player(Character):
         current_masks = self._repo.get_parameter(PlayerRepository.ATTR_MASKS)
         if self._parry >= Player.PARRY_CD and current_masks > 0:
             pos = self._position[0], self._position[1] - self.rect.height
-            self._text.add_sprite(AnimatedText(pos, Player.PARRY_ON, self._scroll))
+            self._text.add_sprite(AnimatedText(pos, Player.PARRY_ON, self._scroll, Player.PARRY_COLOR))
             self._parry = 0
             self._end_parry = False
             self._repo.set_parameter(PlayerRepository.ATTR_MASKS, current_masks - 1)
