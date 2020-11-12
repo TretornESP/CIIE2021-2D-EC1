@@ -1,14 +1,15 @@
 import pygame
-from game import Configuration
+from game import ResourceManager
 
 class AbstractScene:
-    def __init__(self, director):
+    def __init__(self):
         pygame.init()
 
-        self._screen = pygame.display.set_mode(Configuration().get_resolution())
-        pygame.display.set_caption(Configuration().get_name())
+        configuration = ResourceManager.load_config()
+        self._screen = pygame.display.set_mode(configuration.get_resolution())
+        pygame.display.set_caption(configuration.get_name())
 
-        self._director = director
+        self._director = ResourceManager.load_director()
 
     def update(self, *args):
         raise NotImplemented()

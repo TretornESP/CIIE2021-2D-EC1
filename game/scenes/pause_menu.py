@@ -5,8 +5,8 @@ from pygame.locals import *
 
 
 class PauseMenu(AbstractMenu):
-    def __init__(self, director, pause_binding):
-        AbstractMenu.__init__(self, director)
+    def __init__(self, pause_binding):
+        AbstractMenu.__init__(self)
 
         self._screen_list.append(PauseScreen(self))
         self._show_first_screen()

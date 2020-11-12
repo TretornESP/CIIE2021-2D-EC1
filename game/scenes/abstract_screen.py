@@ -1,16 +1,15 @@
 import pygame
 from pygame.locals import *
-from game import ResourceManager, Configuration
+from game import ResourceManager
 
 class AbstractScreen:
     def __init__(self, menu, image, song=None, transform=False):
-        res = Configuration().get_resolution()
+        res = ResourceManager.load_config().get_resolution()
 
         self._menu = menu
 
         self.image = ResourceManager.load_image_asset(image)
         if transform:
-            print("Transformate ")
             self.image = pygame.transform.scale(self.image, res)
 
         self.rect = self.image.get_rect()

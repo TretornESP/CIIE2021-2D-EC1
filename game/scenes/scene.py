@@ -1,5 +1,5 @@
 from . import AbstractHorizontalScene
-from .. import Configuration, ResourceManager
+from .. import ResourceManager
 from .backgrounds import MainBackground
 from ..player_repository import PlayerRepository #This is only for debug and can be deleted
 from ..checkpoint_repository import CheckpointRepository
@@ -10,9 +10,9 @@ from ..farm_factory import FarmFactory
 import pygame
 
 class Scene(AbstractHorizontalScene):
-    def __init__(self, level, director, farm_factory, id, background, size, sky):
-        AbstractHorizontalScene.__init__(self, director)
-        resolution = Configuration().get_resolution()
+    def __init__(self, level, farm_factory, id, background, size, sky):
+        AbstractHorizontalScene.__init__(self)
+        resolution = ResourceManager.load_config().get_resolution()
 
         self._id = id
         self._background = MainBackground(level, background)

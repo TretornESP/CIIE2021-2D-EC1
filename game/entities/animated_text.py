@@ -1,5 +1,5 @@
 import pygame
-from game import ResourceManager, Configuration
+from game import ResourceManager
 from .abstract_sprite import AbstractSprite
 
 
@@ -41,7 +41,7 @@ class AnimatedText(AbstractSprite):
     def update(self, elapsed_time):
         self._dur += elapsed_time
 
-        _, vel_y = Configuration().get_pixels((0, -self.speed))
+        _, vel_y = ResourceManager.load_config().get_pixels((0, -self.speed))
         self._increase_position((0, vel_y * elapsed_time))
 
         if self._dur > self.duration:

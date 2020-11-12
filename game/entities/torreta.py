@@ -1,5 +1,5 @@
 from .character import Character
-from .. import Configuration
+from game import ResourceManager
 from .enemy import Enemy
 from ..farm import Farm
 from .shot import Shot
@@ -20,7 +20,7 @@ class Torreta(Enemy):
         self._last_x = Character.STILL
 
     def move_cpu(self):
-        width, _ = Configuration().get_resolution()
+        width, _ = ResourceManager.load_config().get_resolution()
         x_pos, y_pos = Farm.get_player()._position
 
         if self._delay >= Torreta.DELAY:
@@ -30,10 +30,10 @@ class Torreta(Enemy):
 
                 if dist_x <= 0:
                     direction_x = Character.LEFT
-                    self._pos_shot = self._position[0] - 20, 578
+                    self._pos_shot = self._position[0] - 20, self._position[1] - 22
                 else:
                     direction_x = Character.RIGHT
-                    self._pos_shot = self._position[0] + 50, 578
+                    self._pos_shot = self._position[0] + 50, self._position[1] - 22
 
                 if self._last_shot >= Torreta.SHOOT_RATIO:
                     self._last_shot = 0
