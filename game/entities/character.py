@@ -18,8 +18,7 @@ class Character(AbstractSprite):
 
     DASH_CD = 2
     DASH_DUR = 0.15
-    DASH_ON = "Dash ON!"
-    DASH_OFF = "Dash OFF!"
+    DASH_TEXT = "Dash!"
     DASH_COLOR = (138, 43, 226)
 
     def __init__(self, level, data, position, invert, velocity_x = 0, velocity_y = 0):
@@ -69,8 +68,6 @@ class Character(AbstractSprite):
 
         if self._dash > Character.DASH_DUR and not self._end_dash:
             self._end_dash = True
-            pos = self._position[0], self._position[1] - self.rect.height
-            self._text.add_sprite(AnimatedText(pos, Character.DASH_OFF, self._scroll, Character.DASH_COLOR))
             self._velocity = vel_px * elapsed_time * (-1 if self._left else 1), self._velocity[1]
 
         # update horizontal movement
@@ -122,6 +119,8 @@ class Character(AbstractSprite):
         else:
             # check y axis boundaries
             if self.rect.bottom >= res[1]:
+                if self._is_jumping:
+                    self._dash = Character.DASH_CD
                 self._is_jumping = False
                 self._velocity = (self._velocity[0], 0)
                 self.set_global_position((self._position[0], res[1]))
@@ -152,7 +151,7 @@ class Character(AbstractSprite):
             self._dash = 0
             self._end_dash = False
             pos = self._position[0], self._position[1] - self.rect.height
-            self._text.add_sprite(AnimatedText(pos, Character.DASH_ON, self._scroll, Character.DASH_COLOR))
+            self._text.add_sprite(AnimatedText(pos, Character.DASH_TEXT, self._scroll, Character.DASH_COLOR))
 
     def _set_sprite(self, posture):
         idx = self._animation_idx
