@@ -16,7 +16,7 @@ class Covid(Enemy):
 
     def move_cpu(self):
         width, _ = ResourceManager.load_config().get_resolution()
-        x_pos, y_pos = Farm.get_player()._position
+        x_pos, _ = Farm.get_player()._position
 
         if self._delay >= Covid.DELAY:
             self._delay = 0
@@ -32,7 +32,7 @@ class Covid(Enemy):
                 self.rect.left += inc
                 platform = Farm.platform_collision(self)
                 self.rect.left -= inc
-                if y_pos < self._position[1] or (platform != None and platform._collides):
+                if platform != None and platform._collides:
                     direction_y = Character.UP
                 else:
                     direction_y = Character.STILL

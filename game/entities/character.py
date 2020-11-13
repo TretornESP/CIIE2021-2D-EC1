@@ -110,6 +110,8 @@ class Character(AbstractSprite):
         platform = Farm.platform_collision(self)
         if platform != None and platform._collides:
             if self._velocity[1] > 0 or step_over:
+                if self._is_jumping and self._velocity[1] > 0 and self.rect.left - platform.rect.left - platform.rect.height > 10:
+                    self._dash = Character.DASH_CD
                 self._is_jumping = False
                 self._velocity = (self._velocity[0], 0)
                 self.set_global_position((self._position[0], platform._position[1] - platform.rect.height + 1))
@@ -119,7 +121,7 @@ class Character(AbstractSprite):
         else:
             # check y axis boundaries
             if self.rect.bottom >= res[1]:
-                if self._is_jumping:
+                if self._is_jumping and self._velocity[1] > 0 and self.rect.left > 10:
                     self._dash = Character.DASH_CD
                 self._is_jumping = False
                 self._velocity = (self._velocity[0], 0)
