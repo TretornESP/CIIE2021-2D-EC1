@@ -28,9 +28,10 @@ class Covid(Enemy):
                 else:
                     direction_x = Character.RIGHT
 
-                self.rect.left += self.rect.width / 2
+                inc = self.rect.width / 2 * (1 if direction_x == Character.RIGHT else -1)
+                self.rect.left += inc
                 platform = Farm.platform_collision(self)
-                self.rect.left -= self.rect.width / 2
+                self.rect.left -= inc
                 if y_pos < self._position[1] or (platform != None and platform._collides):
                     direction_y = Character.UP
                 else:
