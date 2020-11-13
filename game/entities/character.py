@@ -54,6 +54,8 @@ class Character(AbstractSprite):
         self._movement_x = Character.STILL
         self._movement_y = Character.STILL
 
+        self._momentum = 0
+
         self._orientation = Character.RIGHT
 
     def update(self, elapsed_time):
@@ -69,21 +71,27 @@ class Character(AbstractSprite):
             self._end_dash = True
             pos = self._position[0], self._position[1] - self.rect.height
             self._text.add_sprite(AnimatedText(pos, Character.DASH_OFF, self._scroll, Character.DASH_COLOR))
+            self._velocity = vel_px * elapsed_time * (-1 if self._left else 1), self._velocity[1]
 
         # update horizontal movement
         if self._movement_x == Character.LEFT:
+            self._momentum = 0
             self._velocity = (-vel_px * elapsed_time, self._velocity[1])
         if self._movement_x == Character.RIGHT:
+            self._momentum = 0
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
-        if self._movement_x == Character.STILL:
-            self._velocity = (0, self._velocity[1])
+        if self._movement_x == Character.STILL and not self._is_jumping and self._dash >= Character.DASH_DUR:
+            self._momentum += (-vel_px if self._velocity[0] >= 0 else vel_px) * elapsed_time * 0.012
+            v_x = max(0, self._momentum + self._velocity[0]) if self._velocity[0] >= 0 else min(0, self._momentum + self._velocity[0])
+            self._momentum = self._momentum if v_x != 0 else 0
+            self._velocity = (v_x, self._velocity[1])
         if self._movement_y == Character.UP and self._jump >= Character.JUMPING_DELAY and not self._is_jumping:
             self._jump = 0
             self._is_jumping = True
             self._velocity = (self._velocity[0], -vel_py * 0.018)
         if self._dash < Character.DASH_DUR:
             direction = -1 if self._left else 1
-            self._velocity = ((vel_px + 350) * elapsed_time * direction, 0)
+            self._velocity = ((vel_px + 300) * elapsed_time * direction, 0)
         self._update_sprite() 
 
         # check horizontal collisions
