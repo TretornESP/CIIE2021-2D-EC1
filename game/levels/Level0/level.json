@@ -15,7 +15,7 @@
         },
         "data":"player"
       },
-      "platforms":[
+      "platforms": [
         {
           "sprite":"grandma.png",
           "collides":false,
@@ -67,6 +67,61 @@
             "pos_y":600,
             "inverted":false
           }
+        },
+        {
+          "kind":"spikes",
+          "sprite":"spikes.png",
+          "collides":true,
+          "scale": 3,
+          "coords":{
+            "pos_x":2208,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"spikes",
+          "sprite":"spikes.png",
+          "collides":true,
+          "scale": 3,
+          "coords":{
+            "pos_x":2262,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"spikes",
+          "sprite":"spikes.png",
+          "collides":true,
+          "scale": 3,
+          "coords":{
+            "pos_x":2316,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"ambulance",
+          "sprite":"ambulance.png",
+          "collides":false,
+          "scale": 13,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"nurse",
+          "sprite":"nurse.png",
+          "collides":false,
+          "scale": 0.25,
+          "coords":{
+            "pos_x":3050,
+            "pos_y":600,
+            "inverted":false
+          }
         }
       ],
       "objects":[
@@ -82,72 +137,10 @@
         }
       ],
       "enemies":[
-        {
-          "collides":true,
-          "speedx":12,
-          "speedy":25,
-          "coords":{
-            "pos_x":320,
-            "pos_y":500,
-            "inverted":false
-          },
-          "data":"covid"
-        },
-        {
-          "collides":true,
-          "speedx":3,
-          "speedy":20,
-          "coords":{
-            "pos_x":1900,
-            "pos_y":500,
-            "inverted":false
-          },
-          "data":"torreta",
-          "shot":"shot"
-        },
-	{
-	  "collides":true,
-	  "speedx":20,
-	  "speedy":0,
-	  "coords":{
-            "pos_x":2400,
-	    "pos_y":600,
-	    "inverted":false
-	  },
-	  "data":"corredor"
-	}
       ],
       "triggers":[
         {
-          "event":0,
-          "indicator":true,
-          "once":true,
-          "coords":{
-            "pos_x":300,
-            "pos_y":600,
-            "inverted": true
-          },
-          "size":{
-            "width":50,
-            "height":50
-          }
-        },
-        {
-          "event":2,
-          "id":0,
-          "once": false,
-          "indicator":true,
-          "coords":{
-            "pos_x":700,
-            "pos_y":600,
-            "inverted": false
-          },
-          "size":{
-            "width":40,
-            "height":90
-          }
-        },
-        {
+          "comment": "First checkpoint",
           "event":1,
           "indicator":true,
           "coords":{
@@ -159,6 +152,68 @@
             "width":10,
             "height":500
           }
+        },
+        {
+          "comment": "La abuela",
+          "event":2,
+          "id":0,
+          "once": false,
+          "indicator":true,
+          "coords":{
+            "pos_x":750,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":75,
+            "height":90
+          }
+        },
+        {
+          "comment": "El abuelo",
+          "event":2,
+          "id":1,
+          "once": false,
+          "indicator":true,
+          "coords":{
+            "pos_x":1900,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":55,
+            "height":120
+          }
+        },
+        {
+          "comment": "Second checkpoint",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":2700,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":10,
+            "height":500
+          }
+        },
+        {
+          "comment": "La enfermera extremadamente thicc",
+          "event":2,
+          "id":2,
+          "once": false,
+          "indicator":true,
+          "coords":{
+            "pos_x":3050,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":65,
+            "height":120
+          }
         }
       ]
     }
@@ -166,17 +221,41 @@
   "dialogs":[
     {
       "index":0,
-      "title":"Old man inquires",
-      "data":"old_man.png",
-      "text":"Do you know where the beekeper is? THIS IS A REALLY LONG TEXT ON PURPOSE BRO WHAT IS THAT, BERNIE WON ON GEORGIA TOO, WTF BRO I MEAN REALLY WTF",
+      "title":"Granny says",
+      "data":"grandma.png",
+      "text":"I used to be able to jump these, you, young boi, should be able too. Press SPACE or ARROW_UP to jump while going forward to dodge these",
       "options":[
         {
-          "text":"I confirm",
+          "text":"For sure ma lady",
+          "valid":true
+        }
+      ]
+    },
+    {
+      "index":1,
+      "title":"Old man inquires",
+      "data":"old_man.png",
+      "text":"Well, the cops want us to be silent with all this abuse taking place.I have not seen this kind of violence since Paquito's era. You should be able do dash through these spikes by pressing F while jumping. Try it out as I am too old for that... (Also, did you know Sleepy Joe won the election, what a time to be alive...)",
+      "options":[
+        {
+          "text":"I see, thanks!",
           "valid":true
         },
         {
           "text":"Get away from me you old skunk",
           "valid":false
+        }
+      ]
+    },
+    {
+      "index":2,
+      "title":"Overly sized and angry nurse",
+      "data":"nurse.png",
+      "text":"WHY ARE YOU RUNNIN! You shouln't be out here with this apocalypse going on. Go back to your house! Also, if you find any coronavirus out there, put on your mask to cancel them with D! (Did you notice that I'm almost as tall as a freaking ambulance, and the only generic unanimated NPC that is not pixel art?)",
+      "options":[
+        {
+          "text":"Yeah sure",
+          "valid":true
         }
       ]
     }
