@@ -54,6 +54,9 @@ class Player(Character):
         self._last_hit += elapsed_time
         self._parry += elapsed_time
 
+        # DEBUG PRINT POSITION
+        # print(f"{self._position}")
+
         if self._parry >= Player.PARRY_DUR and not self._end_parry:
             self._end_parry = True
             pos = self._position[0], self._position[1] - self.rect.height

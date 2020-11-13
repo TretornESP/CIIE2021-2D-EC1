@@ -102,6 +102,7 @@
           }
         },
         {
+          "comment": "la primera ambulancia",
           "kind":"ambulance",
           "sprite":"ambulance.png",
           "collides":false,
@@ -122,6 +123,18 @@
             "pos_y":600,
             "inverted":false
           }
+        },
+        {
+          "comment": "la segunda ambulancia, con las puertas abiertas",
+          "kind":"ambulance",
+          "sprite":"ambulance_opendoors.png",
+          "collides":false,
+          "scale": 13,
+          "coords":{
+            "pos_x":4000,
+            "pos_y":600,
+            "inverted":true
+          }
         }
       ],
       "objects":[
@@ -137,6 +150,110 @@
         }
       ],
       "enemies":[
+        {
+          "comment": "el efecto es que salga de la segunda ambulancia en x=4000",
+          "collides":true,
+          "speedx":7,
+          "speedy":25,
+          "coords":{
+            "pos_x":4050,
+            "pos_y":400,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":0,
+          "coords":{
+            "pos_x":5600,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":35,
+          "speedy":0,
+          "coords":{
+            "pos_x":6000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":3,
+          "speedy":20,
+          "coords":{
+            "pos_x":6500,
+            "pos_y":500,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
+        },
+        {
+          "comment": "primer covid del gang de enemigos",
+          "collides":true,
+          "speedx":7,
+          "speedy":25,
+          "coords":{
+            "pos_x":7300,
+            "pos_y":400,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "comment": "segundo covid",
+          "collides":true,
+          "speedx":7,
+          "speedy":25,
+          "coords":{
+            "pos_x":7500,
+            "pos_y":400,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":0,
+          "coords":{
+            "pos_x":7600,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":3,
+          "speedy":20,
+          "coords":{
+            "pos_x":7800,
+            "pos_y":500,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
+        },
+        {
+          "collides":true,
+          "speedx":35,
+          "speedy":0,
+          "coords":{
+            "pos_x":7900,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        }
       ],
       "triggers":[
         {
@@ -214,6 +331,48 @@
             "width":65,
             "height":120
           }
+        },
+        {
+          "comment": "Third checkpoint",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":5000,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":10,
+            "height":500
+          }
+        },
+        {
+          "comment": "Fourth checkpoint",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":6100,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":10,
+            "height":500
+          }
+        },
+        {
+          "comment": "Scene end (meta)",
+          "event":3,
+          "indicator":true,
+          "coords":{
+            "pos_x":8800,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":10,
+            "height":500
+          }
         }
       ]
     }
@@ -251,7 +410,7 @@
       "index":2,
       "title":"Overly sized and angry nurse",
       "data":"nurse.png",
-      "text":"WHY ARE YOU RUNNIN! You shouln't be out here with this apocalypse going on. Go back to your house! Also, if you find any coronavirus out there, put on your mask to cancel them with D! (Did you notice that I'm almost as tall as a freaking ambulance, and the only generic unanimated NPC that is not pixel art?)",
+      "text":"WHY ARE YOU RUNNIN! You shouln't be out here with this apocalypse going on, there is no good people past this point. Go back to your house! Also, if you find any coronavirus out there, put on your mask to cancel it with D! (Did you notice that I'm almost as tall as a freaking ambulance, and the only generic unanimated NPC that is not pixel art?)",
       "options":[
         {
           "text":"Yeah sure",
