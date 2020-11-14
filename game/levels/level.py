@@ -121,6 +121,8 @@ class Level():
         size   = self.parse_size(json['size'])
         if event == 2 and id != None:
             extra = self.dialogs[id]
+        if event == 3:
+            extra = json['next_scene']
         else:
             extra = None
         return Trigger(self.name, event, indica, once, coords, size, invert, extra, locking)

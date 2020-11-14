@@ -491,7 +491,7 @@
             "inverted": false
           },
           "size":{
-            "width":10,
+            "width":100,
             "height":500
           }
         },
@@ -507,7 +507,7 @@
             "inverted": false
           },
           "size":{
-            "width":75,
+            "width":80,
             "height":90
           }
         },
@@ -523,7 +523,7 @@
             "inverted": false
           },
           "size":{
-            "width":55,
+            "width":70,
             "height":120
           }
         },
@@ -537,7 +537,7 @@
             "inverted": false
           },
           "size":{
-            "width":10,
+            "width":100,
             "height":500
           }
         },
@@ -553,7 +553,7 @@
             "inverted": false
           },
           "size":{
-            "width":65,
+            "width":70,
             "height":120
           }
         },
@@ -567,7 +567,7 @@
             "inverted": false
           },
           "size":{
-            "width":10,
+            "width":100,
             "height":500
           }
         },
@@ -581,7 +581,7 @@
             "inverted": false
           },
           "size":{
-            "width":10,
+            "width":100,
             "height":500
           }
         },
@@ -595,7 +595,7 @@
             "inverted": false
           },
           "size":{
-            "width":10,
+            "width":100,
             "height":500
           }
         },
@@ -603,13 +603,14 @@
           "comment": "Scene end (meta)",
           "event":3,
           "indicator":true,
+	  "next_scene": "Level1",
           "coords":{
             "pos_x":11700,
             "pos_y":600,
             "inverted": false
           },
           "size":{
-            "width":10,
+            "width":100,
             "height":500
           }
         }

@@ -20,6 +20,13 @@ class Shot(Enemy):
     def update(self, elapsed_time):
         Enemy.update(self, elapsed_time)
         width, _ = ResourceManager.load_config().get_resolution()
+        left = self.rect.left
+        right = self.rect.right
+        inc = self.rect.width / 2 * (-1 if self._velocity[0] < 0 else 1)
+        self.rect.left += inc
 
-        if Farm.touches_anything_visible(self) or self.rect.left < -50 or self.rect.right > width + 50:
+        if Farm.touches_anything_visible(self) or left < -50 or right > width + 50:
             self.kill()
+            self.kill()
+
+        self.rect.left += inc

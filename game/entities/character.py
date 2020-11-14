@@ -78,7 +78,7 @@ class Character(AbstractSprite):
             self._momentum = 0
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
         if self._movement_x == Character.STILL and not self._is_jumping and self._dash >= Character.DASH_DUR:
-            self._momentum += (-vel_px if self._velocity[0] >= 0 else vel_px) * elapsed_time * 0.012
+            self._momentum += (-vel_px if self._velocity[0] >= 0 else vel_px) * elapsed_time * 0.02
             v_x = max(0, self._momentum + self._velocity[0]) if self._velocity[0] >= 0 else min(0, self._momentum + self._velocity[0])
             self._momentum = self._momentum if v_x != 0 else 0
             self._velocity = (v_x, self._velocity[1])
@@ -89,7 +89,7 @@ class Character(AbstractSprite):
         if self._dash < Character.DASH_DUR:
             direction = -1 if self._left else 1
             self._velocity = ((vel_px + 300) * elapsed_time * direction, 0)
-        self._update_sprite() 
+        self._update_sprite()
 
         # check horizontal collisions
         self._increase_position((self._velocity[0], 0))
