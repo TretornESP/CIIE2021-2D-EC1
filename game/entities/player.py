@@ -50,9 +50,13 @@ class Player(Character):
 
     def update(self, elapsed_time):
         Character.update(self, elapsed_time)
-        self._repo.set_parameter(PlayerRepository.ATTR_POS, self._position, False)
+        # Diría que no hace falta, ya que en ninguna parte del código se lee de este atributo del repositorio
+        #self._repo.set_parameter(PlayerRepository.ATTR_POS, self._position, False)
         self._last_hit += elapsed_time
         self._parry += elapsed_time
+
+        # DEBUG PRINT POSITION
+        print(f"{self._position}")
 
         if self._parry >= Player.PARRY_DUR and not self._end_parry:
             self._end_parry = True
