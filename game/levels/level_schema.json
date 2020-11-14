@@ -34,6 +34,10 @@
         "type":"number",
         "description":"event identifier"
       },
+      "locking":{
+        "type":"boolean",
+        "description":"Dialog is locking"
+      },
       "title":{
         "type":"string",
         "description":"Title of dialog"
@@ -252,6 +256,9 @@
                       "index":{
                          "$ref":"#/definitions/index"
                       },
+                      "locking":{
+                         "$ref":"#/definitions/locking"
+                      },
                       "once":{
                          "$ref":"#/definitions/once"
                       },
@@ -267,6 +274,7 @@
                    },
                    "required":[
                       "event",
+                      "indicator",
                       "coords",
                       "size"
                    ]

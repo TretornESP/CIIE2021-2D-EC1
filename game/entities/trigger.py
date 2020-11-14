@@ -12,9 +12,10 @@ class Trigger(AbstractPlatform):
     DIALOG      = 0x2
     SCENE_END   = 0x3
 
-    def __init__(self, level, id, indic, once, coord, size, invert, action_data=None):
+    def __init__(self, level, id, indic, once, coord, size, invert, action_data=None, locking=True):
         AbstractPlatform.__init__(self, level, None, True, pygame.Rect(coord, size), invert, not indic)
         self._id = id
+        self._locking = locking
         self._once = once
         self._action_data = action_data
         self._director = ResourceManager.load_director()
@@ -38,7 +39,7 @@ class Trigger(AbstractPlatform):
                     self._last = 0
                     pos = self._position[0], self._position[1] - self.rect.height
                     self._text.add_sprite(AnimatedText(pos, Trigger.DIALOG_TEXT, self._scroll))
-                if player.is_interacting():
+                if player.is_interacting() or not self._locking:
                     self._director.push_scene(self._action_data)
             elif self._id == Trigger.SCENE_END:
                 pass

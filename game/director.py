@@ -9,7 +9,10 @@ class Director:
 
     def set_checkpoint(self):
         if (len(self._scene_stack) > 0):
-            self._scene_stack[len(self._scene_stack) - 1].set_checkpoint()
+            try:
+                self._scene_stack[len(self._scene_stack) - 1].set_checkpoint()
+            except Exception:
+                pass
 
     def run_checkpoint(self):
         if (len(self._scene_stack) > 1):

@@ -106,11 +106,16 @@ class Level():
 
     def parse_trigger(self, json):
         event     = json['event']
-        id = json.get('id')
-        indica = json['indicator']
-        once = json.get('once')
+        id        = json.get('id')
+        indica    = json['indicator']
+        once      = json.get('once')
         if once == None: #Once by default is true bro
             once = True  #Once by default aint shit as it is not required by json schema!
+        locking   = json.get('locking')
+        if locking == None:
+            locking = True
+        if locking == True:
+            once = True # This prevents getting locked inside the dialog!
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         size   = self.parse_size(json['size'])
@@ -118,7 +123,7 @@ class Level():
             extra = self.dialogs[id]
         else:
             extra = None
-        return Trigger(self.name, event, indica, once, coords, size, invert, extra)
+        return Trigger(self.name, event, indica, once, coords, size, invert, extra, locking)
 
     def parse_json(self, json):
         self.id = json['id']
