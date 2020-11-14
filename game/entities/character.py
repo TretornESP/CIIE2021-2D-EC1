@@ -27,8 +27,8 @@ class Character(AbstractSprite):
         self._sheet = ResourceManager.load_sheet(level, data, colorkey=-1)
         self._level = level
         self._data = data
-        if (invert):
-            self._sheet = pygame.transform.flip(self._sheet, 1, 0)
+        if invert:
+            self._sheet = pygame.transform.flip(self._sheet, True, False)
 
         self._left = False
         self._animation_idx = 0

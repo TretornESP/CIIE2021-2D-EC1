@@ -173,7 +173,7 @@
           "sprite":"mask.png",
           "collides":true,
           "coords":{
-            "pos_x":600,
+            "pos_x":3600,
             "pos_y":590,
             "inverted":false
           }
