@@ -1,6 +1,7 @@
 from . import AbstractHorizontalScene
 from .. import ResourceManager
 from .backgrounds import MainBackground
+from ..entities import Player
 from ..entities.character import Character
 from ..player_repository import PlayerRepository #This is only for debug and can be deleted
 from ..checkpoint_repository import CheckpointRepository
@@ -34,10 +35,13 @@ class Scene(AbstractHorizontalScene):
         pos, repo = self._checkpoint.get_player()
         repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
 
-        #Reset dash and jump
+        # Reset dash and jump
         Farm.get_player()._velocity = (0, 0)
         Farm.get_player()._dash = Character.DASH_DUR+1
         Farm.get_player()._end_dash = True
+
+        # Reset invulnerability
+        Farm.get_player()._last_hit = Player.INVULNERABILITY_LAPSE+1
 
         Farm.get_player().get_repository().load_checkpoint_status(repo)
         Farm.get_player().teleport(pos)
