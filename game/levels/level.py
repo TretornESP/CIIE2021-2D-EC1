@@ -17,13 +17,13 @@ import os
 import json
 
 class Level():
-    def __init__(self, filename):
+    def __init__(self, filename, hacks=False):
         self._clog = Clog(__name__)
         self.id = None
         self.name = None
         self.scenes = []
         self.dialogs = []
-
+        self._hacks = hacks
         self._clog.info("Loading level")
         self.construct_file_path(filename)
         self.load_json_file()
@@ -50,7 +50,7 @@ class Level():
         speedx = 25 #REPLACE ME
         speedy = 40 #REPLACE ME
         datafn = json['data']
-        return Player(self.name, datafn, coords, speedx, speedy, invert)
+        return Player(self.name, datafn, coords, speedx, speedy, invert, self._hacks)
 
     def parse_platform(self, json):
         sprite = json['sprite']
