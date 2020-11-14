@@ -22,7 +22,7 @@ class Player(Character):
     PARRY_COLOR = (255, 165, 0)
     HIT_COLOR = (255, 0, 0)
 
-    INVULNERABILITY_LAPSE = 2
+    INVULNERABILITY_LAPSE = 1.3
 
     TRIGGER_HYST = 0.125
 
@@ -42,10 +42,6 @@ class Player(Character):
         self._interact_last_displayed = AnimatedText.get_duration()
         self._interact = False
 
-        self._alpha_image = None
-        self._full_image = None
-        self._was_hit = False
-
     def get_repository(self):
         return self._repo
 
@@ -59,39 +55,10 @@ class Player(Character):
         self._last_hit += elapsed_time
         self._parry += elapsed_time
 
-
-        # if self.is_invulnerable():
-        #     if self._saved_image is None:
-        #         self._saved_image = self.image.copy()
-        #     #self.image.set_alpha(0)
-        #
-        #     #print(f"{self._last_hit*1000}")
-        #     if ((self._last_hit * 1000)%500) > 250:
-        #         #print(f"Visible == {self._saved_image}")
-        #         self.image.set_alpha(0)
-        #     else:
-        #         #print(f"Invisible == {self._saved_image}")
-        #         self.image = self._saved_image.copy()
-        # else:
-        #     if self._saved_image is not None:
-        #         self.image = self._saved_image.copy()
-        #         self._saved_image = None
-
+        # Parpadeamos cuando nos toquen
         if self.is_invulnerable():
-            if self.image is not None and ((self._full_image is None) or (self._alpha_image is None)):
-                self._full_image = self.image.copy()
-                self._alpha_image = self.image.copy()
-                self._alpha_image.set_alpha(0)
-
-            self._was_hit = True
-
-            if ((self._last_hit * 1000)%500) > 250:
-                self.image = self._alpha_image
-            else:
-                self.image = self._full_image
-        else:
-            if self._full_image is not None and self._was_hit:
-                self.image = self._full_image
+            if ((self._last_hit * 1000)%150) > 75:
+                self.image.set_alpha(0)
 
         # DEBUG PRINT POSITION
         # print(f"{self._position}")
