@@ -101,12 +101,72 @@
           }
         },
         {
+          "kind":"acera_arriba",
+          "sprite":"acera_arriba.png",
+          "collides":true,
+          "coords":{
+            "pos_x":8600,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"acera_recto1",
+          "sprite":"acera_recto1.png",
+          "collides":true,
+          "coords":{
+            "pos_x":8664,
+            "pos_y":536,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"acera_abajo",
+          "sprite":"acera_arriba.png",
+          "collides":true,
+          "coords":{
+            "pos_x":8920,
+            "pos_y":600,
+            "inverted":true
+          }
+        },
+                {
+          "kind":"acera_arriba2",
+          "sprite":"acera_arriba.png",
+          "collides":true,
+          "coords":{
+            "pos_x":10000,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"acera_recto1",
+          "sprite":"acera_recto1.png",
+          "collides":true,
+          "coords":{
+            "pos_x":10064,
+            "pos_y":536,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"acera_abajo",
+          "sprite":"acera_arriba.png",
+          "collides":true,
+          "coords":{
+            "pos_x":10320,
+            "pos_y":600,
+            "inverted":true
+          }
+        },
+        {
           "kind":"meta",
           "sprite":"finish_line.png",
           "collides":false,
           "scale": 0.75,
           "coords":{
-            "pos_x":9700,
+            "pos_x":11700,
             "pos_y":600,
             "inverted":false
           }
@@ -185,7 +245,7 @@
           "speedx":0,
           "speedy":0,
           "coords":{
-            "pos_x":8800,
+            "pos_x":10900,
             "pos_y":600,
             "inverted":false
           },
@@ -196,7 +256,7 @@
           "speedx":0,
           "speedy":0,
           "coords":{
-            "pos_x":8854,
+            "pos_x":10954,
             "pos_y":600,
             "inverted":false
           },
@@ -207,7 +267,7 @@
           "speedx":0,
           "speedy":0,
           "coords":{
-            "pos_x":8908,
+            "pos_x":11008,
             "pos_y":600,
             "inverted":false
           },
@@ -218,7 +278,7 @@
           "speedx":0,
           "speedy":0,
           "coords":{
-            "pos_x":8962,
+            "pos_x":11062,
             "pos_y":600,
             "inverted":false
           },
@@ -327,6 +387,97 @@
             "inverted":false
           },
           "data":"corredor"
+        },
+        {
+          "comment": "el coronabairus del burejo este",
+          "collides":true,
+          "speedx":20,
+          "speedy":25,
+          "coords":{
+            "pos_x":9200,
+            "pos_y":590,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "comment": "los espaiqs de despues del covid encerrado",
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":9500,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":9554,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":9608,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":9662,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":9716,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":10330,
+            "pos_y":473,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":3,
+          "speedy":20,
+          "coords":{
+            "pos_x":10650,
+            "pos_y":500,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
         }
       ],
       "triggers":[
@@ -435,11 +586,25 @@
           }
         },
         {
+          "comment": "Fifth (before acera arriba) checkpoint",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":8350,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":10,
+            "height":500
+          }
+        },
+        {
           "comment": "Scene end (meta)",
           "event":3,
           "indicator":true,
           "coords":{
-            "pos_x":9700,
+            "pos_x":11700,
             "pos_y":600,
             "inverted": false
           },

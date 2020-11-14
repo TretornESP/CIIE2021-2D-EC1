@@ -57,7 +57,7 @@ class Player(Character):
 
         # Parpadeamos cuando nos toquen
         if self.is_invulnerable():
-            if ((self._last_hit * 1000)%150) > 75:
+            if ((self._last_hit * 1000)%150) > 85:
                 self.image.set_alpha(0)
 
         # DEBUG PRINT POSITION
