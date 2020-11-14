@@ -1,13 +1,21 @@
 # COVIDeogame
-## Instalación
+## \*NIX / Linux
+### Instalación
 ```console
-foo@bar:/path/to/repo$ python3.8 -m venv env
-foo@bar:/path/to/repo$ source env/bin/activate
-(env) foo@bar:/path/to/repo$ python -m pip install wheel
-(env) foo@bar:/path/to/repo$ python -m pip install -r requirements.txt
+foo@bar:/path/to/repo$ source ./venv/sh/bat
 ```
-## Ejecución
+### Ejecución
 ```console
-foo@bar:/path/to/repo$ source env/bin/activate
-(env) foo@bar:/path/to/repo$ python main.py
+(CIIE2021-2D-EC1) foo@bar:/path/to/repo$ ./main.py
+```
+### Tras la ejecución, cerrar el terminal o ejecutar
+```console
+(CIIE2021-2D-EC1) foo@bar:/path/to/repo$ deactivate
+```
+
+## Microsoft Windows
+Debe tener python instalado
+### Instalación y Ejecución
+```console
+Doble click en venv.sh.bat
 ```

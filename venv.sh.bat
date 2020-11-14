@@ -75,10 +75,8 @@ if [ "$postinstall" -eq "1" ]; then
         VER=$(uname -r)
     fi
 
-    echo "LOL $OS"
-
     if [ "$OS" = "Arch Linux" ]; then
-        echo "Arch Linux detected"
+        echo "${OS} detected"
 
         while true; do
             stty echo
@@ -103,8 +101,8 @@ if [ "$postinstall" -eq "1" ]; then
                 * ) echo "Please answer yes or no.";;
             esac
         done
-    elif [ "$OS" = "Ubuntu" ]; then
-        echo "Ubuntu detected"
+    elif [ "$OS" = "Ubuntu" ] || [  "$OS" = "Debian"  ]; then
+        echo "${OS} detected"
 
         while true; do
             stty echo
@@ -129,6 +127,32 @@ if [ "$postinstall" -eq "1" ]; then
                 * ) echo "Please answer yes or no.";;
             esac
         done
+    elif [ "$OS" = "Fedora" ]; then
+        echo "${OS} detected"
+
+        while true; do
+            stty echo
+            printf "Update repos? [y/n] "
+            read yn
+            stty echo
+            case $yn in
+                [Yy]* ) sudo yum check-update; break;;
+                [Nn]* ) break;;
+                * ) echo "Please answer yes or no.";;
+            esac
+        done
+
+        while true; do
+            stty echo
+            printf "Install dependencies? [y/n] "
+            read yn
+            stty echo
+            case $yn in
+                [Yy]* ) sudo yum install python3-pygame; break;;
+                [Nn]* ) break;;
+                * ) echo "Please answer yes or no.";;
+            esac
+        done
     else
         echo "Unsupported distribution detected. Please contact developer team"
     fi
@@ -137,6 +161,16 @@ if [ "$postinstall" -eq "1" ]; then
     pip install wheel
     pip install -r requirements.txt
 fi
+
+echo
+echo "******************************************************************"
+echo "* You have just succesfully configured your virtual environment! *"
+echo "* To play the game just type ./main.py                           *"
+echo "* When you are done playing, just close the terminal or type     *"
+echo "* \"deactivate\" to exit the virtual environment.                  *"
+echo "*                                                                *"
+echo "*    Have fun and stay safe!                                     *"
+echo "******************************************************************"
 
 # bash stuff
 return # Exit script on *NIX
@@ -149,8 +183,8 @@ return # Exit script on *NIX
 : # WINDOWS CMD SCRIPT # : [cosas de xabi]
 
 :WINDOWS
-virtualenv test
-call .\test\Scripts\activate
-pip install pygame
+virtualenv env
+call .\env\Scripts\activate
+pip install wheel
 pip install -r requirements.txt
 python main.py

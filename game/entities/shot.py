@@ -25,8 +25,12 @@ class Shot(Enemy):
         inc = self.rect.width / 2 * (-1 if self._velocity[0] < 0 else 1)
         self.rect.left += inc
 
+        left = self.rect.left
+        right = self.rect.right
+        inc = self.rect.width / 2 * (-1 if self._velocity[0] < 0 else 1)
+        self.rect.left += inc
+
         if Farm.touches_anything_visible(self) or left < -50 or right > width + 50:
-            self.kill()
             self.kill()
 
         self.rect.left += inc
