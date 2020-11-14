@@ -25,9 +25,18 @@ class Scene(AbstractHorizontalScene):
         self._farm_factory = farm_factory
         self._farm_factory.push_to_charge()
 
-    def set_checkpoint(self):
+    def get_id(self):
+        return self._id
+
+    def get_scroll_x(self):
+        return self._scroll_x
+
+    def set_checkpoint(self, _scroll_x=None):
         self._checkpoint.set_player(Farm.get_player())
-        self._checkpoint.set_scroll(self._scroll_x)
+        if _scroll_x != None:
+            self._checkpoint.set_scroll(_scroll_x)
+        else:
+            self._checkpoint.set_scroll(self._scroll_x)
 
     def run_checkpoint(self):
         if self._checkpoint.get_player() == None:

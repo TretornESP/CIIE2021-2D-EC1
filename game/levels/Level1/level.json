@@ -9,7 +9,7 @@
       "scroll":5000,
       "player":{
         "coords":{
-          "pos_x":50,
+          "pos_x":1700,
           "pos_y":600,
           "inverted": false
         },
@@ -55,9 +55,39 @@
             "inverted":false
           },
           "scale": 0.5
+        },
+        {
+          "sprite":"scene0/ticket_machine.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1950,
+            "pos_y":590,
+            "inverted":false
+          },
+          "scale": 0.7
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2100,
+            "pos_y":450,
+            "inverted":false
+          },
+          "scale": 0.5
         }
       ],
       "objects":[
+        {
+          "kind":"mask",
+          "sprite":"mask.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1770,
+            "pos_y":350,
+            "inverted":false
+          }
+        }
       ],
       "enemies":[
         {
@@ -78,6 +108,28 @@
           "coords":{
             "pos_x":1680,
             "pos_y":360,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":5,
+          "coords":{
+            "pos_x":2200,
+            "pos_y":400,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2200,
+            "pos_y":600,
             "inverted":false
           },
           "data":"spikes"

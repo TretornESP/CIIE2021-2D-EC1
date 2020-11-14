@@ -25,6 +25,7 @@ class AbstractHorizontalScene(AbstractScene):
     # CONTROL_DASH_BINDING    = K_j
 
     # Alternative layout
+    CONTROL_RELOAD_BINDING  = K_r
     CONTROL_JUMP_BINDING    = (K_UP, K_SPACE)
     CONTROL_DOWN_BINDING    = K_DOWN
     CONTROL_RIGHT_BINDING   = K_RIGHT
@@ -73,6 +74,8 @@ class AbstractHorizontalScene(AbstractScene):
                 self._director.quit_game()
             elif event.type == KEYDOWN and (event.key in self.CONTROL_PAUSE_BINDING):
                 self._director.push_scene(PauseMenu(self.CONTROL_PAUSE_BINDING))
+            elif event.type == KEYDOWN and (event.key == self.CONTROL_RELOAD_BINDING):
+                pass
         keys_pressed = pygame.key.get_pressed()
 
         Farm.get_player().move(keys_pressed, up=self.CONTROL_JUMP_BINDING,

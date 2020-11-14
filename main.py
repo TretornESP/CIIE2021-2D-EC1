@@ -14,15 +14,13 @@ if __name__ == '__main__':
     invulnerable = False
     verbose = False
     for o, a in opts:
-        if o == "-v":
-            verbose = True
-        elif o in ("-h", "--help"):
-            print("Options: --invulnerable")
+        if o in ("-h", "--help"):
+            print("Options: --invulnerable --debug_scene=name")
             sys.exit()
-        elif o in ("-i", "--invulnerable"):
+        if o in ("-i", "--invulnerable"):
             invulnerable = True
-        else:
-            assert False, "unhandled option"
+        if o in ("-d", "--debug"):
+            ResourceManager.enable_debug(a)
 
     director = ResourceManager.load_director()
     director.push_scene(MainMenu(invulnerable))
