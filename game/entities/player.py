@@ -22,7 +22,7 @@ class Player(Character):
     PARRY_COLOR = (255, 165, 0)
     HIT_COLOR = (255, 0, 0)
 
-    INVULNERABILITY_LAPSE = 2
+    INVULNERABILITY_LAPSE = 1.3
 
     TRIGGER_HYST = 0.125
 
@@ -55,8 +55,13 @@ class Player(Character):
         self._last_hit += elapsed_time
         self._parry += elapsed_time
 
+        # Parpadeamos cuando nos toquen
+        if self.is_invulnerable():
+            if ((self._last_hit * 1000)%150) > 75:
+                self.image.set_alpha(0)
+
         # DEBUG PRINT POSITION
-        print(f"{self._position}")
+        # print(f"{self._position}")
 
         if self._parry >= Player.PARRY_DUR and not self._end_parry:
             self._end_parry = True
