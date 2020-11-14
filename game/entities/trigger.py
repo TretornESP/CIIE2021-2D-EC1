@@ -41,7 +41,11 @@ class Trigger(AbstractPlatform):
                 if player.is_interacting():
                     self._director.push_scene(self._action_data)
             elif self._id == Trigger.SCENE_END:
-                pass
+                from game.levels import Level
+                scenes = Level(self._action_data).get_scenes()
+                self._director.end_scene()
+                for scene in scenes:
+                    self._director.change_scene(scene)
             else:
                 raise NotImplemented("This trigger does not exist")
 
