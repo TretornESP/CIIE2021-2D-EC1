@@ -102,6 +102,9 @@ class Player(Character):
         pos = self._position[0], self._position[1] - self.rect.height
         self._text.add_sprite(AnimatedText(pos, Player.HIT_TEXT, self._scroll, Player.HIT_COLOR))
 
+    def insta_kill(self):
+        self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, 0)
+
     def is_interacting(self):
         return self._interact
 

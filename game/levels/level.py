@@ -1,5 +1,6 @@
 import pygame
 from game import ResourceManager
+from ..entities.spikes import Spikes
 from ..scenes import AbstractHorizontalScene
 from ..scenes.skies import AbstractSky
 from game.entities import Platform, Player, Covid, Torreta, Corredor
@@ -98,6 +99,8 @@ class Level():
             return Torreta(self.name, datafn, shot, coords, speedx, speedy, invert)
         elif datafn == 'corredor':
             return Corredor(self.name, datafn, coords, speedx, speedy, invert)
+        elif datafn == 'spikes':
+            return Spikes(self.name, datafn, coords, speedx, speedy, invert)
         else:
             raise NotImplemented("No existe este enemigo")
 

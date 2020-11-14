@@ -1,6 +1,7 @@
 from . import AbstractHorizontalScene
 from .. import ResourceManager
 from .backgrounds import MainBackground
+from ..entities.character import Character
 from ..player_repository import PlayerRepository #This is only for debug and can be deleted
 from ..checkpoint_repository import CheckpointRepository
 from ..entities.hud import Hud
@@ -32,6 +33,12 @@ class Scene(AbstractHorizontalScene):
             return False
         pos, repo = self._checkpoint.get_player()
         repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
+
+        #Reset dash and jump
+        Farm.get_player()._velocity = (0, 0)
+        Farm.get_player()._dash = Character.DASH_DUR+1
+        Farm.get_player()._end_dash = True
+
         Farm.get_player().get_repository().load_checkpoint_status(repo)
         Farm.get_player().teleport(pos)
         self._scroll_x = self._checkpoint.get_scroll()
