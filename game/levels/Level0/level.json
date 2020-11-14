@@ -15,7 +15,7 @@
         },
         "data":"player"
       },
-      "platforms": [
+      "platforms":[
         {
           "sprite":"grandma.png",
           "collides":false,
