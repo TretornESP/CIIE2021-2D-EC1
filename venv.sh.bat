@@ -138,6 +138,15 @@ if [ "$postinstall" -eq "1" ]; then
     pip install -r requirements.txt
 fi
 
+echo "******************************************************************"
+echo "* You have just succesfully configured your virtual environment! *"
+echo "* To play the game just type ./main.py                           *"
+echo "* When you are done playing, just close the terminal or type     *"
+echo "* \"deactivate\" to exit the virtual environment.                *"
+echo "*                                                                *"
+echo "*    Have fun and stay safe!                                     *"
+echo "******************************************************************"
+
 # bash stuff
 return # Exit script on *NIX
 
