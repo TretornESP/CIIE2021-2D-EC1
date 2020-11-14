@@ -135,6 +135,36 @@
             "pos_y":600,
             "inverted":true
           }
+        },
+        {
+          "sprite":"lamp.png",
+          "collides":true,
+          "coords":{
+            "pos_x":7600,
+            "pos_y":600,
+            "inverted": true
+          }
+        },
+        {
+          "kind":"car",
+          "sprite":"car.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4850,
+            "pos_y":600,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"meta",
+          "sprite":"finish_line.png",
+          "collides":false,
+          "scale": 0.75,
+          "coords":{
+            "pos_x":8800,
+            "pos_y":600,
+            "inverted":false
+          }
         }
       ],
       "objects":[
@@ -225,7 +255,7 @@
           "speedx":20,
           "speedy":0,
           "coords":{
-            "pos_x":7600,
+            "pos_x":7500,
             "pos_y":600,
             "inverted":false
           },
@@ -245,10 +275,10 @@
         },
         {
           "collides":true,
-          "speedx":35,
+          "speedx":30,
           "speedy":0,
           "coords":{
-            "pos_x":7900,
+            "pos_x":8500,
             "pos_y":600,
             "inverted":false
           },
@@ -394,7 +424,7 @@
       "index":1,
       "title":"Old man inquires",
       "data":"old_man.png",
-      "text":"Well, the cops want us to be silent with all this abuse taking place.I have not seen this kind of violence since Paquito's era. You should be able do dash through these spikes by pressing F while jumping. Try it out as I am too old for that... (Also, did you know Sleepy Joe won the election, what a time to be alive...)",
+      "text":"Well, the cops want us to be silent with all this abuse taking place. I have not seen this kind of violence since Paquito's era. You should be able do dash over those   spikes by pressing F while jumping. Try it out as I am too old for that... (Also, did you know Sleepy Joe won the election, what a time to be alive...)",
       "options":[
         {
           "text":"I see, thanks!",

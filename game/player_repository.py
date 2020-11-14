@@ -2,8 +2,8 @@ from pygame.locals import *
 
 
 class PlayerRepository:
-    DEFAULT_HEALTH = 6
-    DEFAULT_MASKS = 3
+    DEFAULT_HEALTH = 2
+    DEFAULT_MASKS = 2
 
     ATTR_HEALTH = "attr_health"
     ATTR_MASKS = "attr_masks"
