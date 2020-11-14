@@ -47,61 +47,6 @@
           "scale": 2
         },
         {
-          "kind":"spikes",
-          "sprite":"spikes.png",
-          "collides":true,
-          "scale": 3,
-          "coords":{
-            "pos_x":2100,
-            "pos_y":600,
-            "inverted":false
-          }
-        },
-        {
-          "kind":"spikes",
-          "sprite":"spikes.png",
-          "collides":true,
-          "scale": 3,
-          "coords":{
-            "pos_x":2154,
-            "pos_y":600,
-            "inverted":false
-          }
-        },
-        {
-          "kind":"spikes",
-          "sprite":"spikes.png",
-          "collides":true,
-          "scale": 3,
-          "coords":{
-            "pos_x":2208,
-            "pos_y":600,
-            "inverted":false
-          }
-        },
-        {
-          "kind":"spikes",
-          "sprite":"spikes.png",
-          "collides":true,
-          "scale": 3,
-          "coords":{
-            "pos_x":2262,
-            "pos_y":600,
-            "inverted":false
-          }
-        },
-        {
-          "kind":"spikes",
-          "sprite":"spikes.png",
-          "collides":true,
-          "scale": 3,
-          "coords":{
-            "pos_x":2316,
-            "pos_y":600,
-            "inverted":false
-          }
-        },
-        {
           "comment": "la primera ambulancia",
           "kind":"ambulance",
           "sprite":"ambulance.png",
@@ -161,7 +106,7 @@
           "collides":false,
           "scale": 0.75,
           "coords":{
-            "pos_x":8800,
+            "pos_x":9700,
             "pos_y":600,
             "inverted":false
           }
@@ -180,6 +125,105 @@
         }
       ],
       "enemies":[
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2100,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2154,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2208,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2262,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2316,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":8800,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":8854,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":8908,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":8962,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
         {
           "comment": "el efecto es que salga de la segunda ambulancia en x=4000",
           "collides":true,
@@ -395,7 +439,7 @@
           "event":3,
           "indicator":true,
           "coords":{
-            "pos_x":8800,
+            "pos_x":9700,
             "pos_y":600,
             "inverted": false
           },
@@ -424,7 +468,7 @@
       "index":1,
       "title":"Old man inquires",
       "data":"old_man.png",
-      "text":"Well, the cops want us to be silent with all this abuse taking place. I have not seen this kind of violence since Paquito's era. You should be able do dash over those   spikes by pressing F while jumping. Try it out as I am too old for that... (Also, did you know Sleepy Joe won the election, what a time to be alive...)",
+      "text":"Well, the cops want us to be silent with all this abuse taking place. I have not seen this kind of violence since Paquito's era. You should be able do dash over those spikes by pressing F while jumping. Try it out as I am too old for that... (Also, did you know Sleepy Joe won the election, what a time to be alive...)",
       "options":[
         {
           "text":"I see, thanks!",
