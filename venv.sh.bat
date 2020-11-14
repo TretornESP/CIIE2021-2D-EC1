@@ -183,8 +183,8 @@ return # Exit script on *NIX
 : # WINDOWS CMD SCRIPT # : [cosas de xabi]
 
 :WINDOWS
-virtualenv test
-call .\test\Scripts\activate
-pip install pygame
+virtualenv env
+call .\env\Scripts\activate
+pip install wheel
 pip install -r requirements.txt
 python main.py
