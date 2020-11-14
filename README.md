@@ -10,7 +10,7 @@ foo@bar:/path/to/repo$ source ./venv/sh/bat
 ```
 ### Tras la ejecución, cerrar el terminal o ejecutar
 ```console
-foo@bar:/path/to/repo$ deactivate
+(CIIE2021-2D-EC1) foo@bar:/path/to/repo$ deactivate
 ```
 
 ## Microsoft Windows
