@@ -576,7 +576,7 @@
         {
           "collides":true,
           "speedx":15,
-          "speedy":0,
+          "speedy":10,
           "coords":{
             "pos_x":1000,
             "pos_y":600,
@@ -587,7 +587,7 @@
         {
           "collides":true,
           "speedx":20,
-          "speedy":0,
+          "speedy":15,
           "coords":{
             "pos_x":1200,
             "pos_y":600,
@@ -686,8 +686,8 @@
         },
         {
           "collides":true,
-          "speedx":1,
-          "speedy":0,
+          "speedx":2,
+          "speedy":10,
           "coords":{
             "pos_x":3150,
             "pos_y":425,
@@ -1105,7 +1105,7 @@
         {
           "comment": "Music epique",
           "event":0,
-          "id":"skadem.ogg",
+          "id":"schrodinger.ogg",
           "indicator":true,
           "coords":{
             "pos_x":0,
@@ -1226,7 +1226,7 @@
             "sprite":"mask.png",
             "collides":true,
             "coords":{
-              "pos_x":340,
+              "pos_x":950,
               "pos_y":370,
               "inverted":false
             }
@@ -1238,7 +1238,7 @@
             "sprite":"egg.png",
             "collides":true,
             "coords":{
-              "pos_x":100,
+              "pos_x":950,
               "pos_y":600,
               "inverted":false
             },
@@ -1253,7 +1253,7 @@
             "sprite":"egg.png",
             "collides":true,
             "coords":{
-              "pos_x":100,
+              "pos_x":950,
               "pos_y":600,
               "inverted":false
             },

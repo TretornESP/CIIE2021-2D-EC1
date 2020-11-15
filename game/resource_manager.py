@@ -8,6 +8,9 @@ from .configuration import Configuration
 from .director import Director
 from pygame.locals import *
 
+if __name__ != "__main__":
+    pygame.mixer.init()
+
 class ResourceManager(object):
     CONFIGURATION_NAME = "config.json"
     TEXT_REPO_NAME = "text.repository"
@@ -18,6 +21,14 @@ class ResourceManager(object):
     _resources = {}
     _debug = None
     _sound = {}
+
+    _channels = [
+            pygame.mixer.Channel(0),
+            pygame.mixer.Channel(1),
+            pygame.mixer.Channel(2),
+            pygame.mixer.Channel(3)
+    ]
+    _channel_idx = 0
 
     @classmethod
     def enable_debug(cls, debug):
@@ -32,11 +43,10 @@ class ResourceManager(object):
             try:
                 sound = pygame.mixer.Sound(path)
             except Exception as e:
-                print(path)
-                print(e)
                 raise SystemExit("End")
             cls._sound[path] = sound
-        sound.play()
+        cls._channel_idx = (cls._channel_idx + 1) % len(cls._channels)
+        cls._channels[cls._channel_idx].play(sound)
 
     @classmethod
     def get_debug_name(cls):
@@ -88,7 +98,6 @@ class ResourceManager(object):
             path = os.path.abspath(__package__)
             fullname = os.path.join(path, level, "sprites", name)
             try:
-                print(f"loading sprite at {fullname}")
                 image = pygame.image.load(fullname)
             except Exception:
                 print(f"Cannot load sprite resource with name {name} at {fullname}")

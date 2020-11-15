@@ -3,7 +3,6 @@ from .abstract_menu import AbstractMenu
 from .pause_screen import PauseScreen
 from pygame.locals import *
 
-
 class PauseMenu(AbstractMenu):
     def __init__(self, pause_binding):
         AbstractMenu.__init__(self)
@@ -26,5 +25,4 @@ class PauseMenu(AbstractMenu):
         self._director.end_scene()
 
     def quit_game(self):
-        self._director.end_scene()
-        self._director.end_scene()
+        self._director.flush_scene()

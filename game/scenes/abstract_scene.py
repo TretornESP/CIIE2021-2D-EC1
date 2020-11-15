@@ -29,5 +29,3 @@ class AbstractScene:
     def start_scene(self):
         if self._farm_factory != None:
             self._farm_factory.push_to_charge()
-        else:
-            print("Trying to start farmless scene!")
