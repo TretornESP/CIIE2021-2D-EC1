@@ -17,13 +17,13 @@ import os
 import json
 
 class Level():
-    def __init__(self, filename):
+    def __init__(self, filename, hacks=False):
         self._clog = Clog(__name__)
         self.id = None
         self.name = None
         self.scenes = []
         self.dialogs = []
-
+        self._hacks = hacks
         self._clog.info("Loading level")
         self.construct_file_path(filename)
         self.load_json_file()
@@ -50,7 +50,7 @@ class Level():
         speedx = 25 #REPLACE ME
         speedy = 40 #REPLACE ME
         datafn = json['data']
-        return Player(self.name, datafn, coords, speedx, speedy, invert)
+        return Player(self.name, datafn, coords, speedx, speedy, invert, self._hacks)
 
     def parse_platform(self, json):
         sprite = json['sprite']
@@ -106,11 +106,16 @@ class Level():
 
     def parse_trigger(self, json):
         event     = json['event']
-        id = json.get('id')
-        indica = json['indicator']
-        once = json.get('once')
+        id        = json.get('id')
+        indica    = json['indicator']
+        once      = json.get('once')
         if once == None: #Once by default is true bro
             once = True  #Once by default aint shit as it is not required by json schema!
+        locking   = json.get('locking')
+        if locking == None:
+            locking = True
+        if locking == True:
+            once = True # This prevents getting locked inside the dialog!
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         size   = self.parse_size(json['size'])
@@ -120,7 +125,7 @@ class Level():
             extra = json['next_scene']
         else:
             extra = None
-        return Trigger(self.name, event, indica, once, coords, size, invert, extra)
+        return Trigger(self.name, event, indica, once, coords, size, invert, extra, locking)
 
     def parse_json(self, json):
         self.id = json['id']

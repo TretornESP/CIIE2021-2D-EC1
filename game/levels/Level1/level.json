@@ -1,111 +1,187 @@
 {
-   "id":"CVDG_LVL_0",
-   "name":"Level0",
-   "scenes":[
-      {
-         "id":"SCN_0",
-         "background":"background.png",
-         "scroll":2000,
-         "player":{
-            "coords":{
-               "pos_x":0,
-               "pos_y":300,
-               "inverted": false
-            },
-            "data":"player"
-         },
-         "platforms":[
-            {
-               "sprite":"lamp.png",
-               "collides":false,
-               "coords":{
-                  "pos_x":150,
-                  "pos_y":300,
-                  "inverted": false
-               }
-            },
-            {
-               "sprite":"car.png",
-               "collides":true,
-               "coords":{
-                  "pos_x":100,
-                  "pos_y":300,
-                  "inverted": false
-               }
-            }
-         ],
-         "objects":[
-            {
-               "kind": "mask",
-               "sprite":"mask.png",
-               "collides":false,
-               "coords":{
-                  "pos_x":100,
-                  "pos_y":250,
-                  "inverted": false
-               }
-            },
-            {
-               "kind": "mask",
-               "sprite":"mask.png",
-               "collides":true,
-               "coords":{
-                  "pos_x":10,
-                  "pos_y":300,
-                  "inverted": false
-               }
-            }
-         ],
-         "enemies":[
-            {
-               "kind": "covid",
-               "collides":true,
-               "coords":{
-                  "pos_x":40,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "data":"covid"
-            },
-            {
-               "kind": "covid",
-               "collides":true,
-               "coords":{
-                  "pos_x":70,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "data":"covid"
-            }
-         ],
-         "triggers":[
-            {
-               "id":"EV0",
-               "indicator":true,
-               "coords":{
-                  "pos_x":80,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "size":{
-                 "width":10,
-                 "height":100
-               }
-            },
-            {
-               "id":"EV1",
-               "indicator":true,
-               "coords":{
-                  "pos_x":400,
-                  "pos_y":300,
-                  "inverted": false
-               },
-               "size":{
-                 "width":10,
-                 "height":100
-               }
-            }
-         ]
-      }
-   ]
+  "id":"CVDG_LVL_1",
+  "name":"Level1",
+  "scenes":[
+    {
+      "id":"SCN_0",
+      "sky":"sky.png",
+      "background":"scene0/background.png",
+      "scroll":5000,
+      "player":{
+        "coords":{
+          "pos_x":1700,
+          "pos_y":600,
+          "inverted": false
+        },
+        "data":"player"
+      },
+      "platforms":[
+        {
+          "sprite":"scene0/woman_waiting.png",
+          "collides":false,
+          "coords": {
+            "pos_x":950,
+            "pos_y":570,
+            "inverted": false
+          },
+          "scale": 0.4
+        },
+        {
+          "sprite":"scene0/bin.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1100,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale": 0.4
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1300,
+            "pos_y":450,
+            "inverted":false
+          },
+          "scale": 0.4
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1600,
+            "pos_y":400,
+            "inverted":false
+          },
+          "scale": 0.5
+        },
+        {
+          "sprite":"scene0/ticket_machine.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1950,
+            "pos_y":590,
+            "inverted":false
+          },
+          "scale": 0.7
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2100,
+            "pos_y":450,
+            "inverted":false
+          },
+          "scale": 0.5
+        }
+      ],
+      "objects":[
+        {
+          "kind":"mask",
+          "sprite":"mask.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1770,
+            "pos_y":350,
+            "inverted":false
+          }
+        }
+      ],
+      "enemies":[
+        {
+          "collides":true,
+          "speedx":7,
+          "speedy":25,
+          "coords":{
+            "pos_x":1300,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":1680,
+            "pos_y":360,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":5,
+          "coords":{
+            "pos_x":2200,
+            "pos_y":400,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2200,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        }
+      ],
+      "triggers":[
+        {
+          "comment": "La abuela",
+          "event":2,
+          "id":0,
+          "locking": true,
+          "once": true,
+          "indicator":true,
+          "coords":{
+            "pos_x":950,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":50,
+            "height":200
+          }
+        },
+        {
+          "comment": "Checkpoint before first fight",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":1000,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":75,
+            "height":200
+          }
+        }
+      ]
+    }
+  ],
+  "dialogs":[
+    {
+      "index":0,
+      "title":"You meet an strange lady",
+      "data":"old_woman_head.png",
+      "text":"Hi kiddo, do you know how long will it take for the train to arrive?... Oh, nevermind, i hear it coming",
+      "options":[
+        {
+          "text":"Continue",
+          "valid":true
+        }
+      ]
+    }
+  ]
 }

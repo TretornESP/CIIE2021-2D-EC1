@@ -9,7 +9,10 @@ class Director:
 
     def set_checkpoint(self):
         if (len(self._scene_stack) > 0):
-            self._scene_stack[len(self._scene_stack) - 1].set_checkpoint()
+            try:
+                self._scene_stack[len(self._scene_stack) - 1].set_checkpoint()
+            except Exception:
+                pass
 
     def run_checkpoint(self):
         if (len(self._scene_stack) > 1):
@@ -56,6 +59,15 @@ class Director:
         self._end_scene = True
         self._scene_stack = []
 
+    def debug(self, level):
+        current = self._scene_stack[len(self._scene_stack) - 1]
+        for scene in level.get_scenes():
+            if scene.get_id() == current.get_id():
+                scr = current.get_scroll_x()
+                scene.set_checkpoint(scr)
+                self.push_scene(scene)
+                self.run_checkpoint()
+
     def flush_scene(self):
         while (len(self._scene_stack) > 1):
             self._scene_stack.pop()
@@ -63,7 +75,6 @@ class Director:
 
     def _game_loop(self, scene):
         pygame.event.clear()
-
         self._end_scene = False
         scene.start_scene()
         while not self._end_scene:

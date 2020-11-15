@@ -26,7 +26,7 @@ class Player(Character):
 
     TRIGGER_HYST = 0.125
 
-    def __init__(self, level, data, coord, speedx=25, speedy=40, invert=False):
+    def __init__(self, level, data, coord, speedx=25, speedy=40, invert=False, invincible=False):
         Character.__init__(self, level, data, coord, invert, speedx, speedy)
 
         self._repo = ResourceManager.get_player_repository()
@@ -35,6 +35,7 @@ class Player(Character):
         self._last_hit = Player.INVULNERABILITY_LAPSE
         self._parry = Player.PARRY_CD
 
+        self._invincible = invincible
         self._end_parry = True
 
         self._pending_trigger = None
@@ -108,7 +109,8 @@ class Player(Character):
         self._text.add_sprite(AnimatedText(pos, Player.HIT_TEXT, self._scroll, Player.HIT_COLOR))
 
     def insta_kill(self):
-        self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, 0)
+        if not self.is_invulnerable():
+            self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, 0)
 
     def is_interacting(self):
         return self._interact
@@ -117,7 +119,7 @@ class Player(Character):
         return self._parry < Player.PARRY_DUR
 
     def is_invulnerable(self):
-        return self._last_hit < Player.INVULNERABILITY_LAPSE
+        return (self._last_hit < Player.INVULNERABILITY_LAPSE) or self._invincible
 
     def end_parry(self):
         self._parry = Player.PARRY_DUR

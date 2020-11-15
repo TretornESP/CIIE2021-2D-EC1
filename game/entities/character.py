@@ -89,7 +89,7 @@ class Character(AbstractSprite):
         if self._dash < Character.DASH_DUR:
             direction = -1 if self._left else 1
             self._velocity = ((vel_px + 300) * elapsed_time * direction, 0)
-        self._update_sprite() 
+        self._update_sprite()
 
         # check horizontal collisions
         self._increase_position((self._velocity[0], 0))

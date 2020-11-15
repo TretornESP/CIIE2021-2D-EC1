@@ -16,7 +16,16 @@ class ResourceManager(object):
     CHECKPOINT_REPO_NAME = "checkpoint.repository"
 
     _resources = {}
+    _debug = None
 
+    @classmethod
+    def enable_debug(cls, debug):
+        cls._debug = debug
+
+    @classmethod
+    def get_debug_name(cls):
+        return cls._debug
+        
     @classmethod
     def load_director(cls):
         if not ResourceManager.DIRECTOR_NAME in cls._resources:
