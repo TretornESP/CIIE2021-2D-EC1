@@ -9,6 +9,7 @@ class PlayerRepository:
     ATTR_MASKS = "attr_masks"
     ATTR_TOILET_PAPER = "attr_toilet_paper"
     ATTR_POS = "attr_position" #TODO, los checkpoints deberían sacar de aqui la posicion!
+    ATTR_TOTAL_TIME = "attr_total_time"
 
     def __init__(self):
         self._data = {}
