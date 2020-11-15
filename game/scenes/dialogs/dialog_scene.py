@@ -1,6 +1,4 @@
 from .. import AbstractHorizontalScene
-from ... import Configuration
-from ..backgrounds import MainBackground
 from ..skies import AbstractSky
 import pygame
 
@@ -26,7 +24,7 @@ class DialogScene(AbstractHorizontalScene):
         self._options = options
         self._director = director
 
-        self._sky = AbstractSky(level, sky)
+        self._sky = AbstractSky(level, self._sky)
         self._player = None
         self._objects   = pygame.sprite.Group()
         self._enemies   = pygame.sprite.Group()

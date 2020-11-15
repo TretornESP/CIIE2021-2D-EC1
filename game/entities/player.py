@@ -59,6 +59,9 @@ class Player(Character):
             if ((self._last_hit * 1000) % 150) > 85:
                 self.image.set_alpha(0)
 
+        # Iñaki no me toques el print que te veo venir
+        # print(f"{self._position}")
+
         if self._parry >= Player.PARRY_DUR and not self._end_parry:
             self._end_parry = True
             pos = self._position[0], self._position[1] - self.rect.height
@@ -89,13 +92,6 @@ class Player(Character):
             Character.do_dash(self)
 
         self._interact = keys_pressed[interact]
-
-    # esto no es responsabilidad del player
-    def reset_hearts(self):
-        self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
-
-    def reset_masks(self):
-        self._repo.set_parameter(PlayerRepository.ATTR_MASKS, PlayerRepository.DEFAULT_MASKS)
 
     def teleport(self, position):
         self.set_global_position(position)
@@ -134,6 +130,13 @@ class Player(Character):
         self._text.add_sprite(AnimatedText(pos, Player.MASK_TEXT, self._scroll, Player.MASK_COLOR))
         current_masks = self._repo.get_parameter(PlayerRepository.ATTR_MASKS)
         self._repo.set_parameter(PlayerRepository.ATTR_MASKS, current_masks + 1)
+
+    def pick_toilet(self):
+        pos = (self._position[0], self._position[1] - self.rect.height)
+        #self._text.add_sprite(AnimatedText(pos, Player.MASK_TEXT, self._scroll, Player.MASK_COLOR))
+        current_toilets = self._repo.get_parameter(PlayerRepository.ATTR_TOILET_PAPER)
+        self._repo.set_parameter(PlayerRepository.ATTR_TOILET_PAPER, current_toilets + 1)
+        print(f"{self._repo.get_parameter(PlayerRepository.ATTR_TOILET_PAPER)}")
 
     def do_parry(self):
         current_masks = self._repo.get_parameter(PlayerRepository.ATTR_MASKS)

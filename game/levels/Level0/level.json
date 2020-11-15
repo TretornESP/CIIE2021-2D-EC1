@@ -130,7 +130,7 @@
             "inverted":true
           }
         },
-                {
+        {
           "kind":"acera_arriba2",
           "sprite":"acera_arriba.png",
           "collides":true,
@@ -621,7 +621,7 @@
           "comment": "Scene end (meta)",
           "event":3,
           "indicator":true,
-	  "next_scene": "Level1",
+          "next_scene": "Level1",
           "coords":{
             "pos_x":11700,
             "pos_y":600,
