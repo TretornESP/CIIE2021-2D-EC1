@@ -2,9 +2,10 @@
 
 from game import ResourceManager
 from game.scenes import MainMenu
-import sys, getopt
+import sys, getopt, os
 
 if __name__ == '__main__':
+    sys.path.append(os.getcwd())
     try:
         opts, args = getopt.getopt(sys.argv[1:], "ho:v", ["help", "invulnerable"])
     except getopt.GetoptError as err:

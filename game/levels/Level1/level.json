@@ -5,12 +5,12 @@
     {
       "id":"SCN_3",
       "sky":"sky.png",
-      "background":"scene3/background.png",
+      "background":"scene3/background.jpg",
       "scroll":2335,
       "player":{
         "coords":{
-          "pos_x":0,
-          "pos_y":600,
+          "pos_x":50,
+          "pos_y":300,
           "inverted": false
         },
         "data":"player"
@@ -35,7 +35,7 @@
             "inverted": false
           },
           "size":{
-            "width":100,
+            "width":300,
             "height":100
           }
         },
@@ -59,7 +59,7 @@
     {
       "id":"SCN_2",
       "sky":"sky.png",
-      "background":"scene2/background.png",
+      "background":"scene2/background.jpg",
       "scroll":5500,
       "player":{
         "coords":{
@@ -358,11 +358,11 @@
     {
       "id":"SCN_1",
       "sky":"sky.png",
-      "background":"scene1/background_long.png",
+      "background":"scene1/background_long.jpg",
       "scroll":6500,
       "player":{
         "coords":{
-          "pos_x":0,
+          "pos_x":50,
           "pos_y":600,
           "inverted": false
         },
@@ -822,7 +822,7 @@
       "scroll":5000,
       "player":{
         "coords":{
-          "pos_x":0,
+          "pos_x":50,
           "pos_y":600,
           "inverted": false
         },
