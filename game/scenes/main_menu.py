@@ -22,9 +22,12 @@ class MainMenu(AbstractMenu):
         repo = ResourceManager.get_player_repository()
         repo.reset_attr()
 
-        level = Level("Level0", self._hacks)
-        for scene in level.get_scenes():
-            self._director.push_scene(scene)
+        level1 = Level("Level1", self._hacks)
+        level0 = Level("Level0", self._hacks)
+
+        for level in [level1, level0]:
+            for scene in level.get_scenes():
+                self._director.push_scene(scene)
 
     def quit_game(self):
         self._director.quit_game()
