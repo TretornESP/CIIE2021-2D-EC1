@@ -15,10 +15,9 @@ class WinScreen(AbstractScreen):
         white = (255, 255, 255)
         font_64 = ResourceManager.load_font_asset("8bit.ttf", 64)
         font_32 = ResourceManager.load_font_asset("8bit.ttf", 32)
-        font_24 = ResourceManager.load_font_asset("8bit.ttf", 24)
 
         title = TextGUI(self, font_64, white, "Has ganado", (self._x_total_half, 120))
-        score = TextGUI(self, font_24, white, f"Score: {score} sec", (self._x_total_half, 300))
+        score = TextGUI(self, font_64, white, f"Score: {score} sec", (self._x_total_half, 300))
         exit = TextGUI(self, font_32, white, "Salir", (self._x_total_half, 480))
 
         self._gui_elements.append(title)
