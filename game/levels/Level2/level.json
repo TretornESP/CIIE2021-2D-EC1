@@ -45,6 +45,20 @@
             "width": 80,
             "height": 90
           }
+        },
+        {
+          "comment": "Win condition",
+          "event": 4,
+          "indicator": false,
+          "coords": {
+            "pos_x": 430,
+            "pos_y": 600,
+            "inverted": false
+          },
+          "size": {
+            "width": 80,
+            "height": 600
+          }
         }
       ]
     },
