@@ -87,7 +87,7 @@ class Character(AbstractSprite):
         # check horizontal collisions
         self._increase_position((self._velocity[0], 0))
         platform = Farm.platform_collision(self)
-        if platform != None and platform._collides and self.rect.bottom > platform.rect.height + 1:
+        if platform != None and platform._collides and self.rect.bottom > platform.rect.top:
             dist_l = abs(platform.rect.centerx - self.rect.left)
             dist_r = abs(platform.rect.centerx - self.rect.right)
 
