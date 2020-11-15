@@ -71,6 +71,26 @@
       },
       "platforms":[
         {
+          "sprite":"scene2/almeida.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3800,
+            "pos_y":370,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene2/madrid.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3750,
+            "pos_y":370,
+            "inverted":false
+          },
+          "scale":1
+        },
+        {
           "sprite":"scene2/friendly_crook.png",
           "collides":true,
           "coords":{
@@ -129,26 +149,6 @@
             "inverted":false
           },
           "scale":0.4
-        },
-        {
-          "sprite":"scene2/madrid.png",
-          "collides":true,
-          "coords":{
-            "pos_x":3750,
-            "pos_y":370,
-            "inverted":false
-          },
-          "scale":1
-        },
-        {
-          "sprite":"scene2/almeida.png",
-          "collides":true,
-          "coords":{
-            "pos_x":3800,
-            "pos_y":370,
-            "inverted":false
-          },
-          "scale":0.3
         },
         {
           "sprite":"scene2/trash.png",
@@ -370,6 +370,16 @@
       },
       "platforms":[
         {
+          "sprite":"scene1/bag.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2400,
+            "pos_y":430,
+            "inverted":false
+          },
+          "scale":0.2
+        },
+        {
           "sprite":"bin.png",
           "collides":true,
           "coords":{
@@ -408,16 +418,6 @@
             "inverted":false
           },
           "scale":0.5
-        },
-        {
-          "sprite":"scene1/bag.png",
-          "collides":true,
-          "coords":{
-            "pos_x":2400,
-            "pos_y":430,
-            "inverted":false
-          },
-          "scale":0.2
         },
         {
           "sprite":"scene1/platform.png",
