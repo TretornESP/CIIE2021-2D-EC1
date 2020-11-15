@@ -109,7 +109,7 @@ class Level():
     def parse_trigger(self, json):
         event     = json['event']
         id        = json.get('id')
-        indica    = json['indicator']
+        indica    = json['indicator'] and ResourceManager.load_config().is_debug()
         once      = json.get('once')
         if once == None: #Once by default is true bro
             once = True  #Once by default aint shit as it is not required by json schema!
