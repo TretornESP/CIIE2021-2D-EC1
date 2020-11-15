@@ -78,7 +78,7 @@ class Character(AbstractSprite):
             self._momentum = 0
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
         if self._movement_x == Character.STILL and not self._is_jumping and self._dash >= Character.DASH_DUR:
-            self._momentum += (-vel_px if self._velocity[0] >= 0 else vel_px) * elapsed_time * 0.02
+            self._momentum += (-vel_px if self._velocity[0] >= 0 else vel_px) * elapsed_time * 0.7
             v_x = max(0, self._momentum + self._velocity[0]) if self._velocity[0] >= 0 else min(0, self._momentum + self._velocity[0])
             self._momentum = self._momentum if v_x != 0 else 0
             self._velocity = (v_x, self._velocity[1])

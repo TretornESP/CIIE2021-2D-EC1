@@ -39,7 +39,6 @@ class AbstractHorizontalScene(AbstractScene):
     def __init__(self):
         AbstractScene.__init__(self)
         self._scroll_x = 0
-
         self._hud = Hud()
         self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0, 0), Hud.GROW_RIGHT, 100)
         self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (0, 6), Hud.GROW_RIGHT, 110)

@@ -4,6 +4,7 @@ from .animated_text import AnimatedText
 from game import ResourceManager
 from ..farm import Farm
 from .shot import Shot
+from ..audio.rocker import Rocker
 import pygame
 
 
@@ -72,6 +73,7 @@ class Player(Character):
     def move(self, keys_pressed, up, down, left, right, parry, dash, interact):
         if keys_pressed[up[0]] or keys_pressed[up[1]]:
             y = Character.UP
+            ##Rocker.action(Rocker.AUD_JUMP) #Queda fatal
         elif keys_pressed[down]:
             y = Character.DOWN
         else:
@@ -86,9 +88,11 @@ class Player(Character):
         Character.move(self, (x, y))
 
         if keys_pressed[parry]:
+            Rocker.action(Rocker.AUD_PARRY)
             self.do_parry()
 
         if keys_pressed[dash]:
+            Rocker.action(Rocker.AUD_DASH)
             Character.do_dash(self)
 
         self._interact = keys_pressed[interact]
@@ -96,6 +100,9 @@ class Player(Character):
     # esto no es responsabilidad del player
     def reset_hearts(self):
         self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
+
+    def reset_masks(self):
+        self._repo.set_parameter(PlayerRepository.ATTR_MASKS, PlayerRepository.DEFAULT_MASKS)
 
     def teleport(self, position):
         self.set_global_position(position)
@@ -107,9 +114,11 @@ class Player(Character):
 
         pos = self._position[0], self._position[1] - self.rect.height
         self._text.add_sprite(AnimatedText(pos, Player.HIT_TEXT, self._scroll, Player.HIT_COLOR))
+        Rocker.action(Rocker.AUD_HIT)
 
     def insta_kill(self):
         if not self.is_invulnerable():
+            Rocker.action(Rocker.AUD_HIT)
             self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, 0)
 
     def is_interacting(self):

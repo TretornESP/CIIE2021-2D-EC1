@@ -17,15 +17,31 @@ class ResourceManager(object):
 
     _resources = {}
     _debug = None
+    _sound = {}
 
     @classmethod
     def enable_debug(cls, debug):
         cls._debug = debug
 
     @classmethod
+    def play_sound(cls, name):
+        path = os.path.abspath(__package__)
+        path = os.path.join(path, "assets/music/", name)
+        sound = cls._sound.get(path)
+        if sound == None:
+            try:
+                sound = pygame.mixer.Sound(path)
+            except Exception as e:
+                print(path)
+                print(e)
+                raise SystemExit("End")
+            cls._sound[path] = sound
+        sound.play()
+
+    @classmethod
     def get_debug_name(cls):
         return cls._debug
-        
+
     @classmethod
     def load_director(cls):
         if not ResourceManager.DIRECTOR_NAME in cls._resources:

@@ -23,7 +23,6 @@ class Scene(AbstractHorizontalScene):
         self._checkpoint = ResourceManager.get_checkpoint_repository()
 
         self._farm_factory = farm_factory
-        self._farm_factory.push_to_charge()
 
     def get_id(self):
         return self._id
@@ -31,6 +30,11 @@ class Scene(AbstractHorizontalScene):
     def get_scroll_x(self):
         return self._scroll_x
 
+    def start_scene(self):
+        AbstractHorizontalScene.start_scene(self)
+        Farm.get_player().reset_hearts()
+        Farm.get_player().reset_masks()
+        
     def set_checkpoint(self, _scroll_x=None):
         self._checkpoint.set_player(Farm.get_player())
         if _scroll_x != None:
