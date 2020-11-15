@@ -500,6 +500,7 @@
           "event":2,
           "id":0,
           "once": false,
+          "locking": false,
           "indicator":true,
           "coords":{
             "pos_x":750,
@@ -516,6 +517,7 @@
           "event":2,
           "id":1,
           "once": false,
+          "locking": false,
           "indicator":true,
           "coords":{
             "pos_x":1900,
@@ -546,6 +548,7 @@
           "event":2,
           "id":2,
           "once": false,
+          "locking": false,
           "indicator":true,
           "coords":{
             "pos_x":3050,
