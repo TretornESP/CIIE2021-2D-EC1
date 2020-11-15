@@ -183,8 +183,10 @@ return # Exit script on *NIX
 : # WINDOWS CMD SCRIPT # : [cosas de xabi]
 
 :WINDOWS
+echo Debes instalar con permisos de admin!
 virtualenv env
 call .\env\Scripts\activate
 pip install wheel
 pip install -r requirements.txt
+copy .\dlls %windir%\System32
 python main.py
