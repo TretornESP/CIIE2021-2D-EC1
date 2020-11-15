@@ -1,0 +1,15 @@
+__pycache__
+bin
+include
+lib
+lib64
+local
+scripts
+pyvenv.cfg
+share
+.venv
+.DS_Store
+env
+test
+.idea/
+.vs/

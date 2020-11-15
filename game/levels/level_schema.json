@@ -1,0 +1,326 @@
+{
+   "$schema":"http://json-schema.org/draft-07/schema#",
+   "$id":"http://covideogame.es/schemas/v0.2.5/level_schema.json",
+   "definitions":{
+      "id":{
+         "type":"string",
+         "description":"unique id (relative to parent) of entity"
+      },
+      "data":{
+         "type":"string",
+         "description":"data FOLDER name for entity"
+      },
+      "once":{
+        "type":"boolean",
+        "description":"The event can only trigger once"
+      },
+      "kind":{
+         "type":"string",
+         "description":"kind of item"
+      },
+      "name":{
+        "type":"string",
+        "description":"Display name of the level for the menu"
+      },
+      "index":{
+        "type":"number",
+        "description":"Number used for indexing"
+      },
+      "speed":{
+        "type":"number",
+        "description":"Speed of an object or character"
+      },
+      "event":{
+        "type":"number",
+        "description":"event identifier"
+      },
+      "locking":{
+        "type":"boolean",
+        "description":"Dialog is locking"
+      },
+      "title":{
+        "type":"string",
+        "description":"Title of dialog"
+      },
+      "sprite":{
+         "type":"string",
+         "description":"Sprite file"
+      },
+      "collides":{
+         "type":"boolean",
+         "description":"The entity collides with other entities"
+      },
+      "indicator":{
+         "type":"boolean",
+         "description":"Show a rect over the trigger for debuggin purposes"
+      },
+      "options":{
+        "type":"array",
+        "description":"Array of dialog result options",
+        "items":{
+          "type":"object",
+          "description":"dialog result option",
+          "properties":{
+            "text":{
+              "type":"string",
+              "description":"text of dialog option"
+            },
+            "valid":{
+              "type":"boolean",
+              "description":"Check if its a valid (positive) answer"
+            }
+          }
+        }
+      },
+      "size":{
+          "type":"object",
+          "description":"Size of triggers",
+          "properties":{
+            "width":{
+              "type":"number",
+              "description":"Width of the trigger"
+            },
+            "height":{
+              "type":"number",
+              "description":"Height of the trigger"
+            }
+          },
+          "required":[
+            "width",
+            "height"
+          ]
+      },
+      "coords":{
+         "type":"object",
+         "description":"coordinate definition",
+         "properties":{
+            "pos_x":{
+               "type":"number",
+               "description":"x coordinate"
+            },
+            "pos_y":{
+               "type":"number",
+               "description":"y coordinate"
+            },
+            "inverted":{
+               "type":"boolean",
+               "description":"invert original orientation of the sprite"
+            }
+         },
+         "required":[
+            "pos_x",
+            "pos_y"
+         ]
+      }
+   },
+   "title":"Level",
+   "description":"Level descriptor for covideogame",
+   "type":"object",
+   "properties":{
+      "id":{
+         "$ref":"#/definitions/id"
+      },
+      "name":{
+         "$ref":"#/definitions/name"
+      },
+      "scenes":{
+         "type":"array",
+         "description":"definition of every scene",
+         "items": {
+           "type": "object",
+           "description": "Scene definition",
+           "properties":{
+              "id":{
+                 "$ref":"#/definitions/id"
+              },
+              "background":{
+                 "type":"string",
+                 "description":"filename of the background image for the scene"
+              },
+              "scroll":{
+                "type":"number",
+                "description":"horizontal size of map"
+              },
+              "player":{
+                 "type":"object",
+                 "description":"player definition",
+                 "properties":{
+                    "coords":{
+                       "$ref":"#/definitions/coords"
+                    },
+                    "data":{
+                       "$ref":"#/definitions/data"
+                    }
+                 },
+                 "requiered":[
+                    "coords",
+                    "data"
+                 ]
+              },
+              "platforms":{
+                 "type":"array",
+                 "description":"foreground static items",
+                 "items":{
+                    "description":"foreground static item",
+                    "type":"object",
+                    "properties":{
+                       "sprite":{
+                          "$ref":"#/definitions/sprite"
+                       },
+                       "collides":{
+                          "$ref":"#/definitions/collides"
+                       },
+                       "coords":{
+                          "$ref":"#/definitions/coords"
+                       }
+                    },
+                    "required":[
+                       "sprite",
+                       "collides",
+                       "coords"
+                    ]
+                 }
+              },
+              "objects":{
+                "type":"array",
+                "description":"foreground items",
+                "items":{
+                   "description":"foreground item",
+                   "type":"object",
+                   "properties":{
+                     "kind":{
+                         "$ref":"#/definitions/kind"
+                     },
+                      "sprite":{
+                         "$ref":"#/definitions/sprite"
+                      },
+                      "collides":{
+                         "$ref":"#/definitions/collides"
+                      },
+                      "coords":{
+                         "$ref":"#/definitions/coords"
+                      }
+                   },
+                   "required":[
+                      "sprite",
+                      "collides",
+                      "coords"
+                   ]
+                }
+             },
+              "enemies":{
+                "type":"array",
+                "description":"enemy list",
+                "items":{
+                   "description":"enemy",
+                   "type":"object",
+                   "properties":{
+                      "collides":{
+                         "$ref":"#/definitions/collides"
+                      },
+                      "speedx":{
+                         "$ref":"#/definitions/speed"
+                      },
+                      "speedy":{
+                         "$ref":"#/definitions/speed"
+                      },
+                      "coords":{
+                         "$ref":"#/definitions/coords"
+                      },
+                      "data":{
+                         "$ref":"#/definitions/data"
+                      },
+                      "shot":{
+                         "$ref":"#/definitions/data"
+                      }
+                   },
+                   "required":[
+                      "collides",
+                      "speedx",
+                      "speedy",
+                      "coords",
+                      "data"
+                   ]
+                }
+             },
+              "triggers":{
+                "type":"array",
+                "description":"trigger list",
+                "items":{
+                   "description":"trigger",
+                   "type":"object",
+                   "properties":{
+                      "event":{
+                         "$ref":"#/definitions/event"
+                      },
+                      "index":{
+                         "$ref":"#/definitions/index"
+                      },
+                      "locking":{
+                         "$ref":"#/definitions/locking"
+                      },
+                      "once":{
+                         "$ref":"#/definitions/once"
+                      },
+                      "indicator":{
+                         "$ref":"#/definitions/indicator"
+                      },
+                      "coords":{
+                         "$ref":"#/definitions/coords"
+                      },
+                      "size":{
+                         "$ref":"#/definitions/size"
+                      }
+                   },
+                   "required":[
+                      "event",
+                      "indicator",
+                      "coords",
+                      "size"
+                   ]
+                }
+             }
+           },
+           "required":[
+              "id",
+              "background",
+              "scroll",
+              "player"
+            ]
+         }
+      },
+      "dialogs":{
+        "type":"array",
+        "description":"array of dialog options",
+        "items":{
+          "type":"object",
+          "description":"text dialog",
+          "properties":{
+            "index":{
+              "$ref":"#/definitions/index"
+            },
+            "title":{
+              "$ref":"#/definitions/title"
+            },
+            "data":{
+              "$ref":"#/definitions/data"
+            },
+            "options":{
+              "$ref":"#/definitions/options"
+            }
+          },
+          "required":[
+            "index",
+            "title",
+            "options"
+          ]
+        }
+      }
+    },
+   "required":[
+      "id",
+      "name",
+      "scenes",
+      "dialogs"
+    ]
+}
