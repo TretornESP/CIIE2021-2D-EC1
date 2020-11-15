@@ -6,6 +6,7 @@ class Director:
         self._scene_stack = []
         self._end_scene = False
         self._clock = pygame.time.Clock()
+        self._returning_from_dialog = False
 
     def set_checkpoint(self):
         if (len(self._scene_stack) > 0):
@@ -32,6 +33,10 @@ class Director:
 
         if (len(self._scene_stack) > 0):
             self._scene_stack.pop()
+
+    def end_dialog(self):
+        self._returning_from_dialog = True
+        self.end_scene()
 
     def insert_scene(self, scene):
         if (len(self._scene_stack) > 0):
@@ -76,7 +81,10 @@ class Director:
     def _game_loop(self, scene):
         pygame.event.clear()
         self._end_scene = False
-        scene.start_scene()
+        if not self._returning_from_dialog:
+            scene.start_scene()
+        else:
+            self._returning_from_dialog = False
         while not self._end_scene:
             elapsed_time = self._clock.tick(60)
             elapsed_time /= 1000
@@ -85,6 +93,5 @@ class Director:
             scene.update(elapsed_time)
             scene.draw()
             scene.draw_fps(self._clock.get_fps())
-
 
             pygame.display.flip()

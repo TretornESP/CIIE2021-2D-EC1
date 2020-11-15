@@ -97,6 +97,9 @@ class Player(Character):
     def reset_hearts(self):
         self._repo.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
 
+    def reset_masks(self):
+        self._repo.set_parameter(PlayerRepository.ATTR_MASKS, PlayerRepository.DEFAULT_MASKS)
+
     def teleport(self, position):
         self.set_global_position(position)
 

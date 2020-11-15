@@ -93,6 +93,8 @@ class Level():
 
         if datafn == 'covid':
             return Covid(self.name, datafn, coords, speedx, speedy, invert)
+        elif datafn == 'covid_fast':
+                    return Covid(self.name, datafn, coords, speedx, speedy, invert)
         elif datafn == 'torreta':
             if shot == None:
                 raise NotImplemented("You must specify shot data folder!")
@@ -121,10 +123,11 @@ class Level():
         size   = self.parse_size(json['size'])
         if event == 2 and id != None:
             extra = self.dialogs[id]
-        if event == 3:
+        elif event == 3:
             extra = json['next_scene']
         else:
             extra = None
+
         return Trigger(self.name, event, indica, once, coords, size, invert, extra, locking)
 
     def parse_json(self, json):
@@ -139,9 +142,32 @@ class Level():
             options = []
             for o in d['options']:
                 options.append(DialogOption(o['text'], o['valid']))
-            dia = DialogMenu(data, title, text, options)
+            spawn_v = []
+            spawn_vt = []
+            valid = d.get('spawn_valid')
+            if valid != None:
+                for i in valid:
+                    spawn_vt.append(i['kind'])
+                    if i['kind'] == "platform":
+                        spawn_v.append(self.parse_platform(i['data']))
+                    elif i['kind'] == "object":
+                        spawn_v.append(self.parse_object(i['data']))
+
+            spawn_i = []
+            spawn_it = []
+            invalid = d.get('spawn_invalid')
+            if invalid != None:
+                for i in invalid:
+                    spawn_it.append(i['kind'])
+                    if i['kind'] == "platform":
+                        spawn_i.append(self.parse_platform(i['data']))
+                    elif i['kind'] == "object":
+                        spawn_i.append(self.parse_object(i['data']))
+
+
+            dia = DialogMenu(data, title, text, options, spawn_v, spawn_vt, spawn_i, spawn_it)
             self.dialogs.append(dia)
-        self._clog.info("dialog added")
+            self._clog.info("dialog added")
 
         self._clog.info("populating level")
         for scene in json['scenes']:

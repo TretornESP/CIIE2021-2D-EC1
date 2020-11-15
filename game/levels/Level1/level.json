@@ -3,13 +3,826 @@
   "name":"Level1",
   "scenes":[
     {
+      "id":"SCN_3",
+      "sky":"sky.png",
+      "background":"scene3/background.png",
+      "scroll":2335,
+      "player":{
+        "coords":{
+          "pos_x":0,
+          "pos_y":600,
+          "inverted": false
+        },
+        "data":"player"
+      },
+      "platforms":[
+
+      ],
+      "objects":[
+
+      ],
+      "enemies":[
+
+      ],
+      "triggers":[
+        {
+          "comment": "First checkpoint scene3",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":0,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":100
+          }
+        },
+        {
+          "comment": "Scene end (meta)",
+          "event":3,
+          "indicator":true,
+    "next_scene": "Level2",
+          "coords":{
+            "pos_x":1700,
+            "pos_y":400,
+            "inverted": false
+          },
+          "size":{
+            "width":150,
+            "height":150
+          }
+        }
+      ]
+    },
+    {
+      "id":"SCN_2",
+      "sky":"sky.png",
+      "background":"scene2/background.png",
+      "scroll":5500,
+      "player":{
+        "coords":{
+          "pos_x":300,
+          "pos_y":200,
+          "inverted": false
+        },
+        "data":"player"
+      },
+      "platforms":[
+        {
+          "sprite":"scene2/friendly_crook.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1100,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":1
+        },
+        {
+          "sprite":"scene2/table.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1600,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene2/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2400,
+            "pos_y":500,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene2/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2600,
+            "pos_y":400,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene2/platform_long.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3300,
+            "pos_y":400,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene2/fireplace.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":0.4
+        },
+        {
+          "sprite":"scene2/madrid.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3750,
+            "pos_y":370,
+            "inverted":false
+          },
+          "scale":1
+        },
+        {
+          "sprite":"scene2/almeida.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3800,
+            "pos_y":370,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene2/trash.png",
+          "collides":true,
+          "coords":{
+            "pos_x":5000,
+            "pos_y":650,
+            "inverted":false
+          },
+          "scale":0.7
+        },
+        {
+          "sprite":"scene2/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4600,
+            "pos_y":500,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene2/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4800,
+            "pos_y":400,
+            "inverted":false
+          },
+          "scale":0.3
+        }
+
+      ],
+      "objects":[
+        {
+          "kind":"mask",
+          "sprite":"mask.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4400,
+            "pos_y":370,
+            "inverted":false
+          }
+        }
+      ],
+      "enemies":[
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":40,
+          "coords":{
+            "pos_x":1800,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid_fast"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":40,
+          "coords":{
+            "pos_x":4000,
+            "pos_y":350,
+            "inverted":false
+          },
+          "data":"covid_fast"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":40,
+          "coords":{
+            "pos_x":4000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid_fast"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":40,
+          "coords":{
+            "pos_x":3500,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":40,
+          "coords":{
+            "pos_x":3700,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":40,
+          "coords":{
+            "pos_x":4000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":40,
+          "coords":{
+            "pos_x":4300,
+            "pos_y":600,
+            "inverted":true
+          },
+          "data":"corredor"
+        }
+      ],
+      "triggers":[
+        {
+          "comment": "First checkpoint scene2",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":300,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":300,
+            "height":30
+          }
+        },
+        {
+          "comment": "Going out of the train",
+          "event":2,
+          "id":4,
+          "once": true,
+          "locking":true,
+          "indicator":true,
+          "coords":{
+            "pos_x":300,
+            "pos_y":200,
+            "inverted": false
+          },
+          "size":{
+            "width":200,
+            "height":100
+          }
+        },
+        {
+          "comment": "Dialogo crook 1",
+          "event":2,
+          "id":2,
+          "once": false,
+          "indicator":true,
+          "coords":{
+            "pos_x":800,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":300
+          }
+        },
+        {
+          "comment": "Dialogo crook2",
+          "event":2,
+          "id":3,
+          "locking":false,
+          "once": false,
+          "indicator":true,
+          "coords":{
+            "pos_x":1050,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":300
+          }
+        },
+        {
+          "comment": "Scene end (meta)",
+          "event":3,
+          "indicator":true,
+          "next_scene": "SCN_3",
+          "coords":{
+            "pos_x":5400,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":500,
+            "height":500
+          }
+        }
+      ]
+    },
+    {
+      "id":"SCN_1",
+      "sky":"sky.png",
+      "background":"scene1/background_long.png",
+      "scroll":6500,
+      "player":{
+        "coords":{
+          "pos_x":0,
+          "pos_y":600,
+          "inverted": false
+        },
+        "data":"player"
+      },
+      "platforms":[
+        {
+          "sprite":"bin.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1300,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":0.5
+        },
+        {
+          "sprite":"scene1/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1500,
+            "pos_y":450,
+            "inverted":false
+          },
+          "scale":0.5
+        },
+        {
+          "sprite":"scene1/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2200,
+            "pos_y":450,
+            "inverted":false
+          },
+          "scale":0.5
+        },
+        {
+          "sprite":"scene1/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2550,
+            "pos_y":300,
+            "inverted":false
+          },
+          "scale":0.5
+        },
+        {
+          "sprite":"scene1/bag.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2400,
+            "pos_y":430,
+            "inverted":false
+          },
+          "scale":0.2
+        },
+        {
+          "sprite":"scene1/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2800,
+            "pos_y":450,
+            "inverted":false
+          },
+          "scale":0.5
+        },
+        {
+          "sprite":"scene1/bag.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3400,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":0.2
+        },
+        {
+          "sprite":"scene1/vending_1.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3550,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":1
+        },
+        {
+          "sprite":"scene1/vending_2.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3950,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":1
+        },
+        {
+          "sprite":"scene1/suitcase.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3850,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":0.5
+        },
+        {
+          "sprite":"scene1/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4200,
+            "pos_y":350,
+            "inverted":false
+          },
+          "scale":0.1
+        },
+        {
+          "sprite":"scene1/bag.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4100,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":0.2
+        },
+        {
+          "sprite":"scene1/vending_3.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4400,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":1
+        },
+        {
+          "sprite":"scene1/table.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4900,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":0.3
+        },
+        {
+          "sprite":"scene1/vending_4.png",
+          "collides":true,
+          "coords":{
+            "pos_x":5300,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale":1
+        },
+        {
+          "sprite":"scene1/platform_90.png",
+          "collides":true,
+          "coords":{
+            "pos_x":5800,
+            "pos_y":480,
+            "inverted":false
+          },
+          "scale":0.2
+        },
+        {
+          "sprite":"scene1/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":5550,
+            "pos_y":350,
+            "inverted":false
+          },
+          "scale":0.03
+        },
+        {
+          "sprite":"scene1/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":5700,
+            "pos_y":300,
+            "inverted":false
+          },
+          "scale":0.3
+        }
+      ],
+      "objects":[
+        {
+          "kind":"mask",
+          "sprite":"mask.png",
+          "collides":true,
+          "coords":{
+            "pos_x":1950,
+            "pos_y":420,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"mask",
+          "sprite":"mask.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":580,
+            "inverted":false
+          }
+        }
+      ],
+      "enemies":[
+        {
+          "collides":true,
+          "speedx":15,
+          "speedy":0,
+          "coords":{
+            "pos_x":1000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":20,
+          "speedy":0,
+          "coords":{
+            "pos_x":1200,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":25,
+          "coords":{
+            "pos_x":1700,
+            "pos_y":400,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":25,
+          "coords":{
+            "pos_x":1600,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":25,
+          "coords":{
+            "pos_x":1800,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":25,
+          "coords":{
+            "pos_x":2000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":25,
+          "coords":{
+            "pos_x":2725,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0.01,
+          "speedy":0,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":270,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
+        },
+        {
+          "collides":true,
+          "speedx":0.01,
+          "speedy":0,
+          "coords":{
+            "pos_x":2900,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":0.01,
+          "speedy":0,
+          "coords":{
+            "pos_x":3100,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":1,
+          "speedy":0,
+          "coords":{
+            "pos_x":3150,
+            "pos_y":425,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":10,
+          "speedy":0,
+          "coords":{
+            "pos_x":3800,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":10,
+          "speedy":0,
+          "coords":{
+            "pos_x":4300,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":10,
+          "speedy":0,
+          "coords":{
+            "pos_x":4700,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":10,
+          "speedy":0,
+          "coords":{
+            "pos_x":5200,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":5,
+          "speedy":0,
+          "coords":{
+            "pos_x":6000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
+        }
+      ],
+      "triggers":[
+        {
+          "comment": "First checkpoint scene1",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":0,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":100
+          }
+        },
+        {
+          "comment": "La abuela nos avisa por megafonia",
+          "event":2,
+          "id":1,
+          "once": true,
+          "locking":true,
+          "indicator":true,
+          "coords":{
+            "pos_x":100,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":100
+          }
+        },
+        {
+          "comment": "Vending checkpoint",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":3550,
+            "pos_y":400,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":100
+          }
+        },
+        {
+          "comment": "Train controls reached",
+          "event":3,
+          "next_scene":"SCN_2",
+          "indicator":true,
+          "coords":{
+            "pos_x":6500,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":1000,
+            "height":300
+          }
+        }
+      ]
+    },
+    {
       "id":"SCN_0",
       "sky":"sky.png",
       "background":"scene0/background.png",
       "scroll":5000,
       "player":{
         "coords":{
-          "pos_x":1700,
+          "pos_x":0,
           "pos_y":600,
           "inverted": false
         },
@@ -27,7 +840,7 @@
           "scale": 0.4
         },
         {
-          "sprite":"scene0/bin.png",
+          "sprite":"bin.png",
           "collides":true,
           "coords":{
             "pos_x":1100,
@@ -75,6 +888,76 @@
             "inverted":false
           },
           "scale": 0.5
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":500,
+            "inverted":false
+          },
+          "scale": 0.3
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":300,
+            "inverted":false
+          },
+          "scale": 0.3
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3300,
+            "pos_y":400,
+            "inverted":false
+          },
+          "scale": 0.2
+        },
+        {
+          "sprite":"scene0/platform.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3500,
+            "pos_y":350,
+            "inverted":false
+          },
+          "scale": 0.2
+        },
+        {
+          "sprite":"scene0/fence_yellow.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3500,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale": 1.5
+        },
+        {
+          "sprite":"scene0/platform_long.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3700,
+            "pos_y":250,
+            "inverted":false
+          },
+          "scale": 0.2
+        },
+        {
+          "sprite":"scene0/subway.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4800,
+            "pos_y":600,
+            "inverted":false
+          },
+          "scale": 3
         }
       ],
       "objects":[
@@ -84,7 +967,17 @@
           "collides":true,
           "coords":{
             "pos_x":1770,
-            "pos_y":350,
+            "pos_y":450,
+            "inverted":false
+          }
+        },
+        {
+          "kind":"mask",
+          "sprite":"mask.png",
+          "collides":true,
+          "coords":{
+            "pos_x":3010,
+            "pos_y":150,
             "inverted":false
           }
         }
@@ -167,9 +1060,47 @@
             "inverted":false
           },
           "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":5,
+          "coords":{
+            "pos_x":4300,
+            "pos_y":200,
+            "inverted":true
+          },
+          "data":"torreta",
+          "shot":"shot"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":5,
+          "coords":{
+            "pos_x":4300,
+            "pos_y":600,
+            "inverted":true
+          },
+          "data":"torreta",
+          "shot":"shot"
         }
       ],
       "triggers":[
+        {
+          "comment": "First checkpoint scene0",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":0,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":100
+          }
+        },
         {
           "comment": "La abuela",
           "event":2,
@@ -200,6 +1131,21 @@
             "width":75,
             "height":200
           }
+        },
+        {
+          "comment": "Train reached",
+          "event":3,
+          "next_scene":"SCN_1",
+          "indicator":true,
+          "coords":{
+            "pos_x":4700,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":1000,
+            "height":300
+          }
         }
       ]
     }
@@ -213,6 +1159,101 @@
       "options":[
         {
           "text":"Continue",
+          "valid":true
+        }
+      ]
+    },
+    {
+      "index":1,
+      "title":"The lady warns through loudspeakers",
+      "data":"old_woman_head.png",
+      "text":"Be careful kiddo, the train is full of CORONAVIRUS and COMMUTERS, im with the driver, here we are kinda safe. Meet us on the front",
+      "options":[
+        {
+          "text":"Continue",
+          "valid":true
+        }
+      ]
+    },
+    {
+      "index":2,
+      "title":"Friendly Crookodile",
+      "data":"crook_head.png",
+      "text":"It's been a long time since i last ate",
+      "options":[
+        {
+          "text":"Glup!",
+          "valid":true
+        }
+      ]
+    },
+    {
+      "index":3,
+      "title":"Friendly Crookodile",
+      "data":"crook_head.png",
+      "text":"Hi kid, are you lost?... Noo, im not gonna eat you, i was looking for a subway restaurant and ended up hear, dang google maps. Anyway, be careful kiddo, covid down here has muted and is way faster than in the upper worlds",
+      "options":[
+        {
+          "text":"Ignore",
+          "valid":false
+        },
+        {
+          "text":"Just go upstairs, there are vending machines in the wagon noº 7",
+          "valid":true
+        }
+      ],
+      "spawn_valid":[
+        {
+          "kind":"object",
+          "data":{
+            "kind":"mask",
+            "sprite":"mask.png",
+            "collides":true,
+            "coords":{
+              "pos_x":340,
+              "pos_y":370,
+              "inverted":false
+            }
+          }
+        },
+        {
+          "kind":"platform",
+          "data":{
+            "sprite":"egg.png",
+            "collides":true,
+            "coords":{
+              "pos_x":100,
+              "pos_y":600,
+              "inverted":false
+            },
+            "scale":2
+          }
+        }
+      ],
+      "spawn_invalid":[
+        {
+          "kind":"platform",
+          "data":{
+            "sprite":"egg.png",
+            "collides":true,
+            "coords":{
+              "pos_x":100,
+              "pos_y":600,
+              "inverted":false
+            },
+            "scale":2
+          }
+        }
+      ]
+    },
+    {
+      "index":4,
+      "title":"The subway driver says",
+      "data":"train_guy_head.png",
+      "text":"We are stuck, and cannot continue.. What? You want to through the tunnels on your own? You must be desperate, fine. I will open the doors for you. But do me a favor, would you? Be carefull with the crocodiles",
+      "options":[
+        {
+          "text":"Abandon train",
           "valid":true
         }
       ]

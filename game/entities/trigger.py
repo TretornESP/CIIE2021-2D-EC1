@@ -33,20 +33,18 @@ class Trigger(AbstractPlatform):
                 print("Playing music")
                 pass
             elif self._id == Trigger.CHECKPOINT:
+                print("Checkpoint reached")
                 self._director.set_checkpoint()
             elif self._id == Trigger.DIALOG:
                 if self._last >= AnimatedText.get_duration():
                     self._last = 0
                     pos = self._position[0], self._position[1] - self.rect.height
                     self._text.add_sprite(AnimatedText(pos, Trigger.DIALOG_TEXT, self._scroll))
-                if player.is_interacting() or not self._locking:
+                if player.is_interacting() or self._locking:
                     self._director.push_scene(self._action_data)
             elif self._id == Trigger.SCENE_END:
                 from game.levels import Level
-                scenes = Level(self._action_data).get_scenes()
                 self._director.end_scene()
-                for scene in scenes:
-                    self._director.change_scene(scene)
             else:
                 raise NotImplemented("This trigger does not exist")
 

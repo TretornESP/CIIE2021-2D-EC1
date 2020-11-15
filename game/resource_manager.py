@@ -25,7 +25,7 @@ class ResourceManager(object):
     @classmethod
     def get_debug_name(cls):
         return cls._debug
-        
+
     @classmethod
     def load_director(cls):
         if not ResourceManager.DIRECTOR_NAME in cls._resources:

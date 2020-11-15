@@ -2,21 +2,44 @@ import pygame
 from game import ResourceManager
 from .dialog_screen import DialogScreen
 from ..abstract_menu import AbstractMenu
-
+from ...farm import Farm
+import time
 class DialogMenu(AbstractMenu):
-    def __init__(self, background, title, text, options):
+    def __init__(self, background, title, text, options, spawn_v, spawn_vt, spawn_i, spawn_it):
         AbstractMenu.__init__(self)
 
         self._title = title
         self._text = text
         self._options = options
+        self._spawn_v = spawn_v
+        self._spawn_vt = spawn_vt
+        self._spawn_i = spawn_i
+        self._spawn_it = spawn_it
 
         self._screen_list.append(DialogScreen(self, background, title, text, options))
         self._show_first_screen()
 
     def choose_option(self, valid):
-        print("option")
-        self._director.end_scene()
+        self._director.end_dialog()
+
+        if valid:
+            i = 0
+            while i < len(self._spawn_v):
+                if self._spawn_vt[i] == "object":
+                    Farm.add_object(self._spawn_v[i])
+                elif self._spawn_vt[i] == "platform":
+                    Farm.add_platform(self._spawn_v[i])
+
+                i += 1
+        else:
+            i = 0
+            while i < len(self._spawn_i):
+                if self._spawn_it[i] == "object":
+                    Farm.add_object(self._spawn_i[i])
+                elif self._spawn_it[i] == "platform":
+                    Farm.add_platform(self._spawn_i[i])
+
+                i += 1
 
     def update(self, *args):
         pass

@@ -11,6 +11,7 @@ class AbstractScene:
         pygame.display.set_caption(configuration.get_name())
 
         self._director = ResourceManager.load_director()
+        self._farm_factory = None
 
     def draw_fps(self, fps):
         f = self._font.render(str(int(fps)), True, pygame.Color('white'))
@@ -26,4 +27,7 @@ class AbstractScene:
         raise NotImplemented()
 
     def start_scene(self):
-        pass
+        if self._farm_factory != None:
+            self._farm_factory.push_to_charge()
+        else:
+            print("Trying to start farmless scene!")
