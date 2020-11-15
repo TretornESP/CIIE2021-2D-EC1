@@ -818,7 +818,7 @@
     {
       "id":"SCN_0",
       "sky":"sky.png",
-      "background":"scene0/background.png",
+      "background":"scene0/background.jpg",
       "scroll":5000,
       "player":{
         "coords":{
@@ -1105,7 +1105,7 @@
         {
           "comment": "Music epique",
           "event":0,
-          "id":"skadem.mp3",
+          "id":"skadem.ogg",
           "indicator":true,
           "coords":{
             "pos_x":0,

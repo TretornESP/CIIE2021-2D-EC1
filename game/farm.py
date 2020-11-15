@@ -74,11 +74,10 @@ class Farm(object):
 
     @classmethod
     def touches_anything_visible(cls, target):
-        player = pygame.sprite.collide_rect(target, cls._player)
         item = pygame.sprite.spritecollideany(target, cls._object_pond)
         platform = pygame.sprite.spritecollideany(target, cls._platform_pond)
 
-        return player or (item != None and not item.is_same(target)) or (platform != None and not platform.is_same(target))
+        return (item != None and not item.is_same(target)) or (platform != None and not platform.is_same(target))
 
     @classmethod
     def spawn_player(cls, player):
