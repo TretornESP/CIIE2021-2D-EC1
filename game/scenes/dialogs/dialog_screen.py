@@ -49,7 +49,6 @@ class DialogScreen(AbstractScreen):
 
 
             index = index + 1
-        #self._gui_elements.append(ExitButton(self, (400, 340)))
 
         lines = self.split_text_to_fit(text, DialogScreen.TEXT_FONT_SIZE, DialogScreen.TEXT_AREA_WIDTH)
         title = TextGUI(self, title_font, DialogScreen.TITLE_COLOR, title, (self._text_area.centerx, self._text_area.top+DialogScreen.TITLE_TEXT_AREA_GAP))
@@ -58,21 +57,14 @@ class DialogScreen(AbstractScreen):
         background = os.path.join("heads", background)
         self._gui_elements.append(EmptyButton(self, (self._text_area.left+DialogScreen.HEAD_LEFT_GAP, self._text_area.centery+DialogScreen.HEAD_TOP_GAP), 100, 100, background))
 
-        print(lines)
         index = 0
         for line in lines:
-            print("".join(line))
             ltext = TextGUI(self, text_font, DialogScreen.TEXT_COLOR, "".join(line), (self._text_area.centerx, self._text_area.top+DialogScreen.TITLE_TEXT_AREA_GAP+DialogScreen.TEXT_TITLE_GAP+(DialogScreen.TEXT_FONT_SIZE*index)))
             self._gui_elements.append(ltext)
             index = index + 1
 
-        #play = TextGUI(self, title_font, DialogScreen.TITLE_COLOR, title, (self._text_area.centerx, self._text_area.top+15))
-
-        #self._gui_elements.append(exit)
-
     def split_text_to_fit(self, text, font_size, width, padding = 5, corrector = 100):
         characters_in_line = int(float(width-padding+corrector)/float(font_size))
-        print(f"chars: {characters_in_line}")
         return self.split_every(characters_in_line, list(text))
 
     def split_every(self, n, iterable):

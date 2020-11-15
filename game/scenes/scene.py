@@ -50,13 +50,14 @@ class Scene(AbstractHorizontalScene):
 
         # Reset dash and jump
         Farm.get_player()._velocity = (0, 0)
-        Farm.get_player()._dash = Character.DASH_DUR+1
+        Farm.get_player()._dash = Character.DASH_DUR + 1
         Farm.get_player()._end_dash = True
 
         # Reset invulnerability
-        Farm.get_player()._last_hit = Player.INVULNERABILITY_LAPSE+1
+        Farm.get_player()._last_hit = Player.INVULNERABILITY_LAPSE + 1
 
         Farm.get_player().get_repository().load_checkpoint_status(repo)
         Farm.get_player().teleport(pos)
         self._scroll_x = self._checkpoint.get_scroll()
+
         return True

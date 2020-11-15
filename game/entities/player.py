@@ -52,18 +52,12 @@ class Player(Character):
 
     def update(self, elapsed_time):
         Character.update(self, elapsed_time)
-        # Diría que no hace falta, ya que en ninguna parte del código se lee de este atributo del repositorio
-        #self._repo.set_parameter(PlayerRepository.ATTR_POS, self._position, False)
         self._last_hit += elapsed_time
         self._parry += elapsed_time
 
-        # Parpadeamos cuando nos toquen
         if self.is_invulnerable():
-            if ((self._last_hit * 1000)%150) > 85:
+            if ((self._last_hit * 1000) % 150) > 85:
                 self.image.set_alpha(0)
-
-        # DEBUG PRINT POSITION
-        # print(f"{self._position}")
 
         if self._parry >= Player.PARRY_DUR and not self._end_parry:
             self._end_parry = True
@@ -73,7 +67,6 @@ class Player(Character):
     def move(self, keys_pressed, up, down, left, right, parry, dash, interact):
         if keys_pressed[up[0]] or keys_pressed[up[1]]:
             y = Character.UP
-            ##Rocker.action(Rocker.AUD_JUMP) #Queda fatal
         elif keys_pressed[down]:
             y = Character.DOWN
         else:

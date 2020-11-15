@@ -298,8 +298,8 @@
         },
         {
           "collides":true,
-          "speedx":20,
-          "speedy":0,
+          "speedx":15,
+          "speedy":15,
           "coords":{
             "pos_x":5600,
             "pos_y":600,
@@ -309,8 +309,8 @@
         },
         {
           "collides":true,
-          "speedx":35,
-          "speedy":0,
+          "speedx":20,
+          "speedy":20,
           "coords":{
             "pos_x":6000,
             "pos_y":600,
@@ -321,7 +321,7 @@
         {
           "collides":true,
           "speedx":3,
-          "speedy":20,
+          "speedy":10,
           "coords":{
             "pos_x":6500,
             "pos_y":500,
@@ -356,8 +356,8 @@
         },
         {
           "collides":true,
-          "speedx":20,
-          "speedy":0,
+          "speedx":15,
+          "speedy":15,
           "coords":{
             "pos_x":7500,
             "pos_y":600,
@@ -379,8 +379,8 @@
         },
         {
           "collides":true,
-          "speedx":30,
-          "speedy":0,
+          "speedx":20,
+          "speedy":20,
           "coords":{
             "pos_x":8500,
             "pos_y":600,
@@ -481,6 +481,21 @@
         }
       ],
       "triggers":[
+        {
+          "comment": "Music epique",
+          "event":0,
+          "id":"macabre_funfair.ogg",
+          "indicator":true,
+          "coords":{
+            "pos_x":300,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":500
+          }
+        },
         {
           "comment": "First checkpoint",
           "event":1,

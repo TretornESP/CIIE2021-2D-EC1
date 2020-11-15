@@ -6,7 +6,6 @@ from ..scenes.skies import AbstractSky
 from game.entities import Platform, Player, Covid, Torreta, Corredor
 from ..scenes.backgrounds import MainBackground
 from ..scenes import Scene
-from ..util import Clog
 from ..entities import Object
 from ..entities import Trigger
 from ..farm_factory import FarmFactory
@@ -18,17 +17,14 @@ import json
 
 class Level():
     def __init__(self, filename, hacks=False):
-        self._clog = Clog(__name__)
         self.id = None
         self.name = None
         self.scenes = []
         self.dialogs = []
         self._hacks = hacks
-        self._clog.info("Loading level")
         self.construct_file_path(filename)
         self.load_json_file()
         self.parse_json(self._json_data)
-        self._clog.info("Level loading finished")
 
     def get_scenes(self):
         return self.scenes
@@ -170,9 +166,7 @@ class Level():
 
             dia = DialogMenu(data, title, text, options, spawn_v, spawn_vt, spawn_i, spawn_it)
             self.dialogs.append(dia)
-            self._clog.info("dialog added")
 
-        self._clog.info("populating level")
         for scene in json['scenes']:
             f = FarmFactory()
             f.set_player(self.parse_player(scene['player']))
@@ -187,4 +181,3 @@ class Level():
             s = Scene(self.name, f, scene['id'], scene['background'], scene['scroll'], scene['sky'])
 
             self.scenes.append(s)
-            self._clog.info("scene added")

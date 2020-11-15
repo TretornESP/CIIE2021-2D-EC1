@@ -33,11 +33,9 @@ class Trigger(AbstractPlatform):
 
         if pygame.sprite.collide_rect(player, self):
             if self._id == Trigger.MUSIC_START:
-                print("Playing music")
                 Rocker.background(self._action_data)
                 pass
             elif self._id == Trigger.CHECKPOINT:
-                print("Checkpoint reached")
                 self._director.set_checkpoint()
             elif self._id == Trigger.DIALOG:
                 if self._last >= AnimatedText.get_duration():
@@ -47,6 +45,7 @@ class Trigger(AbstractPlatform):
                 if player.is_interacting() or (self._locking and not self._has_interacted):
                     self._has_interacted = True
                     Rocker.action(Rocker.AUD_TALK)
+                    self._action_data._scroll = player._scroll
                     self._director.push_scene(self._action_data)
             elif self._id == Trigger.SCENE_END:
                 Rocker.action(Rocker.AUD_WIN)

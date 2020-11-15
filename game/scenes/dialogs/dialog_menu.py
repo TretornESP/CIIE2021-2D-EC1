@@ -15,6 +15,7 @@ class DialogMenu(AbstractMenu):
         self._spawn_vt = spawn_vt
         self._spawn_i = spawn_i
         self._spawn_it = spawn_it
+        self._scroll = (0, 0)
 
         self._screen_list.append(DialogScreen(self, background, title, text, options))
         self._show_first_screen()
@@ -25,20 +26,22 @@ class DialogMenu(AbstractMenu):
         if valid:
             i = 0
             while i < len(self._spawn_v):
+                sprite = self._spawn_v[i]
+                sprite._scroll = self._scroll
                 if self._spawn_vt[i] == "object":
-                    Farm.add_object(self._spawn_v[i])
+                    Farm.add_object(sprite)
                 elif self._spawn_vt[i] == "platform":
-                    Farm.add_platform(self._spawn_v[i])
-
+                    Farm.add_platform(sprite)
                 i += 1
         else:
             i = 0
             while i < len(self._spawn_i):
+                sprite = self._spawn_i[i]
+                sprite._scroll = self._scroll
                 if self._spawn_it[i] == "object":
-                    Farm.add_object(self._spawn_i[i])
+                    Farm.add_object(sprite)
                 elif self._spawn_it[i] == "platform":
-                    Farm.add_platform(self._spawn_i[i])
-
+                    Farm.add_platform(sprite)
                 i += 1
 
     def update(self, *args):
