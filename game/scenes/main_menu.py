@@ -4,6 +4,8 @@ from game import ResourceManager
 from .highscores_screen import HighscoresScreen
 from .menu_screen import MenuScreen
 from .abstract_menu import AbstractMenu
+from ..player_repository import PlayerRepository
+
 
 class MainMenu(AbstractMenu):
     def __init__(self, hacks=False):
@@ -23,6 +25,7 @@ class MainMenu(AbstractMenu):
         # init repo
         repo = ResourceManager.get_player_repository()
         repo.reset_attr()
+        repo.set_parameter(PlayerRepository.ATTR_TOTAL_TIME, None, accounted=False)
 
         level0 = Level("Level0", self._hacks)
         level1 = Level("Level1", self._hacks)
