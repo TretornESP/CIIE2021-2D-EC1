@@ -1,0 +1,624 @@
+{
+  "id":"CVDG_LVL_2",
+  "name":"Level2",
+  "scenes":[
+    {
+      "id":"SCN_0",
+      "sky":"sky.png",
+      "background":"background_long.png",
+      "scroll":2000,
+      "player":{
+        "coords":{
+          "pos_x":50,
+          "pos_y":600,
+          "inverted": false
+        },
+        "data":"player"
+      },
+      "platforms":[
+        {
+          "sprite":"grandma.png",
+          "collides":false,
+          "coords": {
+            "pos_x":350,
+            "pos_y":600,
+            "inverted": false
+          },
+          "scale": 5
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":660,
+            "pos_y":500,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":820,
+            "pos_y":420,
+            "inverted": false
+          },
+          "scale": 0.75
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":940,
+            "pos_y":300,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":1080,
+            "pos_y":330,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+       {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":1315,
+            "pos_y":500,
+            "inverted": false
+          },
+          "scale": 0.75
+        },
+
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":1720,
+            "pos_y":330,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2590,
+            "pos_y":500,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":1940,
+            "pos_y":500,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2100,
+            "pos_y":420,
+            "inverted": false
+          },
+          "scale": 0.75
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2220,
+            "pos_y":300,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2369,
+            "pos_y":330,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2580,
+            "pos_y":500,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2860,
+            "pos_y":300,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3000,
+            "pos_y":330,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3220,
+            "pos_y":500,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3380,
+            "pos_y":420,
+            "inverted": false
+          },
+          "scale": 0.75
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3500,
+            "pos_y":300,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3640,
+            "pos_y":330,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3860,
+            "pos_y":500,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+ 
+        {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":4140,
+            "pos_y":300,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+                {
+          "sprite":"grey_platform.png",
+          "collides":true,
+          "coords": {
+            "pos_x":4280,
+            "pos_y":200,
+            "inverted": false
+          },
+          "scale": 0.6
+        },
+        {
+          "sprite":"old_man.png",
+          "collides":false,
+          "coords": {
+            "pos_x":4150,
+            "pos_y":600,
+            "inverted": false
+          },
+          "scale": 3
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {
+          "kind":"meta",
+          "sprite":"finish_line.png",
+          "collides":false,
+          "scale": 0.75,
+          "coords":{
+            "pos_x":11700,
+            "pos_y":600,
+            "inverted":false
+          }
+        }
+      ],
+      "objects":[
+        {
+          "kind":"mask",
+          "sprite":"mask.png",
+          "collides":true,
+          "coords":{
+            "pos_x":2885,
+            "pos_y":280,
+            "inverted":false
+          }
+        },
+                {
+          "kind":"mask",
+          "sprite":"roll_paper.png",
+          "collides":true,
+          "coords":{
+            "pos_x":4100,
+            "pos_y":590,
+            "inverted":false
+          }
+        }
+      ],
+      "enemies":[
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":1500,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":1554,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":1608,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2262,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2316,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":10900,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":10954,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":11008,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":11062,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "comment": "primer covid",
+          "collides":true,
+          "speedx":7,
+          "speedy":25,
+          "coords":{
+            "pos_x":2000,
+            "pos_y":200,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "collides":true,
+          "speedx":25,
+          "speedy":0,
+          "coords":{
+            "pos_x":1000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":25,
+          "speedy":0,
+          "coords":{
+            "pos_x":4200,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":1,
+          "speedy":20,
+          "coords":{
+            "pos_x":1155,
+            "pos_y":310,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
+        },
+        {
+          "comment": "covid al lado mascarilla",
+          "collides":true,
+          "speedx":0,
+          "speedy":25,
+          "coords":{
+            "pos_x":2910,
+            "pos_y":300,
+            "inverted":false
+          },
+          "data":"covid"
+        },
+        {
+          "comment": "",
+          "collides":true,
+          "speedx":25,
+          "speedy":0,
+          "coords":{
+            "pos_x":6200,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":25,
+          "speedy":0,
+          "coords":{
+            "pos_x":5500,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "collides":true,
+          "speedx":3,
+          "speedy":20,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
+        },
+        {
+          "collides":true,
+          "speedx":25,
+          "speedy":0,
+          "coords":{
+            "pos_x":5000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        },
+        {
+          "comment": "",
+          "collides":true,
+          "speedx":25,
+          "speedy":0,
+          "coords":{
+            "pos_x":6000,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"corredor"
+        }
+      ],
+      "triggers":[
+        {
+          "comment": "First checkpoint",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":0,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":100
+          }
+        },
+
+        {
+          "comment": "La abuela",
+          "event":2,
+          "id":0,
+          "once": false,
+          "indicator":true,
+          "coords":{
+            "pos_x":350,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":80,
+            "height":90
+          }
+        },
+        {
+          "comment": "El abuelo",
+          "event":2,
+          "id":1,
+          "once": false,
+          "indicator":true,
+          "coords":{
+            "pos_x":4150,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":70,
+            "height":120
+          }
+        },
+
+        {
+          "comment": "Second checkpoint",
+          "event":1,
+          "indicator":true,
+          "coords":{
+            "pos_x":3000,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":500
+          }
+        },
+        {
+          "comment": "Scene end (meta)",
+          "event":3,
+          "indicator":true,
+	  "next_scene": "Level1",
+          "coords":{
+            "pos_x":11700,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":500
+          }
+        }
+      ]
+    }
+  ],
+  "dialogs":[
+    {
+      "index":0,
+      "title":"Cashier at the supermarket",
+      "data":"grandma.png",
+      "text":"Are you looking for the last roll of paper? I'm sorry to tell you that Ms. Melissa came in one hour ago.",
+      "options":[
+        {
+          "text":"I need it! and no one is going to stop me!",
+          "valid":true
+        }
+      ]
+    },
+    {
+      "index":1,
+      "title":"A very old man",
+      "data":"old_man.png",
+      "text":"Here boy! This is the last roll of paper and I'm to old to escape with it, but be careful everyone here looking for that same roll of paper. Take it and run!. ",
+      "options":[
+        {
+          "text":"Get away from me you old skunk",
+          "valid":false
+        }
+      ]
+    }
+  ]
+}
