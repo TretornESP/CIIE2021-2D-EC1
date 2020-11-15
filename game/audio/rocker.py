@@ -20,7 +20,7 @@ class Rocker:
         if not cls.INIT:
             pygame.mixer.init()
             cls.INIT = True
-        path = os.path.abspath(os.getcwd())
+        path = os.path.abspath(os.getcwd()) #THIS FORBIDS YOU TO DO CD DURING THE CODE FLOW: BEWARE
         path = os.path.join(path, "game", "assets", "music", song)
         try:
             pygame.mixer.music.load(path)
