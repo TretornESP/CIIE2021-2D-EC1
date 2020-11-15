@@ -21,6 +21,9 @@ class AbstractScreen:
         self._clicked = None
         self._gui_elements = []
 
+        (self._x_total, self._y_total) = ResourceManager.load_config().get_resolution()
+        (self._x_total_half, self._y_total_half) = (self._x_total>>1, self._y_total>>1)
+
     def start_scene(self):
         if self._song != None:
             song_path = ResourceManager.get_song_path(self._song)

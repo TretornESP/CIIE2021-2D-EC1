@@ -44,6 +44,7 @@ class AbstractHorizontalScene(AbstractScene):
         self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (0, 6), Hud.GROW_RIGHT, 110)
 
         self._text_repo = ResourceManager.get_text_repository()
+        self._player_repo = ResourceManager.get_player_repository()
 
         self._background = None
         self._sky = None
@@ -62,8 +63,7 @@ class AbstractHorizontalScene(AbstractScene):
             Farm.set_pond_position(self._scroll_x, 0)
             self._text_repo.set_position((self._scroll_x, 0))
 
-        repo = ResourceManager.get_player_repository()
-        if repo.get_parameter(PlayerRepository.ATTR_HEALTH) <= 0:
+        if self._player_repo.get_parameter(PlayerRepository.ATTR_HEALTH) <= 0:
             self._director.push_scene(EndMenu())
             print("LOST BITCH")
 
