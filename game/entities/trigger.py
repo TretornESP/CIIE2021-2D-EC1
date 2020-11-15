@@ -24,6 +24,8 @@ class Trigger(AbstractPlatform):
         self._text = ResourceManager.get_text_repository()
         self._last = 0
 
+        self._has_interacted = False
+
     def update(self, elapsed_time):
         AbstractPlatform.update(self, elapsed_time)
         self._last += elapsed_time
@@ -42,11 +44,11 @@ class Trigger(AbstractPlatform):
                     self._last = 0
                     pos = self._position[0], self._position[1] - self.rect.height
                     self._text.add_sprite(AnimatedText(pos, Trigger.DIALOG_TEXT, self._scroll))
-                if player.is_interacting() or self._locking:
+                if player.is_interacting() or (self._locking and not self._has_interacted):
+                    self._has_interacted = True
                     Rocker.action(Rocker.AUD_TALK)
                     self._director.push_scene(self._action_data)
             elif self._id == Trigger.SCENE_END:
-                from game.levels import Level
                 Rocker.action(Rocker.AUD_WIN)
                 self._director.end_scene()
             else:

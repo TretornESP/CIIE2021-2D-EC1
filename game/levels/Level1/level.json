@@ -309,7 +309,7 @@
           "comment": "Dialogo crook 1",
           "event":2,
           "id":2,
-          "once": false,
+          "once": true,
           "indicator":true,
           "coords":{
             "pos_x":800,
@@ -1122,7 +1122,7 @@
           "event":2,
           "id":0,
           "locking": true,
-          "once": true,
+          "once": false,
           "indicator":true,
           "coords":{
             "pos_x":950,
