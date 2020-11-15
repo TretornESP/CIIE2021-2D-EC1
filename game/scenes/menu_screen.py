@@ -1,13 +1,14 @@
 from game import ResourceManager
 from .abstract_screen import AbstractScreen
-from game.gui import PlayButton, ExitButton, TextGUI
+from game.gui import PlayButton, ExitButton, TextGUI, HighscoresButton
+
 
 class MenuScreen(AbstractScreen):
     def __init__(self, menu):
         AbstractScreen.__init__(self, menu, "backgrounds/main_menu.jpg", song="ulerime.ogg")
 
         self._gui_elements.append(PlayButton(self, (self._x_total_half, 270)))
-        self._gui_elements.append(ExitButton(self, (self._x_total_half, 340)))
+        self._gui_elements.append(HighscoresButton(self, (self._x_total_half, 340)))
         self._gui_elements.append(ExitButton(self, (self._x_total_half, 410)))
 
         white = (255, 255, 255)

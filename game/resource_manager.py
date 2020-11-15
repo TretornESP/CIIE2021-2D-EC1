@@ -162,6 +162,27 @@ class ResourceManager(object):
         return cls._resources[(level+folder+name)]
 
     @classmethod
+    def load_hs(cls):
+        path = os.path.abspath(__package__)
+        fullname = os.path.join(path, "highscores.json")
+        with open(fullname, "r") as f:
+            hs = json.load(f)
+            hs = sorted(hs, key=lambda h: h[1])
+            return hs[:5]
+
+    @classmethod
+    def append_hs(cls, highscore_sec):
+        path = os.path.abspath(__package__)
+        fullname = os.path.join(path, "highscores.json")
+        hs = None
+        with open(fullname, "r") as f:
+            hs = json.load(f)
+            from datetime import date
+            hs.append([date.today().strftime("%d-%m-%Y"), highscore_sec])
+        with open(fullname, "w") as f:
+            json.dump(hs, f)
+
+    @classmethod
     def get_player_repository(cls):
         if cls.PLAYER_REPOSITORY_NAME not in cls._resources:
             cls._resources[cls.PLAYER_REPOSITORY_NAME] = PlayerRepository()

@@ -59,3 +59,18 @@ class ExitButton(Button):
 
     def callback(self):
         self._screen._menu.quit_game()
+
+class HighscoresButton(Button):
+    def __init__(self, screen, pos):
+        Button.__init__(self, screen, pos)
+
+    def callback(self):
+        self._screen._menu.populate_highscores()
+        self._screen._menu.play_highscores()
+
+class MainMenuButton(Button):
+    def __init__(self, screen, pos):
+        Button.__init__(self, screen, pos)
+
+    def callback(self):
+        self._screen._menu._show_first_screen()
