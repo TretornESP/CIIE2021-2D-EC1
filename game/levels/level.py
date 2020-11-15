@@ -116,8 +116,9 @@ class Level():
         locking   = json.get('locking')
         if locking == None:
             locking = True
-        if locking == True:
-            once = True # This prevents getting locked inside the dialog!
+        # Not needed anymore
+        #if locking == True:
+        #    once = True # This prevents getting locked inside the dialog!
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         size   = self.parse_size(json['size'])
