@@ -785,6 +785,56 @@
       },
       "platforms":[
         {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":5720,
+            "pos_y":300,
+            "inverted": true
+          },
+          "scale": 0.3
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":4600,
+            "pos_y":600,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3700,
+            "pos_y":600,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3300,
+            "pos_y":400,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2400,
+            "pos_y":575,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
           "sprite":"scene0/shopper.png",
           "collides":false,
           "coords": {
@@ -803,16 +853,6 @@
             "inverted": true
           },
           "scale": 0.3
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":2400,
-            "pos_y":575,
-            "inverted": true
-          },
-          "scale": 0.25
         },
         {
           "sprite":"scene0/platform.png",
@@ -855,16 +895,6 @@
           "scale": 0.125
         },
         {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":3300,
-            "pos_y":400,
-            "inverted": true
-          },
-          "scale": 0.25
-        },
-        {
           "sprite":"scene0/platform.png",
           "collides":true,
           "coords": {
@@ -893,16 +923,6 @@
             "inverted": true
           },
           "scale": 0.125
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":3700,
-            "pos_y":600,
-            "inverted": true
-          },
-          "scale": 0.25
         },
         {
           "sprite":"scene0/platform.png",
@@ -953,16 +973,6 @@
             "inverted": true
           },
           "scale": 0.1
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":4600,
-            "pos_y":600,
-            "inverted": true
-          },
-          "scale": 0.25
         },
         {
           "sprite":"scene0/pickup.png",
@@ -1073,16 +1083,6 @@
             "inverted": true
           },
           "scale": 0.1
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":5720,
-            "pos_y":300,
-            "inverted": true
-          },
-          "scale": 0.3
         }
       ],
       "objects":[
@@ -1280,6 +1280,21 @@
         }
       ],
       "triggers":[
+        {
+          "comment": "Music epique",
+          "event":0,
+          "id":"ulerime.ogg",
+          "indicator":true,
+          "coords":{
+            "pos_x":300,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":500
+          }
+        },
         {
           "comment": "First checkpoint",
           "event":1,
