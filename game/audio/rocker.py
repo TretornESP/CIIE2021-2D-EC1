@@ -1,21 +1,36 @@
+from .. import ResourceManager
+import os
+import pygame
+
 class Rocker:
-    AUD_HIT = 0x0
-    AUD_WIN = 0x1
-    AUD_LOST = 0x2
-    AUD_PICK = 0x3
-    AUD_HEART = 0x4
-    AUD_TALK = 0x5
-    AUD_JUMP = 0x6
-    AUD_DASH = 0x7
-    AUD_PARRY = 0x8
+    AUD_HIT = "hit.wav"
+    AUD_WIN = "victory.wav"
+    AUD_DEFEAT = "defeat.wav"
+    AUD_PICK = "pick.wav"
+    AUD_HEART = "heart.wav"
+    AUD_TALK = "talk.wav"
+    AUD_JUMP = "jump.wav"
+    AUD_DASH = "dash.wav"
+    AUD_PARRY = "shield.wav"
 
-    def __init__(self):
-        self._background = None
+    INIT = False
 
-    def set_background(self, song):
-        pass
+    @classmethod
+    def background(cls, song):
+        if not cls.INIT:
+            pygame.mixer.init()
+            cls.INIT = True
+        path = os.path.abspath(__package__)
+        path = os.path.join(path, "assets/music/", song)
+        try:
+            pygame.mixer.music.load(path)
+            pygame.mixer.music.play(-1)
+        except Exception as e:
+            print(e)
 
-    def add_effect(self, song):
-        pass
 
-    def stop_effects(self, song):
+
+
+    @classmethod
+    def action(cls, action):
+        ResourceManager.play_sound(os.path.join("sfx",str(action)))

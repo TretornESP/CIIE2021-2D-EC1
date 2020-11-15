@@ -121,7 +121,9 @@ class Level():
         coords = self.parse_coords(json['coords'])
         invert = json['coords']['inverted']
         size   = self.parse_size(json['size'])
-        if event == 2 and id != None:
+        if event == 0 and id != None:
+            extra = id
+        elif event == 2 and id != None:
             extra = self.dialogs[id]
         elif event == 3:
             extra = json['next_scene']

@@ -1,6 +1,7 @@
 import pygame
 from .abstract_platform import AbstractPlatform
 from ..farm import Farm
+from ..audio.rocker import Rocker
 
 class Object(AbstractPlatform):
     MASK = "mask"
@@ -18,5 +19,6 @@ class Object(AbstractPlatform):
             self._collect(player)
 
     def _collect(self, player):
+        Rocker.action(Rocker.AUD_PICK)
         if self._kind == Object.MASK:
             player.pick_mask()
