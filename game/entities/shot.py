@@ -27,6 +27,5 @@ class Shot(Enemy):
 
         if Farm.touches_anything_visible(self) or left < -50 or right > width + 50:
             self.kill()
-            self.kill()
 
         self.rect.left += inc

@@ -47,7 +47,6 @@ class Trigger(AbstractPlatform):
                 self._director.end_scene()
                 for scene in scenes:
                     self._director.change_scene(scene)
-
             else:
                 raise NotImplemented("This trigger does not exist")
 

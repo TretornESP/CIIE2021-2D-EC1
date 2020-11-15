@@ -84,5 +84,7 @@ class Director:
             scene.events(pygame.event.get())
             scene.update(elapsed_time)
             scene.draw()
+            scene.draw_fps(self._clock.get_fps())
+
 
             pygame.display.flip()

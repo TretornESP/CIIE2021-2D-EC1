@@ -133,6 +133,40 @@
             "inverted":false
           },
           "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":1,
+          "speedy":5,
+          "coords":{
+            "pos_x":2400,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"torreta",
+          "shot":"shot"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":0,
+          "coords":{
+            "pos_x":2600,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"spikes"
+        },
+        {
+          "collides":true,
+          "speedx":0,
+          "speedy":5,
+          "coords":{
+            "pos_x":2800,
+            "pos_y":600,
+            "inverted":false
+          },
+          "data":"covid"
         }
       ],
       "triggers":[
