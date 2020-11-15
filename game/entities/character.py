@@ -53,8 +53,6 @@ class Character(AbstractSprite):
         self._movement_x = Character.STILL
         self._movement_y = Character.STILL
 
-        self._momentum = 0
-
         self._orientation = Character.RIGHT
 
     def update(self, elapsed_time):
@@ -72,16 +70,11 @@ class Character(AbstractSprite):
 
         # update horizontal movement
         if self._movement_x == Character.LEFT:
-            self._momentum = 0
             self._velocity = (-vel_px * elapsed_time, self._velocity[1])
         if self._movement_x == Character.RIGHT:
-            self._momentum = 0
             self._velocity = (vel_px * elapsed_time, self._velocity[1])
-        if self._movement_x == Character.STILL and not self._is_jumping and self._dash >= Character.DASH_DUR:
-            self._momentum += (-vel_px if self._velocity[0] >= 0 else vel_px) * elapsed_time * 0.7
-            v_x = max(0, self._momentum + self._velocity[0]) if self._velocity[0] >= 0 else min(0, self._momentum + self._velocity[0])
-            self._momentum = self._momentum if v_x != 0 else 0
-            self._velocity = (v_x, self._velocity[1])
+        if self._movement_x == Character.STILL:
+            self._velocity = (0, self._velocity[1])
         if self._movement_y == Character.UP and self._jump >= Character.JUMPING_DELAY and not self._is_jumping:
             self._jump = 0
             self._is_jumping = True
@@ -94,7 +87,7 @@ class Character(AbstractSprite):
         # check horizontal collisions
         self._increase_position((self._velocity[0], 0))
         platform = Farm.platform_collision(self)
-        if platform != None and platform._collides and self.rect.bottom > platform.rect.top + 1:
+        if platform != None and platform._collides and self.rect.bottom > platform.rect.height + 1:
             dist_l = abs(platform.rect.centerx - self.rect.left)
             dist_r = abs(platform.rect.centerx - self.rect.right)
 
