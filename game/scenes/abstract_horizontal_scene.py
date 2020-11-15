@@ -13,8 +13,8 @@ from ..farm import Farm
 from pygame.locals import *
 
 class AbstractHorizontalScene(AbstractScene):
-    MIN_X = 100
-    MAX_X = 300
+    MIN_X = 150
+    MAX_X = 350
 
     # Main layout
     # CONTROL_JUMP_BINDING    = (K_w, K_SPACE)
