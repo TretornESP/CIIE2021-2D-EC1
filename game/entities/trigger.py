@@ -12,6 +12,7 @@ class Trigger(AbstractPlatform):
     CHECKPOINT  = 0x1
     DIALOG      = 0x2
     SCENE_END   = 0x3
+    WIN_CONDITION = 0x4
 
     def __init__(self, level, id, indic, once, coord, size, invert, action_data=None, locking=True):
         AbstractPlatform.__init__(self, level, None, True, pygame.Rect(coord, size), invert, not indic)
@@ -50,6 +51,9 @@ class Trigger(AbstractPlatform):
             elif self._id == Trigger.SCENE_END:
                 Rocker.action(Rocker.AUD_WIN)
                 self._director.end_scene()
+            elif self._id == Trigger.WIN_CONDITION:
+                from game.scenes import WinMenu
+                self._director.push_scene(WinMenu())
             else:
                 raise NotImplemented("This trigger does not exist")
 

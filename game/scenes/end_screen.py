@@ -8,7 +8,7 @@ class EndScreen(AbstractScreen):
         AbstractScreen.__init__(self, menu, "backgrounds/main_menu.jpg")
         Rocker.action(Rocker.AUD_DEFEAT)
         self._gui_elements.append(RetryButton(self, (self._x_total_half, 270)))
-        self._gui_elements.append(ExitButton(self, (self._x_total_half, 420)))
+        self._gui_elements.append(ExitButton(self, (self._x_total_half, 340)))
 
         white = (255, 255, 255)
         font_64 = ResourceManager.load_font_asset("8bit.ttf", 64)
@@ -16,8 +16,7 @@ class EndScreen(AbstractScreen):
 
         title = TextGUI(self, font_64, white, "Has perdido", (self._x_total_half, 120))
         retry = TextGUI(self, font_32, white, "Reintentar", (self._x_total_half, 270))
-        exit = TextGUI(self, font_32, white, "Salir", (self._x_total_half, 420))
-
+        exit = TextGUI(self, font_32, white, "Salir", (self._x_total_half, 340))
 
         self._gui_elements.append(title)
         self._gui_elements.append(retry)
