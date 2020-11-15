@@ -7,6 +7,7 @@ class PlayerRepository:
 
     ATTR_HEALTH = "attr_health"
     ATTR_MASKS = "attr_masks"
+    ATTR_TOILET_PAPER = "attr_toilet_paper"
     ATTR_POS = "attr_position" #TODO, los checkpoints deberían sacar de aqui la posicion!
 
     def __init__(self):
@@ -16,6 +17,7 @@ class PlayerRepository:
     def reset_attr(self):
         self.set_parameter(PlayerRepository.ATTR_HEALTH, PlayerRepository.DEFAULT_HEALTH)
         self.set_parameter(PlayerRepository.ATTR_MASKS, PlayerRepository.DEFAULT_MASKS)
+        self.set_parameter(PlayerRepository.ATTR_TOILET_PAPER, 0)
 
     def load_checkpoint_status(self, checkpoint):
         self.set_parameter(PlayerRepository.ATTR_HEALTH, checkpoint.get_parameter(PlayerRepository.ATTR_HEALTH))

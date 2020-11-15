@@ -42,6 +42,7 @@ class AbstractHorizontalScene(AbstractScene):
         self._hud = Hud()
         self._hud.create_hud_group(PlayerRepository.ATTR_HEALTH, HudHeart, (0, 0), Hud.GROW_RIGHT, 100)
         self._hud.create_hud_group(PlayerRepository.ATTR_MASKS, HudMask, (0, 6), Hud.GROW_RIGHT, 110)
+        self._hud.create_hud_group(PlayerRepository.ATTR_TOILET_PAPER, HudToiletPaper, (80, 0), Hud.GROW_LEFT, 100)
 
         self._text_repo = ResourceManager.get_text_repository()
         self._player_repo = ResourceManager.get_player_repository()

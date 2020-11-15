@@ -43,7 +43,7 @@
           "comment": "Scene end (meta)",
           "event":3,
           "indicator":true,
-    "next_scene": "Level2",
+          "next_scene": "Level2",
           "coords":{
             "pos_x":1700,
             "pos_y":400,
@@ -1214,7 +1214,7 @@
           "valid":false
         },
         {
-          "text":"Just go upstairs, there are vending machines in the wagon noº 7",
+          "text":"Just go upstairs, there are vending machines in the wagon no 7",
           "valid":true
         }
       ],

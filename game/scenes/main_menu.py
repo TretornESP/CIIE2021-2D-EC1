@@ -22,10 +22,11 @@ class MainMenu(AbstractMenu):
         repo = ResourceManager.get_player_repository()
         repo.reset_attr()
 
-        level1 = Level("Level1", self._hacks)
         level0 = Level("Level0", self._hacks)
+        level1 = Level("Level1", self._hacks)
+        level2 = Level("Level2", self._hacks)
 
-        for level in [level1, level0]:
+        for level in [level2, level1, level0]:
             for scene in level.get_scenes():
                 self._director.push_scene(scene)
 

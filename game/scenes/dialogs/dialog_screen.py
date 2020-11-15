@@ -89,9 +89,9 @@ class DialogScreen(AbstractScreen):
             buf = pygame.surface.Surface((rect.width, rect.height)).convert()
             buf.set_colorkey(trans)
             buf.fill(trans)
-            round_rect(buf, r, rad, color, 0)
+            self.round_rect(buf, r, rad, color, 0)
             r = r.inflate(-thick*2, -thick*2)
-            round_rect(buf, r, rad, trans, 0)
+            self.round_rect(buf, r, rad, trans, 0)
             surf.blit(buf, (x,y))
         else:
             r  = rect.inflate(-rad * 2, -rad * 2)

@@ -32,8 +32,7 @@ class Scene(AbstractHorizontalScene):
 
     def start_scene(self):
         AbstractHorizontalScene.start_scene(self)
-        Farm.get_player().reset_hearts()
-        Farm.get_player().reset_masks()
+        ResourceManager.get_player_repository().reset_attr()
         
     def set_checkpoint(self, _scroll_x=None):
         self._checkpoint.set_player(Farm.get_player())

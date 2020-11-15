@@ -3,9 +3,12 @@ from .abstract_platform import AbstractPlatform
 from ..farm import Farm
 from ..audio.rocker import Rocker
 
+
 class Object(AbstractPlatform):
     MASK = "mask"
+    TOILET_PAPER = "toilet_paper"
     STATIC = "static"
+
     def __init__(self, level, kind, sprite, collision, coord, invert):
         AbstractPlatform.__init__(self, level, sprite, collision, pygame.Rect(coord, (0, 0)), invert)
         self._kind = kind
@@ -22,3 +25,6 @@ class Object(AbstractPlatform):
         Rocker.action(Rocker.AUD_PICK)
         if self._kind == Object.MASK:
             player.pick_mask()
+
+        if self._kind == Object.TOILET_PAPER:
+            player.pick_toilet()
