@@ -57,6 +57,10 @@ class AbstractHorizontalScene(AbstractScene):
         self._text_repo.update(elapsed_time)
         self._hud.update()
 
+        self._player_repo.set_parameter(PlayerRepository.ATTR_TOTAL_TIME, ((self._player_repo.get_parameter(
+            PlayerRepository.ATTR_TOTAL_TIME) + elapsed_time) if self._player_repo.get_parameter(
+            PlayerRepository.ATTR_TOTAL_TIME) is not None else 0), accounted=False)
+
         if self._update_scroll() or (self._last_scroll != self._scroll_x):
             self._last_scroll = self._scroll_x
             self._background.update(self._scroll_x)

@@ -8,6 +8,7 @@ class PlayerRepository:
     ATTR_HEALTH = "attr_health"
     ATTR_MASKS = "attr_masks"
     ATTR_POS = "attr_position" #TODO, los checkpoints deberían sacar de aqui la posicion!
+    ATTR_TOTAL_TIME = "attr_total_time"
 
     def __init__(self):
         self._data = {}
