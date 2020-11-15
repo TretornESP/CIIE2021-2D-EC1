@@ -3,14 +3,14 @@
   "name": "Level2",
   "scenes": [
     {
-      "id":"SCN_1",
-      "sky":"sky.png",
-      "background":"background_long.jpg",
-      "scroll":2000,
-      "player":{
-        "coords":{
-          "pos_x":50,
-          "pos_y":600,
+      "id": "SCN_2",
+      "sky": "sky.png",
+      "background": "living_room.png",
+      "scroll": 2000,
+      "player": {
+        "coords": {
+          "pos_x": 50,
+          "pos_y": 600,
           "inverted": false
         },
         "data": "player"
@@ -22,43 +22,89 @@
           "coords": {
             "pos_x": 350,
             "pos_y": 600,
+            "inverted": true
+          },
+          "scale": 7
+        }
+      ],
+      "objects": [],
+      "enemies": [],
+      "triggers": [
+        {
+          "comment": "La abuela da las gracias",
+          "event": 2,
+          "id": 3,
+          "once": false,
+          "indicator": false,
+          "coords": {
+            "pos_x": 350,
+            "pos_y": 600,
             "inverted": false
           },
-          "scale": 5
+          "size": {
+            "width": 80,
+            "height": 90
+          }
+        }
+      ]
+    },
+    {
+      "id": "SCN_1",
+      "sky": "sky.png",
+      "background": "background_long.png",
+      "scroll": 2000,
+      "player": {
+        "coords": {
+          "pos_x": 50,
+          "pos_y": 600,
+          "inverted": false
+        },
+        "data": "player"
+      },
+      "platforms": [
+        {
+          "sprite": "cashier.png",
+          "collides": false,
+          "coords": {
+            "pos_x": 350,
+            "pos_y": 600,
+            "inverted": false
+          },
+          "scale": 0.4
         },
         {
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 660,
+            "pos_x": 670,
             "pos_y": 500,
             "inverted": false
           },
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
             "pos_x": 823,
             "pos_y": 418,
             "inverted": false
           },
-          "scale": 0.75
+          "scale": 0.6
         },
         {
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
             "pos_x": 940,
-            "pos_y": 300,
+            "pos_y": 305,
             "inverted": false
           },
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
             "pos_x": 1080,
             "pos_y": 330,
@@ -67,22 +113,11 @@
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
             "pos_x": 1315,
             "pos_y": 500,
-            "inverted": false
-          },
-          "scale": 0.75
-        },
-
-        {
-          "sprite":"grey_platform.png",
-          "collides":true,
-          "coords": {
-            "pos_x": 1720,
-            "pos_y": 330,
             "inverted": false
           },
           "scale": 0.6
@@ -91,8 +126,8 @@
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 2590,
-            "pos_y": 500,
+            "pos_x": 1720,
+            "pos_y": 330,
             "inverted": false
           },
           "scale": 0.6
@@ -108,28 +143,18 @@
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
-          "coords": {
-            "pos_x": 2100,
-            "pos_y": 420,
-            "inverted": false
-          },
-          "scale": 0.75
-        },
-        {
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 2220,
-            "pos_y": 300,
+            "pos_x": 2115,
+            "pos_y": 420,
             "inverted": false
           },
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
             "pos_x": 2369,
             "pos_y": 330,
@@ -138,11 +163,11 @@
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
-            "pos_x": 2580,
-            "pos_y": 500,
+            "pos_x": 2880,
+            "pos_y": 300,
             "inverted": false
           },
           "scale": 0.6
@@ -150,16 +175,6 @@
         {
           "sprite": "grey_platform.png",
           "collides": true,
-          "coords": {
-            "pos_x": 2860,
-            "pos_y": 300,
-            "inverted": false
-          },
-          "scale": 0.6
-        },
-        {
-          "sprite":"grey_platform.png",
-          "collides":true,
           "coords": {
             "pos_x": 3000,
             "pos_y": 330,
@@ -178,28 +193,28 @@
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
             "pos_x": 3380,
             "pos_y": 420,
             "inverted": false
           },
-          "scale": 0.75
+          "scale": 0.6
         },
         {
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 3500,
+            "pos_x": 3530,
             "pos_y": 300,
             "inverted": false
           },
           "scale": 0.6
         },
         {
-          "sprite":"grey_platform.png",
-          "collides":true,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
             "pos_x": 3640,
             "pos_y": 330,
@@ -222,18 +237,8 @@
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 4140,
+            "pos_x": 4160,
             "pos_y": 300,
-            "inverted": false
-          },
-          "scale": 0.6
-        },
-        {
-          "sprite":"grey_platform.png",
-          "collides":true,
-          "coords": {
-            "pos_x": 4280,
-            "pos_y": 200,
             "inverted": false
           },
           "scale": 0.6
@@ -262,18 +267,18 @@
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 4663,
+            "pos_x": 4680,
             "pos_y": 418,
             "inverted": false
           },
-          "scale": 0.75
+          "scale": 0.6
         },
         {
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 4790,
-            "pos_y": 300,
+            "pos_x": 4800,
+            "pos_y": 310,
             "inverted": false
           },
           "scale": 0.6
@@ -292,16 +297,6 @@
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 5150,
-            "pos_y": 500,
-            "inverted": false
-          },
-          "scale": 0.6
-        },
-        {
-          "sprite": "grey_platform.png",
-          "collides": true,
-          "coords": {
             "pos_x": 5305,
             "pos_y": 418,
             "inverted": false
@@ -312,7 +307,7 @@
           "sprite": "grey_platform.png",
           "collides": true,
           "coords": {
-            "pos_x": 5432,
+            "pos_x": 5440,
             "pos_y": 300,
             "inverted": false
           },
@@ -329,15 +324,24 @@
           "scale": 0.6
         },
         {
-          "kind": "meta",
-          "sprite": "finish_line.png",
-          "collides": false,
-          "scale": 0.75,
+          "sprite": "grey_platform.png",
+          "collides": true,
           "coords": {
-            "pos_x": 11700,
-            "pos_y": 600,
+            "pos_x": 5610,
+            "pos_y": 180,
             "inverted": false
-          }
+          },
+          "scale": 0.3
+        },
+        {
+          "sprite": "grey_platform.png",
+          "collides": true,
+          "coords": {
+            "pos_x": 5980,
+            "pos_y": 160,
+            "inverted": false
+          },
+          "scale": 0.3
         }
       ],
       "objects": [
@@ -362,26 +366,26 @@
           }
         },
         {
-          "kind":"toilet_paper",
-          "sprite":"roll_paper.png",
-          "collides":true,
-          "scale":2,
-          "coords":{
-            "pos_x":4100,
-            "pos_y":590,
-            "inverted":false
-          }
-        },
-        {
-          "kind": "mask",
+          "kind": "toilet_paper",
           "sprite": "roll_paper.png",
           "collides": true,
+          "scale": 2,
           "coords": {
             "pos_x": 4100,
             "pos_y": 590,
             "inverted": false
-          },
-          "scale": 0.1
+          }
+        },
+        {
+          "kind": "toilet_paper",
+          "sprite": "roll_paper.png",
+          "collides": true,
+          "scale": 2,
+          "coords": {
+            "pos_x": 5980,
+            "pos_y": 157,
+            "inverted": false
+          }
         }
       ],
       "enemies": [
@@ -423,18 +427,7 @@
           "speedx": 0,
           "speedy": 0,
           "coords": {
-            "pos_x": 2262,
-            "pos_y": 600,
-            "inverted": false
-          },
-          "data": "spikes"
-        },
-        {
-          "collides": true,
-          "speedx": 0,
-          "speedy": 0,
-          "coords": {
-            "pos_x": 2316,
+            "pos_x": 2608,
             "pos_y": 600,
             "inverted": false
           },
@@ -544,9 +537,9 @@
           "comment": "primer covid",
           "collides": true,
           "speedx": 0,
-          "speedy": 1,
+          "speedy": 25,
           "coords": {
-            "pos_x": 1100,
+            "pos_x": 1050,
             "pos_y": 300,
             "inverted": false
           },
@@ -674,7 +667,7 @@
         {
           "comment": "First checkpoint",
           "event": 1,
-          "indicator": true,
+          "indicator": false,
           "coords": {
             "pos_x": 0,
             "pos_y": 600,
@@ -686,11 +679,11 @@
           }
         },
         {
-          "comment": "La abuela",
+          "comment": "Cajera",
           "event": 2,
           "id": 0,
-          "once": false,
-          "indicator": true,
+          "once": true,
+          "indicator": false,
           "coords": {
             "pos_x": 350,
             "pos_y": 600,
@@ -704,7 +697,7 @@
         {
           "comment": "Second checkpoint",
           "event": 1,
-          "indicator": true,
+          "indicator": false,
           "coords": {
             "pos_x": 1800,
             "pos_y": 600,
@@ -719,8 +712,8 @@
           "comment": "El abuelo",
           "event": 2,
           "id": 1,
-          "once": false,
-          "indicator": true,
+          "once": true,
+          "indicator": false,
           "coords": {
             "pos_x": 4150,
             "pos_y": 600,
@@ -734,7 +727,7 @@
         {
           "comment": "Third checkpoint",
           "event": 1,
-          "indicator": true,
+          "indicator": false,
           "coords": {
             "pos_x": 3000,
             "pos_y": 600,
@@ -746,13 +739,28 @@
           }
         },
         {
+          "comment": "secret toilet paper",
+          "event": 2,
+          "id": 2,
+          "indicator": false,
+          "coords": {
+            "pos_x": 5980,
+            "pos_y": 200,
+            "inverted": false
+          },
+          "size": {
+            "width": 100,
+            "height": 500
+          }
+        },
+        {
           "comment": "Scene end (meta)",
-          "event":3,
-          "indicator":true,
-          "next_scene": "Level1",
-          "coords":{
-            "pos_x":11700,
-            "pos_y":600,
+          "event": 3,
+          "indicator": false,
+          "next_scene": "SCN_2",
+          "coords": {
+            "pos_x": 6500,
+            "pos_y": 600,
             "inverted": false
           },
           "size": {
@@ -777,6 +785,56 @@
       },
       "platforms":[
         {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":5720,
+            "pos_y":300,
+            "inverted": true
+          },
+          "scale": 0.3
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":4600,
+            "pos_y":600,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3700,
+            "pos_y":600,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":3300,
+            "pos_y":400,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
+          "sprite":"scene0/tires.png",
+          "collides":true,
+          "coords": {
+            "pos_x":2400,
+            "pos_y":575,
+            "inverted": true
+          },
+          "scale": 0.25
+        },
+        {
           "sprite":"scene0/shopper.png",
           "collides":false,
           "coords": {
@@ -795,16 +853,6 @@
             "inverted": true
           },
           "scale": 0.3
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":2400,
-            "pos_y":575,
-            "inverted": true
-          },
-          "scale": 0.25
         },
         {
           "sprite":"scene0/platform.png",
@@ -847,16 +895,6 @@
           "scale": 0.125
         },
         {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":3300,
-            "pos_y":400,
-            "inverted": true
-          },
-          "scale": 0.25
-        },
-        {
           "sprite":"scene0/platform.png",
           "collides":true,
           "coords": {
@@ -885,16 +923,6 @@
             "inverted": true
           },
           "scale": 0.125
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":3700,
-            "pos_y":600,
-            "inverted": true
-          },
-          "scale": 0.25
         },
         {
           "sprite":"scene0/platform.png",
@@ -945,16 +973,6 @@
             "inverted": true
           },
           "scale": 0.1
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":4600,
-            "pos_y":600,
-            "inverted": true
-          },
-          "scale": 0.25
         },
         {
           "sprite":"scene0/pickup.png",
@@ -1065,16 +1083,6 @@
             "inverted": true
           },
           "scale": 0.1
-        },
-        {
-          "sprite":"scene0/tires.png",
-          "collides":true,
-          "coords": {
-            "pos_x":5720,
-            "pos_y":300,
-            "inverted": true
-          },
-          "scale": 0.3
         }
       ],
       "objects":[
@@ -1273,6 +1281,21 @@
       ],
       "triggers":[
         {
+          "comment": "Music epique",
+          "event":0,
+          "id":"ulerime.ogg",
+          "indicator":true,
+          "coords":{
+            "pos_x":300,
+            "pos_y":600,
+            "inverted": false
+          },
+          "size":{
+            "width":100,
+            "height":500
+          }
+        },
+        {
           "comment": "First checkpoint",
           "event":1,
           "indicator":true,
@@ -1289,7 +1312,7 @@
         {
           "comment": "Shopper",
           "event":2,
-          "id":0,
+          "id":4,
           "once": false,
           "locking": false,
           "indicator":true,
@@ -1351,19 +1374,55 @@
   ],
   "dialogs": [
     {
-      "index":0,
-      "title":"Shopper says",
-      "data":"shopper_head.png",
-      "text":"I came here looking for DOUBLE LAYER TOILER PAPER, i bought the last roll but got mobbed while getting out of here. I really hate using single layer",
-      "options":[
+      "index": 0,
+      "title": "Cashier at the supermarket",
+      "data": "cashier.png",
+      "text": "Are you looking for the last roll of paper? I'm sorry to tell you that Ms. Melissa came in one hour ago.",
+      "options": [
         {
-          "text":"Continue",
-          "valid":true
+          "text": "I need it! and no one is going to stop me!",
+          "valid": true
         }
       ]
     },
     {
-      "index":1,
+      "index": 1,
+      "title": "A very old man",
+      "data": "old_man.png",
+      "text": "Here boy! This is the last roll of paper and I'm to old to escape with it, but be careful everyone here looking for that same roll of paper. Take it and run!. ",
+      "options": [
+        {
+          "text": "Get away from me you old skunk",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "The secret toilet paper",
+      "data": "cashier.png",
+      "text": "Great! You found the secret toilet paper! Now get out of the supermarket before the virus catches you!!!",
+      "options": [
+        {
+          "text": "Yeah! I'm the best!!",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "The gradma approaches",
+      "data": "grandma.png",
+      "text": "Thanks boy! Now go, I have to go to the toilet..",
+      "options": [
+        {
+          "text": "Good luck in the bathroom.",
+          "valid": false
+        }
+      ]
+    },
+    {
+      "index":4,
       "title":"Shopper says",
       "data":"shopper_head.png",
       "text":"I came here looking for DOUBLE LAYER TOILER PAPER, i bought the last roll but got mobbed while getting out of here. I really hate using single layer",
